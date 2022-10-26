@@ -1,0 +1,9 @@
+entity GroupTeacherDetails {
+	id Long,
+    teacherId Long,
+	parentGroupCode String
+}
+dto GroupTeacherDetails with mapstruct
+paginate GroupTeacherDetails with pagination
+service GroupTeacherDetails with serviceClass
+service GroupTeacherDetails with serviceImpl

@@ -1,0 +1,26 @@
+<div class="transfer-students">
+
+  <kt-transfer-student-header [isShowTransferButton]="isShowTransferButton$ | async"
+                              [isShowExportButton]="isShowExportButton$ | async"
+                              (transferClicked)="onTransferClicked()"
+                              (exportClicked)="onExportClicked()">
+  </kt-transfer-student-header>
+
+  <hr class="transfer-students__line">
+
+  <kt-transfer-student-search [schoolYear]="currentSchoolYear$ | async"
+                              [gradeSelect]="gradeSelect$ | async"
+                              [classSelect]="classSelect$ | async"
+                              [transferStatusSelect]="transferStatusSelect$ | async"
+                              (gradeChanged)="onGradeChange($event)"
+                              (search)="onSearch($event)">
+  </kt-transfer-student-search>
+
+  <kt-transfer-student-grid *ngIf="schoolYearPair$ | async as schoolYearPairs"
+                            [schoolYearPairs]="schoolYearPairs"
+                            [transferStudentPage]="transferStudentPages$ | async"
+                            (editClicked)="onEditClicked($event)"
+                            (transferStudentsSelected)="onTransferStudentsSelected($event)"
+                            (pageChanged)="onPageChanged($event)">
+  </kt-transfer-student-grid>
+</div>

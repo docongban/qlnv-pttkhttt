@@ -1,0 +1,136 @@
+<div class="modal-dialog-custom">
+  <form [formGroup]="classroomAddForm" #ngForm="ngForm" class="login-form">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" style="text-align: center;margin-bottom: 0" *ngIf="action === 'add'">Thêm mới lớp học</h4>
+        <h4 class="modal-title" style="text-align: center;margin-bottom: 0" *ngIf="action === 'edit'">Cập nhật lớp học</h4>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-6 years-school">
+            <label>Năm học <span>*</span></label>
+            <ng-select [items]="listYears"
+                       bindLabel="years"
+                       bindValue="years"
+                       formControlName="years"
+                       [readonly]="true" [clearable]="false"
+                       style="font-size: 12px!important;"
+            >
+            </ng-select>
+          </div>
+          <div class="col-md-6">
+            <label>Khối <span>*</span></label>
+            <ng-select [items]="gradeList" bindLabel="name" bindValue="id" placeholder="Lựa chọn"
+                       [searchable]="false"
+                       formControlName="gradeLevel"
+                       style="font-size: 12px!important;"
+            >
+              <ng-template ng-option-tmp let-item="item">
+                <div class="show-tooltip" [matTooltip]="item.name">{{item.name}}</div>
+              </ng-template>
+            </ng-select>
+            <mat-error *ngIf="(classroomAddForm.get('gradeLevel').errors && classroomAddForm.get('gradeLevel').touched) ||
+                           (classroomAddForm.get('gradeLevel').errors && ngForm.submitted) ">
+              Vui lòng chọn khối
+            </mat-error>
+          </div>
+          <div class="col-md-6">
+            <label>Khoa/Ban <span>*</span></label>
+            <ng-select [items]="departmentList"
+                       bindLabel="deptIdName"
+                       bindValue="id"
+                       placeholder="Lựa chọn"
+                       formControlName="deptId"
+                       style="font-size: 12px!important;"
+            >
+              <ng-template ng-option-tmp let-item="item">
+                <div class="show-tooltip" [matTooltip]="item.deptIdName">{{item.deptIdName}}</div>
+              </ng-template>
+            </ng-select>
+            <mat-error *ngIf="(classroomAddForm.get('deptId').errors && classroomAddForm.get('deptId').touched) ||
+                           (classroomAddForm.get('deptId').errors && ngForm.submitted) ">
+              Vui lòng chọn khoa/ban
+            </mat-error>
+          </div>
+
+          <div class="col-md-6">
+            <label>Mã lớp <span>*</span></label>
+            <input type="text" formControlName="code"
+                   [maxLength]="50"
+                   [pattern]="pattern"
+                   [disabled]="this.action === 'edit' ? true : null"
+                   (blur)="listenCode('code')"
+                   style="height: 40px; font-size: 12px !important;"
+            >
+            <mat-error *ngIf="(classroomAddForm.get('code').errors?.required && classroomAddForm.get('code').touched) ||
+                          (classroomAddForm.get('code').errors?.required && ngForm.submitted)">
+              Vui lòng nhập mã lớp
+            </mat-error>
+            <mat-error *ngIf="(classroomAddForm.get('code').errors?.pattern && classroomAddForm.get('code').touched) ||
+                          (classroomAddForm.get('code').errors?.pattern && ngForm.submitted)">
+              Mã lớp không được chứa khoảng trắng
+            </mat-error>
+          </div>
+          <div class="col-md-6">
+            <label>Tên lớp <span>*</span></label>
+
+            <input type="text" formControlName="name"
+                   (blur)="listenCode('name')"
+                   [maxLength]="250"
+                   style="height: 40px; font-size: 12px !important;"
+            >
+
+            <mat-error *ngIf="(classroomAddForm.get('name').errors && classroomAddForm.get('name').touched) ||
+                           (classroomAddForm.get('name').errors && ngForm.submitted)">
+              Vui lòng nhập tên lớp
+            </mat-error>
+          </div>
+          <div class="col-md-6">
+            <label>Môn chuyên </label>
+
+            <ng-select [items]="subjectList"
+                       bindLabel="subjectNameCode"
+                       bindValue="id"
+                       placeholder="Lựa chọn"
+                       formControlName="specialize"
+                       style="font-size: 12px!important;"
+            >
+              <ng-template ng-option-tmp let-item="item">
+                <div class="show-tooltip" [matTooltip]="item.subjectNameCode">{{item.subjectNameCode}}</div>
+              </ng-template>
+            </ng-select>
+          </div>
+          <div class="col-md-12">
+            <label>GVCN phụ trách <span>*</span></label>
+
+            <ng-select [items]="teacherList"
+                       bindLabel="teacherNameCode"
+                       bindValue="id"
+                       placeholder="Lựa chọn"
+                       formControlName="teacherId"
+                       style="font-size: 12px!important;"
+            >
+              <ng-template ng-option-tmp let-item="item">
+                <div class="show-tooltip" [matTooltip]="item.teacherNameCode">{{item.teacherNameCode}}</div>
+              </ng-template>
+            </ng-select>
+            <mat-error *ngIf="(classroomAddForm.get('teacherId').errors && classroomAddForm.get('teacherId').touched) ||
+                           (classroomAddForm.get('teacherId').errors && ngForm.submitted)">
+              Vui lòng chọn giáo viên phụ trách
+            </mat-error>
+          </div>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+          <button type="button" class="btn-md btn-gray" (click)="onDismiss()">Hủy bỏ</button>
+          <button type="submit" class="btn-md btn-or" *ngIf="action === 'add'"
+                  [disabled]="this.classroomAddForm.invalid"
+                  (click)="add()">Lưu lại</button>
+          <button type="submit" class="btn-md btn-or" *ngIf="action === 'edit'"
+                  [disabled]="this.classroomAddForm.invalid"
+                  (click)="edit()">Lưu lại</button>
+      </div>
+    </div>
+  </form>
+</div>

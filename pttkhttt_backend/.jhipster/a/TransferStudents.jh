@@ -1,0 +1,11 @@
+entity TransferStudents {
+	id Long,
+    code String,
+    schoolYear String,
+    gradeCode String,
+    classCode String
+}
+dto TransferStudents with mapstruct
+paginate TransferStudents with pagination
+service TransferStudents with serviceClass
+service TransferStudents with serviceImpl

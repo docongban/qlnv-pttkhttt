@@ -1,0 +1,37 @@
+{
+  "name": "GradebookSubjectsDetails",
+  "fields": [
+    {
+      "fieldName": "code",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "studentCode",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "parentCode",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "avgScore",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "subjectCode",
+      "fieldType": "String"
+    }
+  ],
+  "relationships": [],
+  "changelogDate": "20210818085055",
+  "entityTableName": "gradebook_subjects_details",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}

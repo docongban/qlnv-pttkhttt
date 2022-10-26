@@ -1,0 +1,205 @@
+<div class="action-shool">
+  <div class="title-action" (click)="openModal(templateViewSchool)" style="color: #3366FF; cursor: pointer; font-weight: 500; font-size: 12px; line-height: 20px">{{'MANAGES_SCHOOL.VIEW_SCHOOL.ACTION' | translate}}</div>
+</div>
+<ng-template #templateViewSchool>
+  <div class="modal-content modal-dialog-custom" style="height: 600px; width: 1072px; margin-left: -150px">
+    <div class="modal-header">
+      <h4 class="modal-title" style="font-size: 18px; font-weight: 600; font-family: Inter; line-height: 30px; color: #101840; text-align: center !important;">{{'MANAGES_SCHOOL.VIEW_SCHOOL.TITLE' | translate}}</h4>
+      <button type="button" class="close" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body" style="padding: 15px 10px !important;">
+      <div class="row">
+          <!--  Có ảnh   -->
+          <div class="col-3" *ngIf="inforSchool.logo !== null" style="width: 290px;">
+            <img [src]="inforSchool.logo" style="height: 243px; width: 250px; border-radius: 0px;">
+          </div>
+          <!--  Không có ảnh -->
+          <div class="col-3" *ngIf="inforSchool.logo === null" style="width: 290px; ">
+            <div style="position: relative;">
+              <svg width="240" height="240" viewBox="0 0 240 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="240" height="240" rx="40" fill="#FDF1EC"/>
+                <path d="M138.574 80.5024H101.429C98.4348 80.5024 96 82.9364 96 85.9341V120.072C96 123.066 98.4348 125.498 101.429 125.498H138.574C141.568 125.498 144 123.066 144 120.072V85.9341C144 82.9364 141.568 80.5024 138.574 80.5024ZM127.039 88.5803C129.935 88.5803 132.283 90.9287 132.283 93.824C132.283 96.7193 129.935 99.0676 127.039 99.0676C124.143 99.0676 121.796 96.7193 121.796 93.824C121.796 90.9287 124.143 88.5803 127.039 88.5803ZM136.871 120.48H120H103.88C102.431 120.48 101.786 119.432 102.439 118.139L111.438 100.315C112.09 99.0223 113.333 98.9069 114.213 100.057L123.262 111.882C124.142 113.032 125.68 113.13 126.698 112.1L128.912 109.858C129.929 108.828 131.428 108.955 132.258 110.141L137.991 118.329C138.819 119.517 138.319 120.48 136.871 120.48Z" fill="#8F95B2"/>
+                <!-- <path d="M85.2784 150.129C84.9304 147.952 83.2251 146.679 81.0724 146.679C78.4375 146.679 76.4936 148.653 76.4936 151.909C76.4936 155.165 78.4276 157.139 81.0724 157.139C83.3097 157.139 84.9453 155.737 85.2784 153.724L83.7273 153.719C83.4638 155.021 82.37 155.737 81.0824 155.737C79.3374 155.737 78.0199 154.4 78.0199 151.909C78.0199 149.438 79.3324 148.081 81.0874 148.081C82.3849 148.081 83.4737 148.812 83.7273 150.129H85.2784ZM88.4838 152.466C88.4838 151.248 89.2544 150.552 90.3134 150.552C91.3375 150.552 91.949 151.203 91.949 152.322V157H93.4355V152.143C93.4355 150.239 92.3915 149.264 90.8205 149.264C89.6323 149.264 88.9164 149.781 88.5584 150.607H88.464V146.818H86.9973V157H88.4838V152.466ZM102.698 148.996C102.693 149.935 102.648 150.413 101.763 150.517V149.364H100.271V153.833C100.276 155.131 99.312 155.747 98.4767 155.747C97.557 155.747 96.9206 155.081 96.9206 154.042V149.364H95.4341V154.221C95.4341 156.115 96.4732 157.099 97.9398 157.099C99.0882 157.099 99.8688 156.493 100.222 155.678H100.301V157H101.763V151.382C103.319 151.268 103.791 150.457 103.796 148.996H102.698ZM106.761 157.169C108.023 157.169 108.734 156.528 109.018 155.956H109.077V157H110.529V151.929C110.529 149.707 108.779 149.264 107.566 149.264C106.184 149.264 104.911 149.821 104.414 151.213L105.811 151.531C106.03 150.989 106.587 150.467 107.586 150.467C108.545 150.467 109.038 150.969 109.038 151.835V151.869C109.038 152.411 108.481 152.401 107.109 152.56C105.662 152.729 104.18 153.107 104.18 154.842C104.18 156.344 105.309 157.169 106.761 157.169ZM107.084 155.976C106.244 155.976 105.637 155.598 105.637 154.862C105.637 154.067 106.343 153.783 107.203 153.669C107.685 153.604 108.829 153.475 109.043 153.261V154.246C109.043 155.151 108.322 155.976 107.084 155.976ZM119.431 157.154C121.235 157.154 122.404 156.07 122.568 154.584H121.121C120.932 155.409 120.291 155.896 119.441 155.896C118.183 155.896 117.373 154.847 117.373 153.182C117.373 151.546 118.198 150.517 119.441 150.517C120.385 150.517 120.962 151.114 121.121 151.83H122.568C122.409 150.288 121.151 149.264 119.416 149.264C117.263 149.264 115.871 150.885 115.871 153.217C115.871 155.518 117.213 157.154 119.431 157.154ZM127.374 157.154C129.527 157.154 130.934 155.578 130.934 153.217C130.934 150.84 129.527 149.264 127.374 149.264C125.221 149.264 123.814 150.84 123.814 153.217C123.814 155.578 125.221 157.154 127.374 157.154ZM127.379 155.906C125.972 155.906 125.316 154.678 125.316 153.212C125.316 151.75 125.972 150.507 127.379 150.507C128.776 150.507 129.432 151.75 129.432 153.212C129.432 154.678 128.776 155.906 127.379 155.906ZM126.763 148.344H127.951L129.492 146.053H127.926L126.763 148.344ZM137.785 146.818H136.298V157H137.785V146.818ZM143.001 157.154C145.154 157.154 146.561 155.578 146.561 153.217C146.561 150.84 145.154 149.264 143.001 149.264C140.848 149.264 139.441 150.84 139.441 153.217C139.441 155.578 140.848 157.154 143.001 157.154ZM143.006 155.906C141.599 155.906 140.943 154.678 140.943 153.212C140.943 151.75 141.599 150.507 143.006 150.507C144.403 150.507 145.059 151.75 145.059 153.212C145.059 154.678 144.403 155.906 143.006 155.906ZM151.422 160.023C153.366 160.023 154.867 159.133 154.867 157.169V149.364H153.41V150.602H153.301C153.037 150.129 152.51 149.264 151.089 149.264C149.244 149.264 147.887 150.721 147.887 153.152C147.887 155.588 149.274 156.886 151.079 156.886C152.481 156.886 153.023 156.095 153.291 155.608H153.385V157.109C153.385 158.308 152.565 158.825 151.437 158.825C150.199 158.825 149.716 158.203 149.453 157.766L148.175 158.293C148.578 159.227 149.597 160.023 151.422 160.023ZM151.407 155.653C150.079 155.653 149.388 154.634 149.388 153.132C149.388 151.665 150.064 150.527 151.407 150.527C152.704 150.527 153.4 151.586 153.4 153.132C153.4 154.708 152.689 155.653 151.407 155.653ZM160.077 157.154C162.23 157.154 163.637 155.578 163.637 153.217C163.637 150.84 162.23 149.264 160.077 149.264C157.925 149.264 156.518 150.84 156.518 153.217C156.518 155.578 157.925 157.154 160.077 157.154ZM160.082 155.906C158.675 155.906 158.019 154.678 158.019 153.212C158.019 151.75 158.675 150.507 160.082 150.507C161.479 150.507 162.135 151.75 162.135 153.212C162.135 154.678 161.479 155.906 160.082 155.906Z" fill="#474D66"/> -->
+              </svg>
+              <p class="logo-placeholder" *ngIf="inforSchool.logo === null">{{'MANAGES_SCHOOL.LOGO' | translate}}</p>
+            </div>
+          </div>
+          <!-- Thông tin trường -->
+          <div class="col-4">
+              <div class="list-item-hs">
+                <div class="name-item">
+                  {{'MANAGES_SCHOOL.VIEW_SCHOOL.SCHOOL_CODE' | translate}}
+                </div>
+                <div class="value-item overflow-dot" [matTooltip]="inforSchool.code">
+                  {{inforSchool.code}}
+                </div>
+              </div>
+  <!--            Tên trường -->
+              <div class="list-item-hs">
+                <div class="name-item">
+                  {{'MANAGES_SCHOOL.VIEW_SCHOOL.SCHOOL_NAME' | translate}}
+                </div>
+                <div class="value-item overflow-dot" [matTooltip]="inforSchool.name">
+                  {{inforSchool.name}}
+                </div>
+              </div>
+              <div class="list-item-hs">
+                <div class="name-item">
+                  {{'MANAGES_SCHOOL.VIEW_SCHOOL.ABBREVIATIONS' | translate}}
+                </div>
+                <div class="value-item overflow-dot" [matTooltip]="inforSchool.abbreviationName">
+                  {{inforSchool.abbreviationName}}
+                </div>
+              </div>
+              <div class="list-item-hs">
+                <div class="name-item">
+                  {{'MANAGES_SCHOOL.VIEW_SCHOOL.LEVEL_SCHOOL' | translate}}
+                </div>
+                <div class="value-item overflow-dot" [matTooltip]="inforSchool.levelSchoolName">
+                  {{inforSchool.levelSchoolName}}
+                </div>
+              </div>
+              <div class="list-item-hs">
+                <div class="name-item">
+                  {{'MANAGES_SCHOOL.VIEW_SCHOOL.FOUNDED_DATE' | translate}}
+                </div>
+                <div class="value-item overflow-dot" [matTooltip]="inforSchool.foundDate | date: 'dd/MM/yyyy'" *ngIf="inforSchool.foundDate !== null">
+                  {{inforSchool.foundDate | date: "dd/MM/yyyy"}}
+                </div>
+                <div class="value-item overflow-dot" [matTooltip]="inforSchool.foundDate" *ngIf="inforSchool.foundDate === null">
+                  -
+                </div>
+              </div>
+              <div class="list-item-hs">
+                <div class="name-item">
+                  {{'MANAGES_SCHOOL.VIEW_SCHOOL.PHONE' | translate}}
+                </div>
+                <div class="value-item overflow-dot" [matTooltip]="inforSchool.hotLine" *ngIf="inforSchool.hotLine !== null">
+                  {{inforSchool.hotLine}}
+                </div>
+                <div class="value-item overflow-dot" [matTooltip]="inforSchool.hotLine" *ngIf="inforSchool.hotLine === null">
+                  -
+                </div>
+              </div>
+              <div class="list-item-hs">
+                <div class="name-item">
+                  {{'MANAGES_SCHOOL.VIEW_SCHOOL.EMAIL' | translate}}
+                </div>
+                <div class="value-item overflow-dot" [matTooltip]="inforSchool.email" *ngIf="inforSchool.email !== null">
+                  {{inforSchool.email}}
+                </div>
+                <div class="value-item overflow-dot" [matTooltip]="inforSchool.email" *ngIf="inforSchool.email === null">
+                  -
+                </div>
+              </div>
+              <div class="list-item-hs">
+                <div class="name-item">
+                  {{'MANAGES_SCHOOL.VIEW_SCHOOL.DATA_PACKAGE' | translate}}
+                </div>
+                <div class="value-item overflow-dot" [matTooltip]="inforSchool.dataPackageName">
+                  {{inforSchool.dataPackageName}}
+                </div>
+              </div>
+            </div>
+          <div class="col-5">
+            <div class="list-item-hs">
+              <div class="name-item">
+                {{'MANAGES_SCHOOL.VIEW_SCHOOL.PROVINCE_CITY' | translate}}
+              </div>
+              <div class="value-item overflow-dot" [matTooltip]="inforSchool.provinceName" *ngIf="inforSchool.provinceName !== null">
+                {{inforSchool.provinceName}}
+              </div>
+              <div class="value-item overflow-dot" *ngIf="inforSchool.provinceName === null">
+                -
+              </div>
+            </div>
+            <div class="list-item-hs">
+              <div class="name-item">
+                {{'MANAGES_SCHOOL.VIEW_SCHOOL.DISTRICT' | translate}}
+              </div>
+              <div class="value-item overflow-dot" *ngIf="inforSchool.districtName !== null" [matTooltip]="inforSchool.districtName">
+                {{inforSchool.districtName}}
+              </div>
+              <div class="value-item overflow-dot" *ngIf="inforSchool.districtName === null">
+                -
+              </div>
+            </div>
+            <div class="list-item-hs">
+              <div class="name-item">
+                {{'MANAGES_SCHOOL.VIEW_SCHOOL.ADDRESS' | translate}}
+              </div>
+              <div class="value-item overflow-dot" *ngIf="inforSchool.address !== null" [matTooltip]="inforSchool.address">
+                {{inforSchool.address}}
+              </div>
+              <div class="value-item overflow-dot" *ngIf="inforSchool.address === null">
+               -
+              </div>
+            </div>
+            <div class="list-item-hs">
+              <div class="name-item">
+                {{'MANAGES_SCHOOL.VIEW_SCHOOL.TYPE_EDU' | translate}}
+              </div>
+              <div class="value-item overflow-dot" *ngIf="inforSchool.typeEducation !== null" [matTooltip]="inforSchool.typeEducation">
+                {{inforSchool.typeEducation}}
+              </div>
+              <div class="value-item overflow-dot" *ngIf="inforSchool.typeEducation === null">
+                -
+              </div>
+            </div>
+            <div class="list-item-hs">
+              <div class="name-item">
+                {{'MANAGES_SCHOOL.VIEW_SCHOOL.PRINCIPAL' | translate}}
+              </div>
+              <div class="value-item overflow-dot" *ngIf="inforSchool.principal !== null" [matTooltip]="inforSchool.principal">
+                {{inforSchool.principal}}
+              </div>
+              <div class="value-item overflow-dot" *ngIf="inforSchool.principal === null">
+               -
+              </div>
+            </div>
+            <div class="list-item-hs">
+              <div class="name-item">
+                {{'MANAGES_SCHOOL.VIEW_SCHOOL.PHONE_PRINCIPAL' | translate}}
+              </div>
+              <div class="value-item overflow-dot" *ngIf="inforSchool.phonePrincipal !== null" [matTooltip]="inforSchool.phonePrincipal">
+                {{inforSchool.phonePrincipal}}
+              </div>
+              <div class="value-item overflow-dot" *ngIf="inforSchool.phonePrincipal === null">
+                -
+              </div>
+            </div>
+            <div class="list-item-hs">
+              <div class="name-item">
+                {{'MANAGES_SCHOOL.VIEW_SCHOOL.WEBSITE' | translate}}
+              </div>
+              <div class="value-item overflow-dot" *ngIf="inforSchool.website !== null" [matTooltip]="inforSchool.website">
+                {{inforSchool.website}}
+              </div>
+              <div class="value-item overflow-dot" *ngIf="inforSchool.website === null">
+                -
+              </div>
+            </div>
+            <div class="list-item-hs">
+              <div class="name-item">
+                {{'MANAGES_SCHOOL.VIEW_SCHOOL.STATUS' | translate}}
+              </div>
+              <div class="value-item overflow-dot" *ngIf="inforSchool.status === 0" [matTooltip]="lock">
+                {{'MANAGES_SCHOOL.STATUS_LOCK' | translate}}
+              </div>
+              <div class="value-item overflow-dot" *ngIf="inforSchool.status === 1" [matTooltip]="activi">
+                {{'MANAGES_SCHOOL.STATUS_ACTIVE' | translate}}
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <div class="btn-action">
+        <button type="button" class="btn-md btn-gray" style="font-size: 12px; font-weight: 600; font-family: Inter; line-height: 16px; text-align: center !important;" (click)="modalRef.hide()">{{'MANAGES_SCHOOL.VIEW_SCHOOL.CLOSE' | translate}}</button>
+      </div>
+    </div>
+    </div>
+
+</ng-template>

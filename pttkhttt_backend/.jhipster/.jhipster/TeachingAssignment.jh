@@ -1,0 +1,20 @@
+entity TeachingAssignment {
+	id Long,
+    code String,
+    teacherCode String,
+    subjectCode String,
+	classCode String,
+	semesterId String,
+    departmentCode String,
+    gradeCode String,
+	applyAllSemester Long,
+	createDate Instant,
+	updateDate Instant,
+	creator String,
+	updater String,
+	year String,
+}
+dto TeachingAssignment with mapstruct
+paginate TeachingAssignment with pagination
+service TeachingAssignment with serviceClass
+service TeachingAssignment with serviceImpl

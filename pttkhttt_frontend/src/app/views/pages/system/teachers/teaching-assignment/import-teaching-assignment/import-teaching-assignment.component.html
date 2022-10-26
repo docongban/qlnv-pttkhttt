@@ -1,0 +1,104 @@
+<div class="modal-dialog-custom modal-dialog-upload">
+    <div tabindex="0"></div>
+  <form [formGroup]="formImportSubject" class="sy-form">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">IMPORT file phân công giảng dạy</h4>
+        <p class="des">
+          Thực hiện upload file phân công giảng dạy lên hệ thống
+        </p>
+      </div>
+      <div class="modal-body">
+        <div class="current-year">
+          <label class='sy-label'>Năm học</label>
+          <input
+            class="sy-input"
+            type="text"
+            name="currentYear"
+            formControlName="currentYear"
+            placeholder=""
+            disabled
+          />
+        </div>
+        <div class="title-list-file">
+          <p>File danh sách</p>
+          <div *ngIf="!(isImported && uploaded && totalRecord === totalSuccess)">
+            <span>Tải file mẫu</span>
+            <a (click)="downloadSampleFile()" style="cursor: pointer" tabindex="0" class="filedemo" (keyup.enter)="downloadSampleFile()" >[Bấm để tải]</a>
+          </div>
+        </div>
+        <div class="container-upload">
+
+          <input
+            id="upload-file"
+            #myInput
+            type="file"
+            (change)="onFileInput($event)"
+            style="display: none"
+          />
+          <label for="upload-file" tabindex="0" (keyup.enter)="myInput.click()">
+            <div class="sy-btn-action blue" >
+              <span class="sy-ic ic-size-12 ic-mr-8 ic-svg-download" ></span>
+              Tải file
+            </div>
+          </label>
+          <p>File có định dạng xlsx, xls, có dung lượng nhỏ hơn 5Mb</p>
+        </div>
+        <div class="info-file" *ngIf="uploaded">
+          <div class="file-name" title="{{nameFile}}">{{nameFile}}</div>
+          <div class="filedemo" style="font-style: normal;
+                  font-weight: 600;
+                  font-size: 12px;
+                  text-align: right;
+                  color: #D14343;" tabindex="0" (click)="deleteFile()" (keyup.enter)="deleteFile()">Xóa file</div>
+        </div>
+        <div class="prosess-bar" *ngIf="uploaded"></div>
+        <div class="size-file" *ngIf="uploaded">{{ sizeFile }} Byte (Đã tải lên 100%)</div>
+        <div [ngClass]="{ 'page-overlay-wrapper': this.hide === false }">
+          <div class="bee-spinner"></div>
+        </div>
+        <div class="result-import" *ngIf="isImported && uploaded">
+          <div class="result-import--success">
+            <div>
+              Thành công:
+              <span style="color: #52bd94"
+                >{{ totalSuccess }}/{{ totalRecord }}</span
+              >
+              bản ghi
+            </div>
+            <a
+              (click)="downloadErrorFile()"
+              *ngIf="isImported && totalError !== 0"
+              class="filedemo" tabindex="0"
+              >[Bấm để tải file import lỗi]</a
+            >
+          </div>
+          <!-- <div class="result-import--error">
+            <div>
+              Thất bại:
+              <span style="color: #d14343"
+                >{{ totalError }}/{{ totalRecord }}</span
+              >
+              bản ghi
+            </div>
+          </div> -->
+        </div>
+      </div>
+      <div class="modal-footer">
+        <div class="modal-actions">
+          <button type="button" class="sy-btn-action filedemo" tabindex="0" (click)="onDismiss()">
+            Hủy bỏ
+          </button>
+          <button
+            type="submit"
+            [disabled]="formImportSubject.invalid || disableImport"
+            class="sy-btn-action active filedemo" tabindex="0"
+            (click)="importFile()"
+          >
+            Import
+          </button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

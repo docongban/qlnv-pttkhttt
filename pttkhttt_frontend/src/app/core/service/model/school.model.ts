@@ -1,0 +1,33 @@
+export class SchoolModel {
+  id: number;
+  name: string;
+  code: string;
+  contact: string;
+  dataPackageCode: string;
+  countryCode: string;
+  provinceCode: string;
+  districtCode: string;
+  abbreviationName: string;
+  address: string;
+  levelShool: string;
+  typeEducation: string;
+  foundedDate: string;
+  principal: string;
+  hotLine: string;
+  phonePrincipal: string;
+  email: string;
+  website: string;
+  logo: string;
+  fileUploads: FormData;
+  password: string;
+  status: number;
+  accountAdmin: string;
+  database: string;
+  provinceId: number;
+  levelSchoolName: string;
+  dataPackageName: string;
+  provinceName: string;
+  districtName: string;
+  foundDate: any;
+  hashPassword:string;
+}

@@ -1,0 +1,15 @@
+entity AssessStudentConduct {
+	id Long,
+    code String,
+    classCode String,
+	semester String,
+	schoolYear String,
+    createDate Instant,
+	creator String,
+    updateDate Instant,
+	updater String
+}
+dto AssessStudentConduct with mapstruct
+paginate AssessStudentConduct with pagination
+service AssessStudentConduct with serviceClass
+service AssessStudentConduct with serviceImpl

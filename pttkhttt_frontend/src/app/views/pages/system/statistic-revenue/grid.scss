@@ -1,0 +1,224 @@
+:host ::ng-deep {
+
+    * {
+        font-family: Inter;
+        font-style: normal;
+        font-weight: 600;
+        font-size: 10px;
+        line-height: 16px;
+    }
+
+    .ag-body-viewport {
+        overflow: auto !important;
+    }
+
+    .ag-center-cols-viewport {
+        overflow-x: hidden !important;
+    }
+
+    .header-not-children {
+        top: 0px;
+        //position: fixed;
+        background: #F4F6FA;
+        // border: 1px solid #E6E8F0 !important;
+        border-left: 1px solid #E6E8F0 !important;
+        border-bottom: 1px solid #E6E8F0 !important;
+        border-top: 1px solid #E6E8F0 !important;
+
+        .ag-header-cell-text {
+          white-space: pre-wrap;
+          text-align: center;
+          color: #101840;
+        }
+
+
+    }
+
+    .background-gray {
+        background: #EDEFF5;
+    }
+
+    .ag-body-horizontal-scroll {
+        display: flex;
+    }
+
+    .ag-header-group-cell-label,
+    .ag-header-cell-label {
+        display: flex;
+        justify-content: center;
+        margin: 0;
+        color: #474D66;
+    }
+
+    .ag-header-cell-text,
+    .ag-header-group-text {
+        text-transform: uppercase;
+    }
+
+    .ag-horizontal-left-spacer,
+    .ag-horizontal-right-spacer {
+        border: none !important;
+    }
+
+    .ratio-column {
+        padding: 4px 10px;
+        border-radius: 4px;
+        color: #FFFFFF;
+        font-size: 12px;
+        display: inline-block;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        max-width: 100%;
+    }
+
+    .statistic-user,
+    .statistic-revenue {
+
+        .ag-center-cols-clipper {
+            height: 55px !important;
+            max-height: 55px !important;
+            min-height: 55px !important;
+        }
+
+        .ag-center-cols-clipper,
+        .ag-header {
+            border-right: 1px solid #D8DAE5;
+            border-left: 1px solid #D8DAE5;
+        }
+    }
+
+    .statistic-user {
+
+      .ag-header{
+        height: 64px !important;
+        min-height: 64px !important;
+      }
+
+        .parent-header {
+            background: #E6E8F0;
+            // box-shadow: inset 0px -1px 0px #D8DAE5;
+            border-bottom: 1px solid #D8DAE5;
+
+            .ag-header-group-text {
+                color: #474D66;
+            }
+        }
+
+        .sub-header {
+            // border: 1px solid #E6E8F0 !important;
+            border-left: 1px solid #E6E8F0 !important;
+            border-bottom: 1px solid #E6E8F0 !important;
+            border-top: none !important;
+            background: #F4F6FA;
+            // box-shadow: inset 0px -1px 0px #EDF2F7;
+
+            * {
+                color: #8F95B2;
+            }
+
+            &[aria-colindex='1'] {
+                border-left: none !important;
+            }
+        }
+
+        .ag-header-row-column {
+            height: 32px !important;
+        }
+    }
+
+    .statistic-revenue {
+
+      .ag-header{
+        height: 64px !important;
+        min-height: 64px !important;
+      }
+
+        .ag-header-row {
+            height: 64px !important
+        }
+
+        .ag-header-cell {
+            border: 1px solid #E6E8F0;
+            border-right: none;
+            background: #F4F6FA;
+
+            &[aria-colindex='1'] {
+                border-left: none;
+            }
+        }
+
+        .ag-header-cell-text {
+            white-space: pre-line;
+            text-align: center;
+            color: #101840;
+        }
+    }
+
+    .statistic-detail {
+
+        .ag-header-cell,
+        .ag-pinned-left-header,
+        .ag-pinned-right-header {
+            border: none !important;
+        }
+
+        .ag-header-cell-text {
+            color: #8F95B2;
+        }
+
+        .ag-pinned-left-header,
+        .ag-pinned-right-header {
+
+          .padding7px{
+            padding-left: 7px !important;
+            padding-right: 7px !important;
+          }
+
+            .ag-header-row-column {
+                background: #F4F6FA;;
+                box-shadow: inset 0px -1px 0px #EDEFF5;
+                top: 50% !important;
+                transform: translateY(-50%) !important;
+                text-align: center;
+                height: 64px !important;
+            }
+
+            .ag-header-cell-text {
+                white-space: pre-line;
+                text-align: center;
+            }
+        }
+
+        .parent-header {
+            background: #EDEFF5;
+        }
+
+        .sub-header {
+            background: #EDEFF5;
+            border-top: 1px solid #D8DAE5 !important;
+        }
+
+        .package-name .ag-header-cell-label{
+            justify-content: left;
+        }
+
+        .history  {
+            .ag-header-cell-text {
+                text-align: left;
+            }
+
+            .ag-header-cell-label {
+                justify-content: left !important;
+            }
+        }
+
+        .three-row-en {
+
+            .ag-header-cell-text {
+                display: -webkit-box;
+                -webkit-box-orient: vertical;
+                -webkit-line-clamp: 3;
+            }
+        }
+    }
+}

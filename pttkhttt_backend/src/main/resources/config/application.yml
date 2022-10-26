@@ -1,0 +1,292 @@
+# ===================================================================
+# Spring Boot configuration.
+#
+# This configuration will be overridden by the Spring profile you use,
+# for example application-dev.yml if you use the "dev" profile.
+#
+# More information on profiles: https://www.jhipster.tech/profiles/
+# More information on configuration properties: https://www.jhipster.tech/common-application-properties/
+# ===================================================================
+
+# ===================================================================
+# Standard Spring Boot properties.
+# Full reference is available at:
+# http://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html
+# ===================================================================
+
+eureka:
+  client:
+    enabled: true
+    healthcheck:
+      enabled: true
+    fetch-registry: true
+    register-with-eureka: true
+    instance-info-replication-interval-seconds: 10
+    registry-fetch-interval-seconds: 10
+  instance:
+    appname: laosedu
+    instanceId: laosedu:${spring.application.instance-id:${random.value}}
+    lease-renewal-interval-in-seconds: 5
+    lease-expiration-duration-in-seconds: 10
+    status-page-url-path: ${management.endpoints.web.base-path}/info
+    health-check-url-path: ${management.endpoints.web.base-path}/health
+    metadata-map:
+      zone: primary # This is needed for the load balancer
+      profile: ${spring.profiles.active}
+      version: #project.version#
+      git-version: ${git.commit.id.describe:}
+      git-commit: ${git.commit.id.abbrev:}
+      git-branch: ${git.branch:}
+      context-path: ${server.servlet.context-path:}
+management:
+  endpoints:
+    web:
+      base-path: /management
+      exposure:
+        include:
+          ['configprops', 'env', 'health', 'info', 'jhimetrics', 'logfile', 'loggers', 'prometheus', 'threaddump', 'caches', 'liquibase']
+  endpoint:
+    health:
+      show-details: when_authorized
+      roles: 'ROLE_ADMIN'
+      probes:
+        enabled: true
+    jhimetrics:
+      enabled: true
+  info:
+    git:
+      mode: full
+  health:
+    group:
+      liveness:
+        include: livenessState
+      readiness:
+        include: readinessState,datasource
+    mail:
+      enabled: false # When using the MailService, configure an SMTP server and set this to true
+  metrics:
+    export:
+      # Prometheus is the default metrics backend
+      prometheus:
+        enabled: true
+        step: 60
+    enable:
+      http: true
+      jvm: true
+      logback: true
+      process: true
+      system: true
+    distribution:
+      percentiles-histogram:
+        all: true
+      percentiles:
+        all: 0, 0.5, 0.75, 0.95, 0.99, 1.0
+    tags:
+      application: ${spring.application.name}
+    web:
+      server:
+        request:
+          autotime:
+            enabled: true
+
+spring:
+  application:
+    name: laosedu
+  profiles:
+    # The commented value for `active` can be replaced with valid Spring profiles to load.
+    # Otherwise, it will be filled in by maven when building the JAR file
+    # Either way, it can be overridden by `--spring.profiles.active` value passed in the commandline or `-Dspring.profiles.active` set in `JAVA_OPTS`
+    active: #spring.profiles.active#
+    group:
+      dev:
+        - dev
+        - api-docs
+        # Uncomment to activate TLS for the dev profile
+        #- tls
+  jmx:
+    enabled: false
+  data:
+    jpa:
+      repositories:
+        bootstrap-mode: deferred
+  jpa:
+    open-in-view: false
+    properties:
+      hibernate.jdbc.time_zone: GMT+7
+      hibernate.id.new_generator_mappings: true
+      hibernate.connection.provider_disables_autocommit: true
+      hibernate.cache.use_second_level_cache: true
+      hibernate.cache.use_query_cache: false
+      hibernate.generate_statistics: false
+      # modify batch size as necessary
+      hibernate.jdbc.batch_size: 25
+      hibernate.order_inserts: true
+      hibernate.order_updates: true
+      hibernate.query.fail_on_pagination_over_collection_fetch: true
+      hibernate.query.in_clause_parameter_padding: true
+    hibernate:
+      ddl-auto: none
+      naming:
+        physical-strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
+        implicit-strategy: org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy
+  messages:
+    basename: i18n/messages
+    fallback-to-system-locale: true
+  main:
+    allow-bean-definition-overriding: true
+  task:
+    execution:
+      thread-name-prefix: laosedu-task-
+      pool:
+        core-size: 2
+        max-size: 50
+        queue-capacity: 10000
+    scheduling:
+      thread-name-prefix: laosedu-scheduling-
+      pool:
+        size: 2
+  thymeleaf:
+    mode: HTML
+  output:
+    ansi:
+      console-available: true
+
+server:
+  servlet:
+    session:
+      cookie:
+        http-only: true
+
+# Properties to be exposed on the /info management endpoint
+info:
+  # Comma separated list of profiles that will trigger the ribbon to show
+  display-ribbon-on-profiles: 'dev'
+
+# ===================================================================
+# JHipster specific properties
+#
+# Full reference is available at: https://www.jhipster.tech/common-application-properties/
+# ===================================================================
+
+jhipster:
+  clientApp:
+    name: 'laoseduApp'
+  # By default CORS is disabled. Uncomment to enable.
+  # cors:
+  #   allowed-origins: "http://localhost:8100,http://localhost:9000"
+  #   allowed-methods: "*"
+  #   allowed-headers: "*"
+  #   exposed-headers: "Authorization,Link,X-Total-Count,X-${jhipster.clientApp.name}-alert,X-${jhipster.clientApp.name}-error,X-${jhipster.clientApp.name}-params"
+  #   allow-credentials: true
+  #   max-age: 1800
+  mail:
+    from: laosedu@localhost
+  api-docs:
+    default-include-pattern: ${server.servlet.context-path:}/api/.*
+    management-include-pattern: ${server.servlet.context-path:}/management/.*
+    title: laosedu API
+    description: laosedu API documentation
+    version: 0.0.1
+    terms-of-service-url:
+    contact-name:
+    contact-url:
+    contact-email:
+    license: unlicensed
+    license-url:
+  security:
+    content-security-policy: "default-src 'self'; frame-src 'self' data:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://storage.googleapis.com; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:"
+    authentication:
+      jwt:
+        secret: bXktc2VjcmV0LXRva2VuLXRvLWNoYW5nZS1pbi1wcm9kdWN0aW9uLWFuZC10by1rZWVwLWluLWEtc2VjdXJlLXBsYWNl
+# ===================================================================
+# Application specific properties
+# Add your own application properties here, see the ApplicationProperties class
+# to have type-safe configuration, like in the JHipsterProperties above
+#
+# More documentation is available at:
+# https://www.jhipster.tech/common-application-properties/
+# ===================================================================
+
+# application:
+#rest connection
+connection-time-out: 60000
+executor:
+  corePoolSize: 10
+  maxPoolSize: 10
+rest:
+  core-service:
+    connection:
+      connect-timeout: 60000
+      connection-request-timeout: 60000
+      read-timeout: 60000
+    connection-pool:
+      default-max-per-route: 30
+      max-total: 300
+  #    proxy-host: http://localhost
+  #    proxy-port: 8800
+  default:
+    connection:
+      connect-timeout: 5000
+      connection-request-timeout: 5000
+      read-timeout: 5000
+    connection-pool:
+      default-max-per-route: 10
+      max-total: 100
+
+import-file:
+  folder: 'C:\'
+  subFolder: SAVE
+  sample-file: 'D:\MIGI_Project\laoedu\laosedu_backend\src\main\resources\templates\'
+  sample-file-subject: 'D:\MIGI\Lao_Edu\BackEnd\laosedu_backend\src\main\resources\templates\'
+  sample-file-student: 'D:\MIGI\Lao_Edu\BackEnd\laosedu_backend\src\main\resources\templates\'
+  sample-file-teacher-rating: 'src/main/resources/templates/'
+
+import-file-student:
+  folder: 'D:'
+  subFolder: student-import
+  sample-file-subject: 'D:\MIGI\Lao_Edu\BackEnd\laosedu_backend\src\main\resources\templates\'
+  sample-file-student: 'D:\MIGI\Lao_Edu\BackEnd\laosedu_backend\src\main\resources\templates\'
+save-file:
+  teacher-rating: 'src/main/resources/saved/'
+  teacher-managerment: 'src\main\resources\saved'
+  teacher-managerment-avatar: 'src\main\resources\images'
+save-image:
+  path: 'src/main/resources/images/'
+  # yeu cau tat ca luu file anh theo path ben duoi, trong path phai co /assets/media/img/
+  # Cac file anh theo tung nghiep vu thi se them folder vao sau trong code
+  # VD: path-img + "/avartar"
+  path-img: 'src/main/resources/assets/media/img/'
+download-file:
+  teacher-rating-url: '/api/teacher-rating/download/'
+time:
+  #   add-time = seconds
+  add-time: 120
+user:
+  pw-default: 123456
+
+saved-documentary:
+  folder: 'D:'
+  subFolder: documentary-save
+
+spring.servlet.multipart.max-file-size: 10MB
+spring.servlet.multipart.max-request-size: 10MB
+
+#keys api for access call api from school
+request:
+  http:
+    auth-token-header-name: auth-token-name
+    auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6ImFkbWluIiwiaWF0IjoxMjM0NTY3ODl9.nIglnehLPTJLlOgjHkIjOuzTIDIhozKsM1R36OLiCgw
+sms:
+  wsAddress: http://unicontact.unitel.com.la:8181/unicontact.php?wsdl
+  timeout: 1000
+  receiveTimeout: 1000
+  username: Edu
+  password: 123456@edu
+  brandname: Laos Edu
+otp:
+  wsAddress: http://unicontact.unitel.com.la:8181/unicontact.php?wsdl
+  timeout: 1000
+  receiveTimeout: 1000
+  username: Edu
+  password: 123456@edu
+  brandname: Laos Edu

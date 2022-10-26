@@ -1,0 +1,8 @@
+<div *ngIf="vm$ | async as vm" class="teaching-timetable">
+  <kt-logged-in-teacher [teacher]="vm.teacher"></kt-logged-in-teacher>
+  <hr class="line"/>
+  <kt-teaching-timetable-filter [data]="vm.data" (filter)="onFilter($event)"></kt-teaching-timetable-filter>
+  <div class="schedule">
+    <kt-teaching-schedule [teachingSchedule]="teachingSchedule$ | async"></kt-teaching-schedule>
+  </div>
+</div>

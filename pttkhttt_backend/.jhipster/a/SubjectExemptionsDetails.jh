@@ -1,0 +1,13 @@
+entity SubjectExemptionsDetails {
+	id Long,
+	subjectCode String,
+	typeSemester String,
+	exemptionObject String,
+	parentCode String,
+	semester String
+}
+dto SubjectExemptionsDetails with mapstruct
+paginate SubjectExemptionsDetails with pagination
+service SubjectExemptionsDetails with serviceClass
+service SubjectExemptionsDetails with serviceImpl
+

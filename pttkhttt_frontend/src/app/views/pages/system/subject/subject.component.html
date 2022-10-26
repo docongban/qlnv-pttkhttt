@@ -1,0 +1,115 @@
+<system-search component="subject" (submitSearch)="submitSearch($event)"></system-search>
+<div class="card mt-5 mb-5">
+<!--  <div class="card-header d-flex justify-content-between">-->
+<!--    <div>-->
+<!--      <span style="font-size: 20px">Danh sách môn học của lớp</span>-->
+<!--    </div>-->
+<!--    <div>-->
+<!--      <div class="btn btn-outline-success"><span class="far fa-save"></span>&nbsp;Áp dụng toàn khối</div>-->
+<!--      <div class="btn btn-success"><span class="far fa-save"></span></div>-->
+<!--    </div>-->
+<!--  </div>-->
+  <div class="card-header d-flex justify-content-between" >
+    <div class="text-header">
+      <span><i class="fa fa-list icon-header text-dark"></i> Danh sách môn học của lớp</span>
+    </div>
+    <div class="btn-header">
+      <button kendoButton type="button" class="border-radius btn-custom btn-outline-dark mr-2"
+              style="height: 35px"
+              [iconClass]="'far fa-save mr-2' " > Áp dụng toàn khối</button>
+      <button kendoButton type="button" class="border-radius btn-custom btn-add "
+              [iconClass]="'far fa-save'" ></button>
+    </div>
+  </div>
+
+  <div class="card-body">
+    <kendo-grid
+      [kendoGridBinding]="gridView"
+      scrollable="scrollable"
+      [sortable]="true"
+      [reorderable]="true"
+      [resizable]="true"
+      [height]="600"
+      [columnMenu]="{ filter: true }"
+      [selectable]="selectTableSetting"
+      class="mb-4"
+    >
+      <kendo-grid-column field="id" title="TT"
+                         [width]="50"
+                         [resizable]="false"
+                         [columnMenu]="false"
+                         editable = "false"
+                         class="text-center"
+                         headerClass="text-center font-weight-bold"
+      ></kendo-grid-column>
+
+      <kendo-grid-column field="subject"
+                         headerClass="text-center font-weight-bold"
+                         title="Tên môn học">
+      </kendo-grid-column>
+
+      <kendo-grid-column field="acronym"
+                         title="Viết tắt"
+                         class="text-center"
+                         headerClass="text-center font-weight-bold"
+      ></kendo-grid-column>
+
+      <kendo-grid-column field="typeOfSubject"
+                         class="text-center"
+                         [columnMenu]="false"
+                         headerClass="text-center font-weight-bold"
+                         [width]="150" title="Loại môn"
+      >
+        <ng-template kendoGridCellTemplate let-dataItem="dataItem">
+          <kendo-dropdownlist style="width: 100%; height: 100%; align-items: center"
+                              [data]="listTypeOfSubject"
+                              [value]="dataItem.typeOfSubject"
+                              [(ngModel)]="dataItem.typeOfSubject">
+          </kendo-dropdownlist>
+        </ng-template>
+      </kendo-grid-column>
+
+      <kendo-grid-column field="subjectType"
+                         title="Kiểu môn"
+                         [columnMenu]="false"
+                         headerClass="text-center font-weight-bold"
+      >
+        <ng-template kendoGridCellTemplate let-dataItem="dataItem">
+          <kendo-dropdownlist style="width: 100%; height: 100%; align-items: center"
+                              [data]="listSubjectType"
+                              [value]="dataItem.subjectType"
+                              [(ngModel)]="dataItem.subjectType">
+          </kendo-dropdownlist>
+        </ng-template>
+      </kendo-grid-column>
+
+      <kendo-grid-column field="lessonsOfHK1"
+                         title="Số tiết/tuần HK1"
+                         class="text-center"
+                         headerClass="text-center font-weight-bold"
+      ></kendo-grid-column>
+
+      <kendo-grid-column field="lessonsOfHK2"
+                         title="Số tiết/tuần HK2"
+                         class="text-center"
+                         headerClass="text-center font-weight-bold"
+      ></kendo-grid-column>
+
+      <kendo-grid-checkbox-column
+        [width]="100"
+        [resizable]="false"
+        [columnMenu]="false"
+        title="Lựa chọn"
+        field="choose"
+        class="text-center"
+        headerClass="text-center font-weight-bold"
+      >
+        <ng-template kendoGridCellTemplate let-dataItem="dataItem">
+          <input type="checkbox" [(ngModel)]="dataItem.choose" (ngModelChange)="changeChooseSubject(dataItem.choose)" />
+        </ng-template>
+      </kendo-grid-checkbox-column>
+    </kendo-grid>
+
+    <span class="font-weight-bold">Đã chọn {{chooseSubject}}/{{totalSubject}} môn học</span>
+  </div>
+</div>

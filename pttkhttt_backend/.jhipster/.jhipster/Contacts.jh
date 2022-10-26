@@ -1,0 +1,13 @@
+entity Contacts {
+	id Long,
+    relationship Long,
+	createdTime Instant,
+	fullName String,
+	phone String,
+	studentId Long,
+	createdName String
+}
+dto Contacts with mapstruct
+paginate Contacts with pagination
+service Contacts with serviceClass
+service Contacts with serviceImpl

@@ -1,0 +1,91 @@
+<div
+  *ngIf="cellValue.evaluate === '1'"
+  style="color: #3366ff"
+  (click)="openEvaluationModal(evaluationOfSubjectTeachersModal)"
+>
+  Xem chi tiết
+</div>
+<div *ngIf="cellValue.evaluate === '0'" style="color: #8F95B2; font-size:12px;">
+  Không có <br/> đánh giá
+</div>
+
+<!--up-->
+<ng-template #evaluationOfSubjectTeachersModal>
+  <div class="">
+    <div class="modal-header">
+      <h4 class="modal-title" >Đánh giá của giáo viên bộ môn</h4>
+    </div>
+    <div class="modal-body">
+      <p class="student-info">
+        Học sinh:
+        <span class="student-code" style="color: #8F95B2; font-size:14px;" title="{{ cellValue.studentCode }}">{{
+          cellValue.studentCode
+        }}</span
+        ><span class="student-name" style="color: #8F95B2; font-size:14px;" title="{{ cellValue.studentName }}">
+          - {{ cellValue.studentName }}</span
+        >
+      </p>
+      <div class="sy-table table-school-year table-school">
+        <ag-grid-angular
+          style="width: 100%; height: 220px"
+          class="ag-theme-balham"
+          (gridReady)="onGridReady($event)"
+          [rowHeight]="ROW_HEIGHT"
+          [headerHeight]="HEADER_HEIGHT"
+          [rowData]="rowData"
+          [columnDefs]="columnDefs"
+          [defaultColDef]="defaultColDef"
+          [overlayNoRowsTemplate]="noRowsTemplate"
+        >
+        </ag-grid-angular>
+      </div>
+      <div *ngIf="total > 0" class="sy-paging w-100">
+        <span class="sy-paging-result"
+          >{{ first }}-{{ last }} của {{ total }} kết quả</span
+        >
+        <ul class="sy-pages">
+          <li
+            class="sy-ic ic-size-32 arrow"
+            [class.ic-svg-first-disabled]="currentPage === 1"
+            [class.ic-svg-first]="currentPage !== 1"
+            [class.disabled]="currentPage === 1"
+            (click)="goToPage(1)"
+          ></li>
+          <li
+            class="sy-ic ic-size-32 arrow"
+            [class.ic-svg-prev-disabled]="currentPage === 1"
+            [class.ic-svg-prev]="currentPage !== 1"
+            [class.disabled]="currentPage === 1"
+            (click)="goToPage(currentPage - 1)"
+          ></li>
+          <li
+            class="sy-page"
+            [class.sy-highlight]="i === currentPage"
+            [class.sy-dots]="i === '...'"
+            *ngFor="let i of rangeWithDots"
+            (click)="i !== '...' && goToPage(i)"
+          >
+            {{ i }}
+          </li>
+          <li
+            class="sy-ic ic-size-32 arrow"
+            [class.ic-svg-next-disabled]="currentPage === totalPage"
+            [class.ic-svg-next]="currentPage !== totalPage"
+            [class.disabled]="currentPage === totalPage"
+            (click)="goToPage(currentPage + 1)"
+          ></li>
+          <li
+            class="sy-ic ic-size-32 arrow"
+            [class.ic-svg-last-disabled]="currentPage === totalPage"
+            [class.ic-svg-last]="currentPage !== totalPage"
+            [class.disabled]="currentPage === totalPage"
+            (click)="goToPage(totalPage)"
+          ></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button class="button-close" (click)="modalRef.hide()">Đóng</button>
+  </div>
+</ng-template>

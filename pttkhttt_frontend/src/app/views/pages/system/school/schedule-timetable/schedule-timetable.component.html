@@ -1,0 +1,213 @@
+<div class="row">
+  <div class="col-md-12 col-xs-12">
+    <div class="menu-action-subject" style="display: flex; align-items: center">
+      <h3 class="pl-3">{{'SCHEDULE_TIMETABLE.INFO' | translate}}</h3>
+      <div class="list-action-subject">
+        <button class="btn-action-subject gray index-focus" tabindex="0" (click)="openModal()">
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M5.53806 2.87431V0.468903C5.53806 0.213138 5.74206 0 6.00006 0C6.23106 0 6.42677 0.179095 6.45778 0.405948L6.46206 0.468903V2.87431L9.33 2.8745C10.758 2.8745 11.9312 4.04387 11.9971 5.50225L12 5.63165V8.65523C12 10.1238 10.8676 11.3293 9.46082 11.397L9.336 11.4H2.664C1.236 11.4 0.0684539 10.2365 0.00290267 8.77275L0 8.64284L0 5.62546C0 4.15686 1.12675 2.94553 2.5332 2.87751L2.658 2.8745H5.538V6.71593L4.578 5.72459C4.398 5.53872 4.104 5.53872 3.924 5.72459C3.834 5.81753 3.792 5.94145 3.792 6.06536C3.792 6.15954 3.81888 6.25768 3.87571 6.34076L3.924 6.39994L5.67 8.20913C5.754 8.30207 5.874 8.35164 6 8.35164C6.1 8.35164 6.2 8.31721 6.27917 8.25196L6.324 8.20913L8.07 6.39994C8.25 6.21406 8.25 5.91047 8.07 5.72459C7.90636 5.55561 7.64851 5.54025 7.46775 5.67851L7.416 5.72459L6.462 6.71593V2.8745L5.53806 2.87431Z"
+              fill="white"/>
+          </svg>
+          {{'SCHEDULE_TIMETABLE.IMPORT_FILE' | translate}}
+        </button>
+        <button class="btn-action-subject gray index-focus" tabindex="0" (click)="exportFile()">
+          <svg width="12" height="11" viewBox="0 0 12 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M10.2663 6.91638V8.97918C10.2659 9.31941 10.1306 9.64561 9.89001 9.88619C9.64943 10.1268 9.32324 10.2621 8.98301 10.2625H1.28329C0.943053 10.2621 0.616861 10.1268 0.376279 9.88619C0.135697 9.64561 0.000373641 9.31941 0 8.97918V4.2738C0.000373641 3.93356 0.135697 3.60737 0.376279 3.36679C0.616861 3.12621 0.943053 2.99088 1.28329 2.99051H2.88667C1.18204 4.36568 0.702899 6.42116 1.57344 8.59526C1.67972 8.86413 1.87368 9.08921 2.1239 9.23404C2.37412 9.37886 2.66591 9.43493 2.95199 9.39315C3.23806 9.35137 3.50163 9.2142 3.69999 9.00387C3.89834 8.79354 4.01984 8.52239 4.04479 8.23436C4.08697 7.7477 5.73954 6.54585 7.27179 6.27435V6.81278C7.27595 7.06469 7.35366 7.30989 7.49536 7.51822C7.63707 7.72654 7.83658 7.88889 8.06935 7.9853C8.30212 8.08171 8.558 8.10798 8.8055 8.06086C9.053 8.01374 9.28133 7.8953 9.4624 7.72011L10.2663 6.91638Z"
+              fill="white"/>
+            <path
+              d="M11.7499 4.22322L8.85785 7.11523C8.79754 7.17376 8.72142 7.21335 8.63887 7.22913C8.55633 7.24491 8.47097 7.23617 8.39333 7.20401C8.31569 7.17185 8.24916 7.11767 8.20195 7.04814C8.15474 6.97862 8.12892 6.89679 8.12766 6.81276V5.37741C7.17482 5.2759 5.66469 5.741 4.50336 6.53237C3.71345 7.07135 3.23598 7.66482 3.19295 8.16026C3.18293 8.25514 3.14163 8.344 3.07553 8.41281C3.00944 8.48163 2.92233 8.52649 2.82792 8.54033C2.73352 8.55417 2.63719 8.5362 2.55413 8.48925C2.47107 8.44229 2.40599 8.36903 2.36917 8.28101C1.8449 6.95495 1.87916 5.76539 2.4711 4.74526C3.31533 3.28993 5.21772 2.31416 8.12766 1.84255V0.42392C8.12894 0.339903 8.15479 0.258099 8.202 0.188593C8.24922 0.119087 8.31574 0.064918 8.39338 0.0327649C8.47101 0.000611686 8.55635 -0.00811995 8.63889 0.00764641C8.72142 0.0234128 8.79753 0.062988 8.85785 0.121492L11.7499 3.01346C11.9101 3.17396 12.0002 3.39151 12.0002 3.61834C12.0002 3.84517 11.9101 4.06272 11.7499 4.22322Z"
+              fill="white"/>
+          </svg>
+          {{'SCHEDULE_TIMETABLE.EXCEL' | translate}}
+        </button>
+      </div>
+    </div>
+    <div class="row search-subject m-0" [formGroup]="form" *ngIf="form" (ngSubmit)="searchEvent()">
+      <div class="col-10 p-0 align-items-start">
+        <div class="col-md-3">
+          <label>{{'SCHEDULE_TIMETABLE.SEMESTER' | translate}}</label>
+          <ng-select [items]="listSemester" bindLabel="semester" bindValue="semester" formControlName="semester"
+                     [clearable]="false">
+          </ng-select>
+        </div>
+        <div class="col-md-3">
+          <label class="required">{{'SCHEDULE_TIMETABLE.APPLY_DATE' | translate}}</label>
+          <input type="date" style=" font-size: 12px !important; width: 100%" class="form-control" dateFormat="dd-MM-yyyy"
+                 formControlName="applyDate" (blur)="changeApplyDate()" (keyup)="keyUpDate($event)">
+          <div style="color: red" *ngIf="this.showErr">{{messageErr}}</div>
+
+        </div>
+        <div class="col-md-3">
+          <label class="required">{{'SCHEDULE_TIMETABLE.GRADE_LEVEL' | translate}}</label>
+          <ng-select [items]="listGradeLevels" bindLabel="name" bindValue="id" formControlName="gradeLevel"
+                     placeholder="Lựa chọn"
+                     [clearable]="false"></ng-select>
+          <div style="color: red" *ngIf="!form.value.gradeLevel && isSubmit">{{'Bạn chưa chọn khối'}}</div>
+
+        </div>
+
+        <div class="col-md-3">
+          <label class="required">Lớp</label>
+          <ng-select
+            [items]="listClass"
+            bindLabel="show"
+            bindValue="code"
+            placeholder="Lựa chọn"
+            formControlName="classCode"
+            class="sy-select"
+          >
+            <ng-template ng-option-tmp let-item="item">
+              <div title="{{ item.show }}">{{ item.show }}</div>
+            </ng-template>
+          </ng-select>
+          <div style="color: red" *ngIf="!form.value.classCode && isSubmit">{{'Bạn chưa chọn lớp học'}}</div>
+
+        </div>
+
+        <!--        <div class="col-md-3">-->
+        <!--          <label class="required">{{'SCHEDULE_TIMETABLE.CLASS' | translate}}</label>-->
+        <!--          <ng-select [items]="listClass" bindLabel="show" bindValue="code" formControlName="classCode" [matTooltip]="getTooltip()"></ng-select>-->
+        <!--        </div>-->
+      </div>
+      <div class="col-md-2 " style="margin-top: 26px">
+        <button class="index-focus w-100" #searchSchTime [indexFocus]="searchSchTime" tabindex="0" [disabled]="isUpdate"
+                (click)="searchEvent()">{{'SCHEDULE_TIMETABLE.SEARCH' | translate}}</button>
+      </div>
+    </div>
+  </div>
+  <table class="w-100 mt-3 table-st">
+    <thead style="height: 64px">
+    <tr>
+      <th [attr.rowspan]="2" class="td-header pl-2" style="max-width: 50px !important; min-width: 50px !important;">THỨ NGÀY</th>
+      <th [attr.rowspan]="2" class="td-header text-center" style="max-width: 30px !important; min-width: 30px !important;">TIẾT</th>
+      <th [colSpan]="2" class="td-header2 text-center" style="height: 24px">BUỔI SÁNG</th>
+      <th [colSpan]="2" class="td-header text-center" style="height: 24px">BUỔI CHIỀU</th>
+    </tr>
+    <tr>
+      <th class="td-header2 pl-2 cell-select">TÊN MÔN HỌC</th>
+      <th class="td-header2 pl-2 cell-select">GIÁO VIÊN GIẢNG DẠY</th>
+      <th class="td-header pl-2 cell-select">TÊN MÔN HỌC</th>
+      <th class="td-header pl-2 cell-select">GIÁO VIÊN GIẢNG DẠY</th>
+    </tr>
+    </thead>
+    <tbody class="scroll-table">
+    <tr *ngFor="let item of dataGrid; let i = index; let even = even; let odd = odd">
+      <td *ngIf="dynamicTable.includes(i)" [attr.rowspan]="rowSpan(item)"
+          [class]="'cell-merge-'+item.dayCode" [matTooltipPosition]="'right'"  [matTooltip]="item.dayName">{{item.dayName}}</td>
+      <td class="th-body cell-body text-center lessonCode"
+          [ngClass]="{'cell-even':even, 'cell-odd': odd}">{{item.lessonCode}}</td>
+      <td class="th-body cell-body px-2 cell-select" [ngClass]="{'cell-even':even, 'cell-odd': odd}">
+        <ng-select class=" index-focus w-100" tabindex="0" [disabled]="!isUpdate"
+                   [matTooltip]="tooltip(item.subjectCodeAm, false)"
+                   (change)="clickSubjectTable(true, i, item.subjectCodeAm)"
+                   [items]="isUpdate ? listSubjectTeacherUpdate : listSubjectTeacher"
+                   [bindLabel]="'nameSubject'" [bindValue]="'subjectCode'" [(ngModel)]="item.subjectCodeAm"
+                   [clearable]="false">
+          <ng-template ng-option-tmp let-item="item">
+            <div title="{{item.nameSubject }}">{{item.nameSubject}}</div>
+          </ng-template>
+        </ng-select>
+      </td>
+      <td class="th-body cell-body px-2 cell-select" [ngClass]="{'cell-even':even, 'cell-odd': odd}">
+        <ng-select class=" index-focus w-100" tabindex="0" [matTooltip]="tooltip(item.teacherCodeAm, true)"
+                   [items]="listSubjectTeacher" [bindLabel]="'teacherName'"
+                   [bindValue]="'teacherCode'" [(ngModel)]="item.teacherCodeAm" [disabled]="true"
+                   [clearable]="false">
+          <ng-template ng-option-tmp let-item="item">
+            <div title="{{item.teacherName}}">{{item.teacherName}}</div>
+          </ng-template>
+        </ng-select>
+      </td>
+      <td class="th-body cell-body px-2 cell-select"  [ngClass]="{'cell-even':even, 'cell-odd': odd}">
+        <ng-select class=" index-focus w-100" tabindex="0" [disabled]="!isUpdate"
+                   [matTooltip]="tooltip(item.subjectCodePm, false)"
+                   (change)="clickSubjectTable(false, i, item.subjectCodePm)"
+                   [items]="isUpdate ? listSubjectTeacherUpdate : listSubjectTeacher"
+                   [bindLabel]="'nameSubject'" [bindValue]="'subjectCode'" [(ngModel)]="item.subjectCodePm"
+                   [clearable]="false">
+          <ng-template ng-option-tmp let-item="item">
+            <div title="{{item.nameSubject }}">{{item.nameSubject}}</div>
+          </ng-template>
+        </ng-select>
+      </td>
+      <td class="th-body cell-body px-2 cell-select" [ngClass]="{'cell-even':even, 'cell-odd': odd}">
+        <ng-select class=" index-focus w-100" tabindex="0" [matTooltip]="tooltip(item.teacherCodePm, true)"
+                   [items]="listSubjectTeacher" [bindLabel]="'teacherName'"
+                   [bindValue]="'teacherCode'" [(ngModel)]="item.teacherCodePm" [disabled]="true" [clearable]="false">
+          <ng-template ng-option-tmp let-item="item">
+            <div title="{{item.teacherName}}">{{item.teacherName}}</div>
+          </ng-template>
+        </ng-select>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+
+  <!--  <div class="row table-school table-class-room w-100 mt-5 pl-3">-->
+  <!--    <ag-grid-angular [suppressRowTransform]="true"-->
+  <!--                     [overlayNoRowsTemplate]="noRowsTemplate"-->
+  <!--                     style="width: 100%; height: 620px;"-->
+  <!--                     class="ag-theme-balham" [rowData]="dataGrid " [columnDefs]="columnDefs"-->
+  <!--                     [headerHeight]="headerHeight"-->
+  <!--                     (rowSelected)="onRowSelected($event)" [frameworkComponents]="frameworkComponents"-->
+  <!--                     [rowHeight]="rowHeight" (gridReady)="onGridReady($event)"-->
+  <!--                     (gridSizeChanged)="gridSizeChanged($event)">-->
+  <!--    </ag-grid-angular>-->
+  <!--  </div>-->
+  <div class="col-md-12 mb-2 row search-subject" style="margin-left: 40%">
+    <button tabindex="0" class="index-focus"
+            (click)="clickUpdate()"
+            style="background-color: #3366ff"
+            *ngIf="!isUpdate && dataGrid.length > 0"
+    >
+      Cập nhật
+    </button>
+    <button tabindex="0" class="index-focus"
+            (click)="clickCancel()"
+            style="background-color: #e6e8f0; color: #696f8c; margin-right: 20px"
+            *ngIf="isUpdate"
+    >
+      Hủy bỏ
+    </button>
+    <button tabindex="0" class="index-focus" (click)="openModalUpdate(templateUpdate)"
+            *ngIf="isUpdate">Lưu lại
+    </button>
+  </div>
+</div>
+<ng-template #templateUpdate>
+  <div class="modal-content modal-dialog-custom">
+    <div class="modal-header" style="    flex-direction: column;">
+      <h4 class="modal-title" style="text-align: center;">{{ 'SCHEDULE_TIMETABLE.UPDATE.TITLE' | translate}}</h4>
+    </div>
+    <div class="modal-body">
+      <div class="col-md-12">
+        <label class="required">{{'SCHEDULE_TIMETABLE.UPDATE.TEXT1' | translate}}</label>
+        <input type="date" style=" font-size: 12px !important;" class="form-control" dateFormat="dd-MM-yyyy"
+               [(ngModel)]="applyDateUpdate" style="width: 100%" (blur)="changeApplyDateUpdate()"
+               (keyup)="keyUpDateUpdate($event)">
+        <div style="color: red" *ngIf="this.showErrUpdate">{{messageErrUpdate}}</div>
+      </div>
+      <!--      <div class="col-md-12 my-2" [style.color]="'red'">{{'SCHEDULE_TIMETABLE.UPDATE.TEXT2' | translate}}</div>-->
+      <!--      <div class="col-md-12">-->
+      <!--        <label class="container-radio">{{'SCHEDULE_TIMETABLE.UPDATE.TEXT3' | translate}}-->
+      <!--          <input type="checkbox" name="aa" formControlName="notify">-->
+      <!--          <span class="checkmark"></span>-->
+      <!--        </label>-->
+      <!--      </div>-->
+    </div>
+    <div class="modal-footer">
+      <div class="btn-action">
+        <button class="btn-md btn-gray index-focus" #cancelSchTime
+                (click)="modalRefApprove.hide()" [indexFocus]="cancelSchTime"
+                tabIndex="0">{{'TEACHER_RATING.IMPORT.CANCEL' | translate}}</button>
+        <button type="button" class="btn-md btn-or index-focus"
+                (click)="updateData()">{{'TEACHER_RATING.IMPORT.CONFIRM' | translate}}</button>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+

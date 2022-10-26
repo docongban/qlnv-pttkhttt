@@ -1,0 +1,99 @@
+<div class="action-shool">
+  <div *ngIf="cellValue.data.schoolName !== null" class="title-action" (click)="openModal(showChart)" style="color: #3366FF; cursor: pointer;">
+    {{ 'STATISTIC_PACKAGE.VIEW_STATISTICS' | translate }}
+  </div>
+</div>
+
+
+<ng-template #showChart>
+  <div class="modal-content modal-dialog-custom" >
+    <div class="modal-header">
+      <h4 class="modal-title" style="text-align: center; color: #101840">{{ 'STATISTIC_PACKAGE.STATISTIC_COUNT_SMS' | translate }}</h4>
+    </div>
+    <div class="modal-body" style="padding: 15px 10px !important;">
+      <div class="row">
+<!--        <div class="col-md-12">-->
+<!--          <div class="col-md-6">-->
+          <div style="padding-left: 12px">
+            <div class="info-dv">
+              <div class="name-dv" style="margin-right: 5px ;float: left;color: #101840; font-weight: 600; font-family: Inter; font-size: 14px; line-height: 20px !important;">{{ 'STATISTIC_PACKAGE.SCHOOL1' | translate }}: </div>
+              <div class="value-dv overflow-dot" style="max-width: 650px;float: left;color: #8F95B2; font-weight: 600; font-family: Inter; font-size: 14px; line-height: 20px !important;" [matTooltip]="schoolName"> {{viewSMS.schoolCode}} - {{viewSMS.schoolName}}</div>
+            </div>
+<!--          </div>-->
+<!--          <div class="col-md-6">-->
+            <div class="info-dv2">
+              <div class="name-dv2" style="margin-right: 5px ;float: left;color: #8F95B2; font-weight: 500; font-family: Inter; font-size: 12px; line-height: 18px !important;">{{ 'STATISTIC_PACKAGE.DATA_PACKAGE_REGISTERED' | translate }}:</div>
+              <div class="value-dv2 overflow-dot" style="max-width: 630px;float: left;color: #101840; font-weight: 500; font-family: Inter; font-size: 12px; line-height: 18px !important;" [matTooltip]="viewSMS.packageCode">{{viewSMS.packageCode}}</div>
+            </div>
+          </div>
+<!--        </div>-->
+
+        <div class="col-md-12">
+          <div 
+            class="thongtinck" 
+            style="color: #101840; font-weight: 600; font-family: Inter; font-size: 14px; line-height: 20px !important;"
+          >{{ 'STATISTIC_PACKAGE.NUMBER_OF_SMS' | translate }}</div>
+        </div>
+
+        <div class="col-md-12">
+          <div class="chart-container">
+            <div class="chart">
+              <kendo-chart style="margin-bottom: 20px; width: 100%; transform: translateX(-10px); margin-top: 10px">
+                <kendo-chart-value-axis>
+                  <kendo-chart-value-axis-item *ngFor="let item of valueAxes" [name]="item.name"
+                                               [min]="item.min" [max]="item.max" [majorUnit]="item.majorUnit" [color]="item.color" [labels]="item.labels"
+                                               [majorTicks]="majorTicks"
+                  >
+                  </kendo-chart-value-axis-item>
+                </kendo-chart-value-axis>
+                <kendo-chart-category-axis>
+                  <kendo-chart-category-axis-item [categories]="categories" [axisCrossingValue]="crossingValues" [labels]="labels" [majorGridLines]="{visible: false}" [line]="{color:'#D8DAE5'}" [majorTicks]="categoryMajorTicks" >
+                  </kendo-chart-category-axis-item>
+                </kendo-chart-category-axis>
+
+                <kendo-chart-series>
+                  <kendo-chart-series-item *ngFor="let item of series" [data]="item.data1" [type]="item.type"
+                                           [stack]="item.stack" [color]="item.color" [axis]="item.axis" >
+                    <kendo-chart-series-item-tooltip>
+                      <ng-template let-value="value" let-category ="category" style="background: none !important;">
+                        <div style="margin-left: -95px; margin-top: -55px;">
+                          <div class="hero3" style="display: flex;">
+                            <div style="width: 65%;">
+                              <span class="title-tooltip">{{ 'STATISTIC_PACKAGE.NUMBER_OF_SMS' | translate }}</span>
+                              <br/>
+                              <span class="main-tooltip" style="margin-left: -25px;">
+                              {{ value }}
+                            </span>
+                            </div>
+                            <div style="width: 0%; border-left: 1px solid rgba(255, 255, 255, 0.5); height: 60%; margin-top: 0%;"></div>
+                            <div style="width: 35%;">
+                              <span class="title-tooltip">{{ 'STATISTIC_PACKAGE.MONTH' | translate }}</span>
+                              <br/>
+                              <span class="main-tooltip">
+                              {{ category }}
+                            </span>
+                            </div>
+                          </div>
+                          <div class="hero4"></div>
+                        </div>
+                      </ng-template>
+                    </kendo-chart-series-item-tooltip>
+                  </kendo-chart-series-item>
+                </kendo-chart-series>
+              </kendo-chart>
+            </div>
+            <div class="text months-text">
+              <span style="color:#101840;"> {{'STATISTIC_PACKAGE.MONTH' | translate}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <div class="btn-action">
+        <button type="button" class="btn-md btn-gray" (click)="modalRef.hide()">{{ 'STATISTIC_PACKAGE.CLOSE' | translate }}</button>
+      </div>
+    </div>
+  </div>
+
+</ng-template>

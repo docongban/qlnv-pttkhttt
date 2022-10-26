@@ -1,0 +1,15 @@
+entity RegisterPackage {
+	id Long,
+    dataPackage Long,
+	updateTime Instant,
+	updateName String,
+	status Long,
+	semester Long,
+	studentId Long,
+	shoolYear String,
+	classCode String
+}
+dto RegisterPackage with mapstruct
+paginate RegisterPackage with pagination
+service RegisterPackage with serviceClass
+service RegisterPackage with serviceImpl

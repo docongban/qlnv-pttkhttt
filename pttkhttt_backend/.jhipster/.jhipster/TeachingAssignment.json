@@ -1,0 +1,73 @@
+{
+  "name": "TeachingAssignment",
+  "fields": [
+    {
+      "fieldName": "id",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "code",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "teacherCode",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "subjectCode",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "classCode",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "semesterId",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "departmentCode",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "gradeCode",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "applyAllSemester",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "createDate",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "updateDate",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "creator",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "updater",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "year",
+      "fieldType": "String"
+    },
+  ],
+  "relationships": [],
+  "changelogDate": "20210801072451",
+  "entityTableName": "teaching_assignment",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}

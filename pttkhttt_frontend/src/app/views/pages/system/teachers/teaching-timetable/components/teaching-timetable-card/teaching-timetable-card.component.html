@@ -1,0 +1,14 @@
+<div *ngIf="schedule" [ngClass]="'teaching-schedule-card--' + index" class="teaching-schedule-card">
+  <div>
+    <div>
+      <div class="teaching-schedule-card__label">{{'TEACHING_TIMETABLE.SUBJECT' | translate}}</div>
+      <div [matTooltip]="schedule.subjectName"
+           class="teaching-schedule-card__value">{{schedule.subjectName | truncate}}</div>
+    </div>
+    <div class="table-alike__row">
+      <div class="teaching-schedule-card__label">{{'TEACHING_TIMETABLE.CLASS' | translate}}</div>
+      <div [matTooltip]="schedule.classCode"
+           class="teaching-schedule-card__value">{{schedule.classCode | truncate}}</div>
+    </div>
+  </div>
+</div>

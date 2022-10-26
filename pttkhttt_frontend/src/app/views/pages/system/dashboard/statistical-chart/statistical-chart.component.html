@@ -1,0 +1,74 @@
+<kendo-chart style="margin-bottom: 20px; width: 98%; margin-left: 1%">
+<!--    <kendo-chart-title text="DOANH THU THEO GÓI CƯỚC"></kendo-chart-title>-->
+<!--          <kendo-chart-legend position="top"></kendo-chart-legend>-->
+          <kendo-chart-tooltip> </kendo-chart-tooltip>
+          <kendo-chart-value-axis>
+            <kendo-chart-value-axis-item *ngFor="let item of valueAxes" [name]="item.name"
+                [min]="item.min" [max]="item.max" [majorUnit]="item.majorUnit" [color]="item.color" [labels]="item.labels"
+                [majorTicks]="majorTicks"
+                >
+            </kendo-chart-value-axis-item>
+          </kendo-chart-value-axis>
+            <kendo-chart-category-axis>
+                <kendo-chart-category-axis-item [categories]="categories" [axisCrossingValue]="crossingValues" [labels]="labels" 
+                [majorGridLines]="{visible: false}" [line]="{color:'#D8DAE5'}" [majorTicks]="categoryMajorTicks" >
+                </kendo-chart-category-axis-item>
+            </kendo-chart-category-axis>
+
+            <kendo-chart-series>
+              <kendo-chart-series-item  [data]="seriesLine.data" [type]="seriesLine.type"
+                  [color]="seriesLine.color" [axis]="seriesLine.axis" >
+                  <kendo-chart-series-item-tooltip>
+                    <ng-template let-value="value" let-category ="category" style="background: none !important;">
+                      <div style="position: relative; margin-left: -90px;">
+                        <div class="hero3" style="display: flex;">
+                          <div style="width: 55%;">
+                            <span class="title-tooltip">{{'DASHBOARD.QUANTITY_USER_SHORT' | translate}}</span>
+                            <br/>
+                            <span class="main-tooltip" style="margin-left: -25px;">
+                              {{ value }}
+                            </span>
+                          </div> 
+                          <div style="width: 0%; border-left: 1px solid rgba(255, 255, 255, 0.5); height: 60%; margin-top: 5%;"></div>
+                          <div style="width: 45%;">
+                            <span class="title-tooltip">{{'DASHBOARD.DATA_PACKAGE' | translate}}</span>
+                            <br/>
+                            <span class="main-tooltip">
+                              {{ category }}
+                            </span>
+                          </div>
+                        </div>
+                        <div class="hero4"></div>
+                      </div>
+                    </ng-template>
+                  </kendo-chart-series-item-tooltip>
+              </kendo-chart-series-item>
+              <kendo-chart-series-item  [data]="seriesCol.data" [type]="seriesCol.type"
+                  [color]="seriesCol.color" [axis]="seriesCol.axis" [border]="borderOptions" [markers]="makers">
+                  <kendo-chart-series-item-tooltip>
+                    <ng-template let-value="value" let-category ="category" style="background: none !important;">
+                      <div style="position: relative; margin-left: -90px;margin-top: -55px;">
+                        <div class="hero5" style="display: flex;">
+                          <div style="width: 55%;">
+                            <span class="title-tooltip">{{'DASHBOARD.REVENUE' | translate}}</span>
+                            <br/>
+                            <span class="main-tooltip">
+                              ${{ value | number }}
+                            </span>
+                          </div> 
+                          <div style="width: 0%; border-left: 1px solid rgba(255, 255, 255, 0.5); height: 60%; margin-top: 5%;"></div>
+                          <div style="width: 45%;">
+                            <span class="title-tooltip">{{'DASHBOARD.DATA_PACKAGE' | translate}}</span>
+                            <br/>
+                            <span class="main-tooltip">
+                              {{ category }}
+                            </span>
+                          </div>
+                        </div>
+                        <div class="hero6"></div>
+                      </div>
+                    </ng-template>
+                  </kendo-chart-series-item-tooltip>
+              </kendo-chart-series-item>
+            </kendo-chart-series>
+</kendo-chart>

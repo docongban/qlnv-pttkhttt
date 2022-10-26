@@ -1,0 +1,37 @@
+{
+  "name": "AttendanceStudent",
+  "fields": [
+    {
+      "fieldName": "id",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "code",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "shoolYear",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "semester",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "month",
+      "fieldType": "String"
+    }
+  ],
+  "relationships": [],
+  "changelogDate": "20210801072451",
+  "entityTableName": "attendance_student",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}

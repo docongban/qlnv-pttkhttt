@@ -1,0 +1,7 @@
+<!--<mat-checkbox [(ngModel)]="params.value" (change)="this.refresh(this.params)"-->
+<!--              [disabled]="params.data.abilityName === null || params.data.abilityName.toString().trim().length === 0">-->
+<!--</mat-checkbox>-->
+
+<mat-checkbox [(ngModel)]="params.value" (change)="this.refresh(this.params)"
+              [disabled]="params.data.abilityName === '-' ">
+</mat-checkbox>

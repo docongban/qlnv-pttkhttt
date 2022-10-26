@@ -1,0 +1,3 @@
+<div class="header-checkbox">
+<mat-checkbox  [(ngModel)]="params.value" (change)="this.refresh(this.params)" [disabled]="params.api.stas">{{params.displayName}}</mat-checkbox>
+</div>

@@ -1,0 +1,14 @@
+entity ScheduleTimetable {
+	id Long,
+    code String,
+    semester String,
+    createDate Instant,
+	shoolYear String,
+	updateDate Instant,
+	creator String,
+	updater String
+}
+dto ScheduleTimetable with mapstruct
+paginate ScheduleTimetable with pagination
+service ScheduleTimetable with serviceClass
+service ScheduleTimetable with serviceImpl

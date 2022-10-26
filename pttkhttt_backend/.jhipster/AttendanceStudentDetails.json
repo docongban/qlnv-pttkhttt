@@ -1,0 +1,37 @@
+{
+  "name": "AttendanceStudentDetails",
+  "fields": [
+    {
+      "fieldName": "studentCode",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "studentName",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "checkDate",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "parentCode",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "date",
+      "fieldType": "Instant"
+    }
+  ],
+  "relationships": [],
+  "changelogDate": "20210816091533",
+  "entityTableName": "attendance_student_details",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}

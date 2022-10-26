@@ -1,0 +1,47 @@
+.k-form-field {
+  display: unset;
+}
+
+.row{
+  margin: 15px 5px;
+}
+
+.modalAdd-Edit{
+  margin-top: 20px !important;
+  align-items: flex-end;
+}
+
+.modalAdd-Edit label{
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  color: #474D66;
+}
+
+.modalAdd-Edit input{
+  background: #FFFFFF;
+  border: 1px solid #D8DAE5;
+  box-sizing: border-box;
+  border-radius: 4px;
+  height: 30px;
+}
+
+.modalAdd-Edit div >div{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modalAdd-Edit input{
+  width: 100%;
+  padding-left: 10px;
+}
+
+.modalAdd-Edit select{
+  background: #FFFFFF;
+  border: 1px solid #D8DAE5;
+  box-sizing: border-box;
+  border-radius: 4px;
+  height: 30px;
+}
+

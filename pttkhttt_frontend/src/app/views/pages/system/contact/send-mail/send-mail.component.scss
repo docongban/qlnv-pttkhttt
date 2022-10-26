@@ -1,0 +1,59 @@
+.tree-view {
+  border: 1px solid #D8DAE5;
+  border-radius: 10px;
+  padding: 16px;
+}
+.create-group-btn {
+  margin: 16px 6px 0;
+  padding: 10px;
+  border: 1px dashed #3366FF;
+  border-radius: 5px;
+  text-align: center;
+  background: #F3F6FF;
+  cursor: pointer;
+}
+.font-size-18 {
+  font-size: 18px;
+}
+
+.list-recipient {
+  height: 41px;
+  display: flex;
+  padding: 8px 10px;
+  border: 1px solid #D8DAE5;
+  border-radius: 4px;
+  span {
+    display: block;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    &.see-more {
+      text-overflow: inherit;
+      overflow: inherit;
+      color: deepskyblue;
+      cursor: pointer;
+    }
+    &.group-item {
+      background: #F4F6FA;
+      padding: 2px 5px;
+    }
+  }
+}
+
+.upload-btn-area {
+  border: 1px solid #D8DAE5;
+  border-radius: 4px;
+  .upload-btn {
+    margin: 5px;
+    padding: 5px 20px;
+    background-color: #5d78ff;
+    color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+}
+
+.list-file-area {
+  max-height: 100px;
+  overflow: auto
+}

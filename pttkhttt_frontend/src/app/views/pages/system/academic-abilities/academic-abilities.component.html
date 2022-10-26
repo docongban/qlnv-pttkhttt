@@ -1,0 +1,126 @@
+<div class="row" style="padding: 0 15px">
+  <div class="col-md-12 col-xs-12">
+    <div class="menu-action-subject" style="display: flex; align-items: center">
+      <h3>
+        TỔNG KẾT ĐIỂM
+      </h3>
+    </div>
+    <!---->
+    <div class="row search-dv" style="margin: 0px">
+      <div class="col-md-6" style="padding: 0;">
+        <div class="col-md-6" style="padding-left: 0">
+          <label>Chọn học kỳ</label>
+          <ng-select
+            [searchable]="false"
+            [clearable]="false"
+            [items]="dataSemester"
+            bindLabel="name"
+            bindValue="value"
+            [(ngModel)]="semester"
+            (change)="selectSemester($event)"
+          >
+            <ng-template ng-option-tmp let-item="item">
+              <div [title]="item.name">{{ item.name }}</div>
+            </ng-template>
+          </ng-select>
+        </div>
+        <div class="col-md-6" style="padding-left: 0">
+          <label>Lớp học</label>
+          <ng-select
+            [searchable]="false"
+            [clearable]="false"
+            [items]="dataClassRoom"
+            bindLabel="name"
+            bindValue="value"
+            [(ngModel)]="classRoom"
+            (change)="selectClass($event)"
+            [ngModelOptions]="{ standalone: true }">
+
+            <ng-template ng-option-tmp let-item="item">
+              <div class="overflow-dots" [title]="item.name">{{ item.name }}</div>
+            </ng-template>
+          </ng-select>
+        </div>
+      </div>
+    </div>
+
+    <div class="table-academic" style="margin-top: 30px" *ngIf="hasAuth">
+      <div style="margin-bottom: 30px;">
+      <span class="note">Sĩ số lớp: {{total}} học sinh</span>
+        <span class="note2" style="float: right;">Ghi chú: <span style="color: #52BD94;">MG</span> - Miễn giảm, <span style="color: #D14343;">CT</span> - Chưa tính điểm </span>
+      </div>
+      <ag-grid-angular
+        [suppressRowTransform]="true"
+        style="width: 100%; height: 400px;"
+        class="ag-theme-balham"
+        [rowData]="rowData"
+        [columnDefs]="columnDefs"
+        [headerHeight]="headerHeight"
+        [rowHeight]="rowHeight"
+        (gridReady)="onGridReady($event)"
+        [cacheBlockSize]="cacheBlockSize"
+        [overlayNoRowsTemplate]="noRowsTemplate"
+        (gridSizeChanged)="gridSizeChanged($event)"
+        [debounceVerticalScrollbar]="true"
+        [tooltipShowDelay]="0"
+        [debounceVerticalScrollbar]="true"
+      >
+      </ag-grid-angular>
+      <div class="sy-paging w-100">
+      <span class="sy-paging-result"
+      >{{ first }}-{{ last }} của {{ total }} kết quả</span
+      >
+        <ul>
+          <i
+            class="fas fa-angle-double-left arrow"
+            style="margin: 0"
+            (click)="goToPage(1)"
+          ></i>
+          <i
+            class="fas fa-angle-left arrow"
+            (click)="goToPage(currentPage - 1)"
+          ></i>
+          <li
+            class="sy-page"
+            [class.sy-highlight]="i === currentPage"
+            [class.sy-dots]="i === '...'"
+            *ngFor="let i of rangeWithDots"
+            (click)="i !== '...' && goToPage(i)"
+          >
+            {{ i }}
+          </li>
+          <i
+            class="fas fa-angle-right arrow"
+            (click)="goToPage(currentPage + 1)"
+          ></i>
+          <i
+            class="fas fa-angle-double-right arrow"
+            style="margin: 0"
+            (click)="goToPage(totalPage)"
+          ></i>
+        </ul>
+      </div>
+        <div class="col-md-12 row search-dv" style="margin-left: 40%">
+          <button
+                  (click)="clickUpdate()" tabindex="0"
+                  style="background-color: #3366ff"
+                  class="index-focus"
+                  *ngIf="showUpdate"
+                  [disabled]="isDisabled"
+          >
+            Cập nhật
+          </button>
+          <button
+                  (click)="clickCancel()" tabindex="0"
+                  style="background-color: #e6e8f0; color: #696f8c; margin-right: 20px"
+                  class="index-focus"
+                  *ngIf="showCancel"
+          >
+            Hủy bỏ
+          </button>
+          <button (click)="updateData()" tabindex="0" class="index-focus" *ngIf="showSave">Lưu lại</button>
+        </div>
+    </div>
+  </div>
+</div>
+

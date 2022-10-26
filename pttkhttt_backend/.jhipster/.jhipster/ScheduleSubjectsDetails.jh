@@ -1,0 +1,11 @@
+entity ScheduleSubjectsDetails {
+	id Long,
+    code String,
+    subjectCode String,
+    parentCode String,
+	lesson String
+}
+dto ScheduleSubjectsDetails with mapstruct
+paginate ScheduleSubjectsDetails with pagination
+service ScheduleSubjectsDetails with serviceClass
+service ScheduleSubjectsDetails with serviceImpl

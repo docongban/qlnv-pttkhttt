@@ -1,0 +1,11 @@
+entity Gradebook {
+	id Long,
+	code String,
+	schoolYear String,
+	semester String,
+	classCode String
+}
+dto Gradebook with mapstruct
+paginate Gradebook with pagination
+service Gradebook with serviceClass
+service Gradebook with serviceImpl

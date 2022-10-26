@@ -1,0 +1,10 @@
+entity StudentHistory {
+	id Long,
+	studentCode String,
+	currentClassCode String,
+	year String
+}
+dto StudentHistory with mapstruct
+paginate StudentHistory with pagination
+service StudentHistory with serviceClass
+service StudentHistory with serviceImpl

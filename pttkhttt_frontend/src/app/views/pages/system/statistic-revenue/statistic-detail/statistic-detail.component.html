@@ -1,0 +1,79 @@
+<a href="javascript:;" (click)="openModal(showChart)" class="text show-chart"> {{ 'STATISTIC_REVENUE.DETAIL' | translate }} </a>
+
+<ng-template #showChart>
+    <div class="modal-content modal-dialog-custom">
+        <div class="modal-header">
+            <h3 class="text header-title"> {{ 'STATISTIC_REVENUE.TITLE_CHART' | translate }}</h3>
+        </div>
+        <div class="modal-body">
+
+            <div style="display: flex; flex-direction: column;">
+                <div style="display: flex;">
+                    <div class="text revenue-package">{{ 'STATISTIC_REVENUE.REVENUE_PACKAGE' | translate }}:</div>
+                    <div class="text package-name">{{packageName}}</div>
+                </div>
+                <div class="text revenue margin-top-20"> {{ 'STATISTIC_REVENUE.REVENUE' | translate }}</div>
+            </div>
+            <div class="margin-top-20 chart-container">
+               <div class="chart">
+                <kendo-chart style="margin-bottom: 20px; width: 98%; margin-left: 1%; margin-top: 10px">
+                    <kendo-chart-value-axis>
+                        <kendo-chart-value-axis-item [name]="valueAxes.name" [min]="valueAxes.min" [max]="valueAxes.max"
+                            [majorUnit]="valueAxes.majorUnit" [majorTicks]="valueAxes.majorTicks">
+
+                            <kendo-chart-value-axis-item-labels color="#101840" [margin]="{bottom: 20}" [content]="functionReturningString" font="600 10px Inter" color="#101840">
+                            </kendo-chart-value-axis-item-labels>
+
+                        </kendo-chart-value-axis-item>
+                    </kendo-chart-value-axis>
+                    <kendo-chart-category-axis>
+                        <kendo-chart-category-axis-item [categories]="categories" [axisCrossingValue]="crossingValues"
+                            [labels]="labels" [majorTicks]="{size: 0, width: 0}" [majorGridLines]="{visible: false}" [line]="{color:'#D8DAE5'}">
+                        </kendo-chart-category-axis-item>
+                    </kendo-chart-category-axis>
+
+                    <kendo-chart-series>
+                        <kendo-chart-series-item [highlight]="highlight" [markers]="{visible: false}" [data]="seriesLine.data" [type]="seriesLine.type" [color]="seriesLine.color"
+                            [axis]="seriesLine.axis">
+                            <kendo-chart-series-item-tooltip>
+                                <ng-template let-value="value" let-category="category" style="background: none !important;">
+                                    <div style="margin-left: -90px">
+                                        <div class="hero3" style="display: flex;">
+                                            <div style="width: 65%;">
+                                                <span class="title-tooltip">{{'STATISTIC_REVENUE.REVENUE' |
+                                                    translate}}</span>
+                                                <br />
+                                                <span class="main-tooltip" >
+                                                    {{ params.api.formatMoney(value) }}
+                                                </span>
+                                            </div>
+                                            <div
+                                                style="width: 0%; border-left: 1px solid rgba(255, 255, 255, 0.5); height: 60%; margin-top: 5%;">
+                                            </div>
+                                            <div style="width: 35%;">
+                                                <span class="title-tooltip">{{'STATISTIC_REVENUE.MONTH' | translate}}</span>
+                                                <br />
+                                                <span class="main-tooltip">
+                                                    {{ category }}
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="hero4"></div>
+                                    </div>
+                                </ng-template>
+                            </kendo-chart-series-item-tooltip>
+                        </kendo-chart-series-item>
+                    </kendo-chart-series>
+                </kendo-chart>
+               </div>
+               <div class="text months-text">
+                   <span> {{'STATISTIC_REVENUE.MONTH' | translate}}</span>
+               </div>
+            </div>
+
+        </div>
+        <div class="modal-footer">
+            <button (click)="closeModal()" class="btn-action-subject btn-md btn-gray index-focus"> {{ 'STATISTIC_REVENUE.CLOSE' | translate}} </button>
+        </div>
+    </div>
+</ng-template>

@@ -1,0 +1,11 @@
+<input class="input-score" [ngClass]="this.rowIndex %2 === 0 ? 'dam' : 'nhat'" type="tel"
+       *ngIf="(!isUpdate && (scoreValue !== undefined && scoreValue !== null && scoreValue !== '')) || isUpdate"
+       [(ngModel)]="scoreValue"
+       (keydown)="setScore($event)"
+       (blur) = "changeAvgScore()"
+       [disabled]="!isUpdate || disableScore" tabindex="0"
+/>
+<div *ngIf="!isUpdate && (scoreValue === undefined || scoreValue === null || scoreValue === '') "
+      style="color: #101840;text-align: center;width: 100%;">
+  -
+</div>

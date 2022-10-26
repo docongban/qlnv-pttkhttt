@@ -1,0 +1,14 @@
+<select class="select-score" *ngIf="showDropDown" [(ngModel)]="rankValue" tabindex="0"
+        [disabled]="!isUpdate || disableScore" (change)="changeValue()">
+  <option [value]="''">Lựa chọn</option>
+  <option *ngFor="let o of listSelect" [value]="o">{{o}}</option>
+</select>
+<input class="input-score"
+       [ngClass]="this.rowIndex %2 === 0 ? 'dam' : 'nhat'"
+       *ngIf="!showDropDown"
+       type="text"
+       placeholder="Nhập nhận xét"
+       (change)="changeValue()"
+       maxlength="100" tabindex="0"
+       [(ngModel)]="rankValue" [disabled]="!isUpdate || disableScore"
+/>

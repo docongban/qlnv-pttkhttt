@@ -1,0 +1,49 @@
+{
+  "name": "RegisterPackage",
+  "fields": [
+    {
+      "fieldName": "dataPackage",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "updateTime",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "updateName",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "status",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "semester",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "studentId",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "shoolYear",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "classCode",
+      "fieldType": "String"
+    }
+  ],
+  "relationships": [],
+  "changelogDate": "20210816091608",
+  "entityTableName": "register_package",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}

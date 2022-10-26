@@ -1,0 +1,101 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Display');
+@import url('https://fonts.googleapis.com/css2?family=Barlow');
+
+.hero3
+{
+    text-align: center;
+    width: 152px;
+    height: 44px;
+    margin: auto;
+    background-color: #3366ff;
+    border-radius: 5px;
+}
+
+.hero4
+{
+    width: 0px;
+    height: 0px;
+    border-style: solid;
+    margin: auto;
+    border-width: 10px 10px 0 10px;
+    border-color: #3366ff transparent transparent transparent;
+    line-height: 0px;
+    _border-color: #e15915 #000000 #000000 #000000;
+    _filter: progid:DXImageTransform.Microsoft.Chroma(color='#000000')
+}
+
+.hero5
+{
+    text-align: center;
+    width: 135px;
+    height: 44px;
+    margin: auto;
+    background-color: #3366ff;
+    border-radius: 5px;
+}
+
+.hero6
+{
+    width: 0px;
+    height: 0px;
+    border-style: solid;
+    margin: auto;
+    border-width: 10px 10px 0 10px;
+    border-color: #3366ff transparent transparent transparent;
+    line-height: 0px;
+    _border-color: #e15915 #000000 #000000 #000000;
+    _filter: progid:DXImageTransform.Microsoft.Chroma(color='#000000')
+}
+
+
+::ng-deep{
+    .k-chart-tooltip-wrapper{
+        border: none !important;
+        box-shadow: none !important;
+    }
+
+    .k-chart-tooltip{
+        background-color: none !important;
+        border-color: none !important;
+        box-shadow: none !important;
+        background: none !important;
+    }
+
+    .k-popup{
+        background-color: none;
+        background: none;
+        box-shadow: none !important;
+    }
+}
+
+.title-tooltip{
+    // font-family: Google Sans;
+    // font-family: 'Noto Sans Display', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 10px;
+    line-height: 16px;
+    /* identical to box height, or 160% */
+
+
+    /* Neutral/Background White - N0 */
+
+    color: #FFFFFF;
+    opacity: 0.65;
+}
+
+.main-tooltip{
+    font-family: 'Barlow', sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 12px;
+    line-height: 16px;
+    /* identical to box height, or 133% */
+
+
+    /* Text Color - White */
+
+    color: #FFFFFF;
+    text-align: left;
+
+}

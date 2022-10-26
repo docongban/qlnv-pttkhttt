@@ -1,0 +1,51 @@
+<div ngbDropdown placement="bottom-right" class="dropdown dropdown-fluid">
+  <!--begin::Toggle-->
+  <div ngbDropdownToggle class="topbar-item" id="dropdownBasic1">
+    <button class="btn btn-outline-light button_lang">
+      	<span>
+							<img class="icon_lang" src="{{language.flag}}">
+						</span>
+      <label style="padding: 0 8px; margin-bottom: 0px;color:#696F8C;">{{language.name}}</label>
+      <i class="fa fa-caret-down" style="color: #696F8C;" aria-hidden="true"></i>
+      <!--<img class="h-25px w-25px rounded" src="{{language?.flag}}" alt="language" />-->
+    </button>
+  </div>
+  <!--end::Toggle-->
+
+  <!--begin::Dropdown-->
+  <div ngbDropdownMenu aria-labelledby="dropdownBasic1"
+       class="dropdown-menu p-0 m-0 dropdown-menu-anim-up dropdown-menu-sm dropdown-menu-right">
+    <ul class="navi navi-hover py-4">
+      <ng-container *ngFor="let language of languages">
+        <button class="dropdown-item" (click)="setLanguage(language.lang)">
+          <a href="javascript:;"  [ngClass]="{'active': language.active}"
+             class="navi-link" style="display: flex;">
+						<span class="symbol symbol-20 mr-3">
+							<img src="{{language.flag}}">
+						</span>
+            <span class="navi-text" style="display: flex; align-items: center">{{language.name}}</span>
+          </a>
+        </button>
+        <!--<li class="navi-item" [ngClass]="{'active': language.active}">-->
+        <!--<a href="javascript:;" (click)="setLanguage(language.lang)" [ngClass]="{'active': language.active}"-->
+        <!--class="navi-link">-->
+        <!--<span class="symbol symbol-20 mr-3">-->
+        <!--<img src="{{language.flag}}">-->
+        <!--</span>-->
+        <!--<span class=" navi-text">{{language.name}}</span>-->
+        <!--</a>-->
+        <!--</li>-->
+      </ng-container>
+    </ul>
+  </div>
+  <!--end::Dropdown-->
+</div>
+<!--<div ngbDropdown class="d-inline-block">-->
+<!--<button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>Toggle dropdown</button>-->
+<!--<div ngbDropdownMenu aria-labelledby="dropdownBasic1">-->
+<!--<button class="dropdown-item">Action - 1</button>-->
+<!--<button class="dropdown-item">Another Action</button>-->
+<!--<button class="dropdown-item">Something else is here</button>-->
+<!--</div>-->
+<!--</div>-->
+

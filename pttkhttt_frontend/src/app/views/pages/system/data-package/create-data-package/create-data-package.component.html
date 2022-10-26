@@ -1,0 +1,219 @@
+<div class="modal-dialog-custom" *ngIf="form" [formGroup]="form">
+    <div class="modal-header">
+      <h4
+        class="modal-title"
+        style="text-align: center"
+        *ngIf="isCreateNew"
+      >
+        {{'COMMON.ADD' | translate}}
+      </h4>
+      <h4
+        class="modal-title"
+        style="text-align: center"
+        *ngIf="!isCreateNew"
+      >
+      {{'COMMON.UPDATE' | translate}}
+      </h4>
+
+    </div>
+    <div class="modal-body" style="padding: 15px 10px !important">
+      <div class="row">
+        <input type="hidden" formControlName="id"  *ngIf="!isCreateNew"/>
+        <div class="col-md-6">
+          <label for="">{{'PACKAGE_MANAGEMENT.CODE' | translate}} <span>*</span></label>
+          <input #focusInput
+          style="font-size: 12px !important;"
+            type="text"
+            [readonly]="!isCreateNew"
+            formControlName="code"
+            [(ngModel)]="code.value"
+            (ngModelChange)="checkCode()"
+            (change)="changeCode()"
+          />
+          <div style="color: red" *ngIf="code.error">
+            {{ code.message }}
+          </div>
+        </div>
+        <div class="col-md-6 level-schools">
+          <label for="">{{'PACKAGE_MANAGEMENT.LEVEL_SCHOOL' | translate}} <span>*</span></label>
+          <ng-select style="font-size: 12px!important;"
+          formControlName="listLevelSchool"
+          [items]="schoolLevels" bindLabel="name" bindValue="code" placeholder="{{'PACKAGE_MANAGEMENT.PLACE_HOLDER' | translate}}"
+          [closeOnSelect]="false"
+          [multiple]="true"
+          [(ngModel)]="schoolLevel.value"
+          (ngModelChange)="checkLevelSchool()"
+          [readonly]="typePackage.value == 0 || isReadOnly" [searchable]="false">
+          <ng-template ng-option-tmp let-item="item" let-search="searchTerm">
+            <div>{{item.name}}</div>
+          </ng-template>
+          </ng-select>
+          <div style="color: red" *ngIf="schoolLevel.error">
+            {{schoolLevel.message}}
+          </div>
+        </div>
+        <div class="col-md-6">
+          <label for="">{{'PACKAGE_MANAGEMENT.NAME' | translate}} <span>*</span></label>
+          <input type="text"
+          formControlName="name"
+          [(ngModel)]="name.value"
+          (ngModelChange)="checkName()"
+          (change)="changeName()"
+           style=" font-size: 12px !important;" class="form-control"
+           >
+          <div style="color: red" *ngIf="name.error">
+            {{ name.message }}
+          </div>
+        </div>
+        <div class="col-md-6">
+          <label for="">{{'PACKAGE_MANAGEMENT.TYPE_PACKAGE' | translate}}</label>
+          <ng-select style="font-size: 12px!important;"
+          formControlName="typePackage"
+          [(ngModel)]="typePackage.value"
+          [items]="dataPackageType" bindLabel="name" bindValue="id" [clearable]="false"
+          (ngModelChange)="checkTypePackage()"
+          [readonly]="isReadOnly"
+                     [searchable]="false"
+          >
+          </ng-select>
+          <div style="color: red" *ngIf="typePackage.error">
+            {{ typePackage.message}}
+          </div>
+        </div>
+        <div class="col-md-6">
+          <label for="">{{'PACKAGE_MANAGEMENT.PRIMARY_PACKAGE' | translate}} <span>*</span></label>
+          <ng-select
+          #disable1
+          formControlName="primaryPackage"
+          placeholder="{{'PACKAGE_MANAGEMENT.PLACE_HOLDER' | translate}} "
+          [(ngModel)]="primaryPackage.value"
+          [items]="listPrimaryPackage" bindLabel="name" bindValue="code"
+          [clearable]="false"
+          (ngModelChange)="checkPrimaryPackage()"
+          [readonly]="isReadOnly"
+          [searchable]="false"
+          style="font-size: 12px!important;"
+          >
+          <ng-template ng-option-tmp let-item="item">
+            <div class="show-tooltip" style="overflow: hidden; text-overflow: ellipsis;  white-space: nowrap;" [matTooltip]="item.name">{{item.name}}</div>
+          </ng-template>
+          </ng-select>
+          <div style="color: red" *ngIf="primaryPackage.error">
+            {{ primaryPackage.message }}
+          </div>
+        </div>
+        <div class="col-md-6">
+          <label for="">{{'PACKAGE_MANAGEMENT.QUANTITY_SEMESTER_APPLY_PART'| translate}} </label>
+          <ng-select style="font-size: 12px!important;"
+          #disable2
+          formControlName="quantitySemesterApply"
+          [items]="quantitySemester"
+          [(ngModel)]="quantitySemesterApply.value"
+          [clearable]="false"
+          [readonly]="isReadOnly"
+                     [searchable]="false"
+          (ngModelChange)="checkQuantitySemesterApply()"
+          >
+          </ng-select>
+          <div style="color: red" *ngIf="quantitySemesterApply.error">
+            {{ quantitySemesterApply.message}}
+          </div>
+        </div>
+        <div class="col-md-6">
+          <label for="">{{'PACKAGE_MANAGEMENT.NUMBER_SMS'| translate}} <span>*</span></label>
+          <input type="text"
+          title=""
+          formControlName="quantitySms"
+          (keydown)="validate($event)"
+          [(ngModel)]="quantitySMS.value"
+          (ngModelChange)="checkQuantitySms()"
+           style=" font-size: 12px !important;" class="form-control"
+          >
+           <div style="color: red" *ngIf="quantitySMS.error">
+            {{ quantitySMS.message}}
+          </div>
+        </div>
+        <div class="col-md-6">
+          <label for="">{{'PACKAGE_MANAGEMENT.SEMESTER_APPLY'| translate}}</label>
+          <ng-select
+            [searchable]="false"
+            style="font-size: 12px!important;"
+          #disable3
+          formControlName="semesterApply"
+          [items]="dataSemesterApply" bindLabel="name" bindValue="id"
+          [(ngModel)]="semesterApply.value"
+          [clearable]="false"
+          [readonly]="isReadOnly"
+          (ngModelChange)="checkSemesterApply()"
+          >
+          </ng-select>
+          <div style="color: red" *ngIf="semesterApply.error">
+            {{ semesterApply.message}}
+          </div>
+        </div>
+        <div class="col-md-6 level-schools">
+          <label for="">{{'PACKAGE_MANAGEMENT.SERVICE_PROVIDER' | translate}}</label>
+          <ng-select style="font-size: 12px!important;height: 40px"
+                     formControlName="listService"
+                     [items]="listServices" bindLabel="name" bindValue="code"
+                     [closeOnSelect]="false"
+                     [multiple]="true"
+                     [(ngModel)]="service1.value"
+                     (ngModelChange)="checkService()"
+                     [clearOnBackspace]="false"
+                     [clearable]="false"
+                     [readonly]="typePackage.value == 0 || isReadOnly" [searchable]="false">
+            <ng-template ng-option-tmp let-item="item" let-search="searchTerm">
+              <div>{{item.name}}</div>
+            </ng-template>
+          </ng-select>
+
+        </div>
+        <div class="col-md-6">
+          <label for="">{{'PACKAGE_MANAGEMENT.PACKAGE_PRICE'| translate}} <span>*</span></label>
+          <div>
+            <span class="money-fixed">USD</span>
+            <input type="text"
+                   placeholder="0.00"
+            [(ngModel)]="prices.value"
+            (ngModelChange)="checkPrices($event)"
+            formControlName="prices"
+            ktPrice
+            style=" font-size: 12px !important;padding-right: 45px !important;" class="form-control"
+            >
+          </div>
+           <div style="color: red" *ngIf="prices.error">
+            {{ prices.message}}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <div class="btn-action">
+        <button type="button" class="btn-md btn-gray" (click)="closeModal()">
+          {{'COMMON.CANCEL' | translate}}
+        </button>
+        <button
+          type="button"
+          class="btn-md btn-or"
+          *ngIf="isCreateNew"
+          [disabled]="isSubmit"
+          (click)="create()"
+        >
+        {{'COMMON.OK' | translate}}
+        </button>
+        <button
+          type="button"
+          class="btn-md btn-or"
+          *ngIf="!isCreateNew"
+          [disabled]="isSubmit"
+          (click)="update()"
+        >
+        {{'COMMON.OK' | translate}}
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="page-loading-class" *ngIf="hide===false">
+    <div class="bee-spinner-sc"></div>
+  </div>

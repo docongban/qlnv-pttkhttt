@@ -1,0 +1,569 @@
+<div class="action-shool" [class.display-none-three-dot]=
+  "teacher.statusStr === 'Đã nghỉ việc' || teacher.statusStr === 'Đã nghỉ hưu'"  *ngIf="isRole === false">
+  <div class="title-action"><i class="fa fa-ellipsis-v"></i></div>
+  <ul [class.five-row-last]="this.rowIndex > 5">
+    <li class="btn-action-sc ac1" (click)="openUpdate()">
+      <svg width="8" height="8" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" clip-rule="evenodd"
+              d="M2.83398 7.56803L6.73908 2.518C6.95131 2.24567 7.02677 1.93082 6.95603 1.61023C6.89472 1.31879 6.7155 1.04169 6.44667 0.831467L5.7911 0.310698C5.22043 -0.143184 4.51298 -0.0954068 4.10738 0.425363L3.66877 0.994387C3.61217 1.06557 3.62632 1.17068 3.69706 1.22802C3.69706 1.22802 4.80539 2.11667 4.82898 2.13578C4.90444 2.20745 4.96103 2.303 4.97518 2.41766C4.99876 2.64222 4.84312 2.85244 4.61203 2.8811C4.50355 2.89543 4.39979 2.86199 4.32433 2.79988L3.15941 1.87301C3.10281 1.83048 3.01792 1.83956 2.97075 1.89689L0.202286 5.48017C0.0230662 5.70472 -0.0382457 5.99616 0.0230662 6.27805L0.376789 7.81169C0.395654 7.89291 0.466398 7.95024 0.551292 7.95024L2.10767 7.93113C2.39065 7.92635 2.65476 7.79736 2.83398 7.56803ZM5.01323 7.09043H7.55107C7.79867 7.09043 8.00006 7.29444 8.00006 7.54527C8.00006 7.79657 7.79867 8.0001 7.55107 8.0001H5.01323C4.76562 8.0001 4.56424 7.79657 4.56424 7.54527C4.56424 7.29444 4.76562 7.09043 5.01323 7.09043Z"
+              fill="#F26522"/>
+      </svg>
+      Cập nhật hồ sơ
+    </li>
+    <li class="btn-action-sc ac2" (click)="openModal(templateKhenthuong, 1)">
+      <svg width="8" height="8" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" clip-rule="evenodd"
+              d="M2.83398 7.56803L6.73908 2.518C6.95131 2.24567 7.02677 1.93082 6.95603 1.61023C6.89472 1.31879 6.7155 1.04169 6.44667 0.831467L5.7911 0.310698C5.22043 -0.143184 4.51298 -0.0954068 4.10738 0.425363L3.66877 0.994387C3.61217 1.06557 3.62632 1.17068 3.69706 1.22802C3.69706 1.22802 4.80539 2.11667 4.82898 2.13578C4.90444 2.20745 4.96103 2.303 4.97518 2.41766C4.99876 2.64222 4.84312 2.85244 4.61203 2.8811C4.50355 2.89543 4.39979 2.86199 4.32433 2.79988L3.15941 1.87301C3.10281 1.83048 3.01792 1.83956 2.97075 1.89689L0.202286 5.48017C0.0230662 5.70472 -0.0382457 5.99616 0.0230662 6.27805L0.376789 7.81169C0.395654 7.89291 0.466398 7.95024 0.551292 7.95024L2.10767 7.93113C2.39065 7.92635 2.65476 7.79736 2.83398 7.56803ZM5.01323 7.09043H7.55107C7.79867 7.09043 8.00006 7.29444 8.00006 7.54527C8.00006 7.79657 7.79867 8.0001 7.55107 8.0001H5.01323C4.76562 8.0001 4.56424 7.79657 4.56424 7.54527C4.56424 7.29444 4.76562 7.09043 5.01323 7.09043Z"
+              fill="#3366FF"/>
+      </svg>
+      Cập nhật khen thưởng
+    </li>
+    <li class="btn-action-sc ac3" (click)="openModal(templateKyluat, 2)">
+      <svg width="8" height="8" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" clip-rule="evenodd"
+              d="M2.83398 7.56803L6.73908 2.518C6.95131 2.24567 7.02677 1.93082 6.95603 1.61023C6.89472 1.31879 6.7155 1.04169 6.44667 0.831467L5.7911 0.310698C5.22043 -0.143184 4.51298 -0.0954068 4.10738 0.425363L3.66877 0.994387C3.61217 1.06557 3.62632 1.17068 3.69706 1.22802C3.69706 1.22802 4.80539 2.11667 4.82898 2.13578C4.90444 2.20745 4.96103 2.303 4.97518 2.41766C4.99876 2.64222 4.84312 2.85244 4.61203 2.8811C4.50355 2.89543 4.39979 2.86199 4.32433 2.79988L3.15941 1.87301C3.10281 1.83048 3.01792 1.83956 2.97075 1.89689L0.202286 5.48017C0.0230662 5.70472 -0.0382457 5.99616 0.0230662 6.27805L0.376789 7.81169C0.395654 7.89291 0.466398 7.95024 0.551292 7.95024L2.10767 7.93113C2.39065 7.92635 2.65476 7.79736 2.83398 7.56803ZM5.01323 7.09043H7.55107C7.79867 7.09043 8.00006 7.29444 8.00006 7.54527C8.00006 7.79657 7.79867 8.0001 7.55107 8.0001H5.01323C4.76562 8.0001 4.56424 7.79657 4.56424 7.54527C4.56424 7.29444 4.76562 7.09043 5.01323 7.09043Z"
+              fill="#D14343"/>
+      </svg>
+      Cập nhật kỷ luật
+    </li>
+    <li class="btn-action-sc ac4" (click)="openModal(templateNghihuu, 3)">
+      <svg width="8" height="8" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" clip-rule="evenodd"
+              d="M2.83398 7.56803L6.73908 2.518C6.95131 2.24567 7.02677 1.93082 6.95603 1.61023C6.89472 1.31879 6.7155 1.04169 6.44667 0.831467L5.7911 0.310698C5.22043 -0.143184 4.51298 -0.0954068 4.10738 0.425363L3.66877 0.994387C3.61217 1.06557 3.62632 1.17068 3.69706 1.22802C3.69706 1.22802 4.80539 2.11667 4.82898 2.13578C4.90444 2.20745 4.96103 2.303 4.97518 2.41766C4.99876 2.64222 4.84312 2.85244 4.61203 2.8811C4.50355 2.89543 4.39979 2.86199 4.32433 2.79988L3.15941 1.87301C3.10281 1.83048 3.01792 1.83956 2.97075 1.89689L0.202286 5.48017C0.0230662 5.70472 -0.0382457 5.99616 0.0230662 6.27805L0.376789 7.81169C0.395654 7.89291 0.466398 7.95024 0.551292 7.95024L2.10767 7.93113C2.39065 7.92635 2.65476 7.79736 2.83398 7.56803ZM5.01323 7.09043H7.55107C7.79867 7.09043 8.00006 7.29444 8.00006 7.54527C8.00006 7.79657 7.79867 8.0001 7.55107 8.0001H5.01323C4.76562 8.0001 4.56424 7.79657 4.56424 7.54527C4.56424 7.29444 4.76562 7.09043 5.01323 7.09043Z"
+              fill="#474D66"/>
+      </svg>
+      Cập nhật nghỉ hưu
+    </li>
+    <li class="btn-action-sc ac5" (click)="openModal(templateNghiviec, 4)">
+      <svg width="8" height="8" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" clip-rule="evenodd"
+              d="M2.83398 7.56803L6.73908 2.518C6.95131 2.24567 7.02677 1.93082 6.95603 1.61023C6.89472 1.31879 6.7155 1.04169 6.44667 0.831467L5.7911 0.310698C5.22043 -0.143184 4.51298 -0.0954068 4.10738 0.425363L3.66877 0.994387C3.61217 1.06557 3.62632 1.17068 3.69706 1.22802C3.69706 1.22802 4.80539 2.11667 4.82898 2.13578C4.90444 2.20745 4.96103 2.303 4.97518 2.41766C4.99876 2.64222 4.84312 2.85244 4.61203 2.8811C4.50355 2.89543 4.39979 2.86199 4.32433 2.79988L3.15941 1.87301C3.10281 1.83048 3.01792 1.83956 2.97075 1.89689L0.202286 5.48017C0.0230662 5.70472 -0.0382457 5.99616 0.0230662 6.27805L0.376789 7.81169C0.395654 7.89291 0.466398 7.95024 0.551292 7.95024L2.10767 7.93113C2.39065 7.92635 2.65476 7.79736 2.83398 7.56803ZM5.01323 7.09043H7.55107C7.79867 7.09043 8.00006 7.29444 8.00006 7.54527C8.00006 7.79657 7.79867 8.0001 7.55107 8.0001H5.01323C4.76562 8.0001 4.56424 7.79657 4.56424 7.54527C4.56424 7.29444 4.76562 7.09043 5.01323 7.09043Z"
+              fill="#F3A412"/>
+      </svg>
+
+      Cập nhật nghỉ việc
+    </li>
+    <li class="btn-action-sc ac6" (click)="openModal(templateTamnghi, 5)">
+      <svg width="8" height="8" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" clip-rule="evenodd"
+              d="M2.83398 7.56803L6.73908 2.518C6.95131 2.24567 7.02677 1.93082 6.95603 1.61023C6.89472 1.31879 6.7155 1.04169 6.44667 0.831467L5.7911 0.310698C5.22043 -0.143184 4.51298 -0.0954068 4.10738 0.425363L3.66877 0.994387C3.61217 1.06557 3.62632 1.17068 3.69706 1.22802C3.69706 1.22802 4.80539 2.11667 4.82898 2.13578C4.90444 2.20745 4.96103 2.303 4.97518 2.41766C4.99876 2.64222 4.84312 2.85244 4.61203 2.8811C4.50355 2.89543 4.39979 2.86199 4.32433 2.79988L3.15941 1.87301C3.10281 1.83048 3.01792 1.83956 2.97075 1.89689L0.202286 5.48017C0.0230662 5.70472 -0.0382457 5.99616 0.0230662 6.27805L0.376789 7.81169C0.395654 7.89291 0.466398 7.95024 0.551292 7.95024L2.10767 7.93113C2.39065 7.92635 2.65476 7.79736 2.83398 7.56803ZM5.01323 7.09043H7.55107C7.79867 7.09043 8.00006 7.29444 8.00006 7.54527C8.00006 7.79657 7.79867 8.0001 7.55107 8.0001H5.01323C4.76562 8.0001 4.56424 7.79657 4.56424 7.54527C4.56424 7.29444 4.76562 7.09043 5.01323 7.09043Z"
+              fill="#897AE3"/>
+      </svg>
+
+      Cập nhật tạm nghỉ
+    </li>
+    <li class="btn-action-sc ac7" (click)="openModal(templateChuyendonvi, 6)">
+      <svg width="8" height="8" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" clip-rule="evenodd"
+              d="M2.83398 7.56803L6.73908 2.518C6.95131 2.24567 7.02677 1.93082 6.95603 1.61023C6.89472 1.31879 6.7155 1.04169 6.44667 0.831467L5.7911 0.310698C5.22043 -0.143184 4.51298 -0.0954068 4.10738 0.425363L3.66877 0.994387C3.61217 1.06557 3.62632 1.17068 3.69706 1.22802C3.69706 1.22802 4.80539 2.11667 4.82898 2.13578C4.90444 2.20745 4.96103 2.303 4.97518 2.41766C4.99876 2.64222 4.84312 2.85244 4.61203 2.8811C4.50355 2.89543 4.39979 2.86199 4.32433 2.79988L3.15941 1.87301C3.10281 1.83048 3.01792 1.83956 2.97075 1.89689L0.202286 5.48017C0.0230662 5.70472 -0.0382457 5.99616 0.0230662 6.27805L0.376789 7.81169C0.395654 7.89291 0.466398 7.95024 0.551292 7.95024L2.10767 7.93113C2.39065 7.92635 2.65476 7.79736 2.83398 7.56803ZM5.01323 7.09043H7.55107C7.79867 7.09043 8.00006 7.29444 8.00006 7.54527C8.00006 7.79657 7.79867 8.0001 7.55107 8.0001H5.01323C4.76562 8.0001 4.56424 7.79657 4.56424 7.54527C4.56424 7.29444 4.76562 7.09043 5.01323 7.09043Z"
+              fill="#25CBD6"/>
+      </svg>
+
+      Chuyển đơn vị/Bộ phận
+    </li>
+    <li class="btn-action-sc ac8" (click)="openModal(templateLuongphucap, 7)">
+      <svg width="8" height="8" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" clip-rule="evenodd"
+              d="M2.83398 7.56803L6.73908 2.518C6.95131 2.24567 7.02677 1.93082 6.95603 1.61023C6.89472 1.31879 6.7155 1.04169 6.44667 0.831467L5.7911 0.310698C5.22043 -0.143184 4.51298 -0.0954068 4.10738 0.425363L3.66877 0.994387C3.61217 1.06557 3.62632 1.17068 3.69706 1.22802C3.69706 1.22802 4.80539 2.11667 4.82898 2.13578C4.90444 2.20745 4.96103 2.303 4.97518 2.41766C4.99876 2.64222 4.84312 2.85244 4.61203 2.8811C4.50355 2.89543 4.39979 2.86199 4.32433 2.79988L3.15941 1.87301C3.10281 1.83048 3.01792 1.83956 2.97075 1.89689L0.202286 5.48017C0.0230662 5.70472 -0.0382457 5.99616 0.0230662 6.27805L0.376789 7.81169C0.395654 7.89291 0.466398 7.95024 0.551292 7.95024L2.10767 7.93113C2.39065 7.92635 2.65476 7.79736 2.83398 7.56803ZM5.01323 7.09043H7.55107C7.79867 7.09043 8.00006 7.29444 8.00006 7.54527C8.00006 7.79657 7.79867 8.0001 7.55107 8.0001H5.01323C4.76562 8.0001 4.56424 7.79657 4.56424 7.54527C4.56424 7.29444 4.76562 7.09043 5.01323 7.09043Z"
+              fill="#52BD94"/>
+      </svg>
+
+      Cập nhật lương/phụ cấp
+    </li>
+  </ul>
+</div>
+
+
+<!--xoa-->
+<ng-template #template>
+
+  <div class="modal-content">
+    <div class="modal-header" style="    flex-direction: column;">
+      <h4 class="modal-title" style="text-align: center;">XOÁ ĐƠN VỊ</h4>
+
+      <button type="button" class="close" (click)="newUnit.hide()" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body" style="padding: 15px 10px !important;">
+      <p class="des" style="text-align: center;">Bạn có chắc chắn muốn xoá đơn vị đã chọn?</p>
+
+    </div>
+    <div class="modal-footer">
+
+      <div class="btn-action">
+        <button type="button" class="btn-md btn-gray" (click)="modalRef.hide()">Hủy bỏ</button>
+        <button type="button" class="btn-md btn-or">Đồng ý</button>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<!--cập nhật khen thưởng-->
+<ng-template #templateKhenthuong>
+  <div class="modal-content modal-dialog-custom">
+    <div class="modal-header">
+      <h4 class="modal-title" style="text-align: center;">cập nhật khen thưởng</h4>
+
+      <button type="button" class="close" (click)="newUnit.hide()" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body" style="padding: 15px 10px !important;">
+
+      <div class="row">
+        <div class="col-md-12">
+          <p class="title-techer">Cán bộ/Giáo viên: <span>{{this.teacher.code}} - {{this.teacher.fullName}}</span></p>
+        </div>
+        <div class="col-md-12">
+          <h4 class="modal-title" style="text-align: left">THÔNG TIN KHEN THƯỞNG</h4>
+          <label for="">Hình thức khen thưởng <span>*</span></label>
+          <input type="text" [(ngModel)]="rewardDisciplineModel.rdType" (keyup)="validateHT()">
+          <small class="error-validate" *ngIf="this.errorKhenThuong.ht.error">{{this.errorKhenThuong.ht.message}}</small>
+        </div>
+        <div class="col-md-6">
+          <label for="">Năm học <span>*</span></label>
+          <input type="text" [(ngModel)]="rewardDisciplineModel.rdYear" disabled="true" readonly="true" style="background-color: #F4F6FA">
+        </div>
+        <div class="col-md-6">
+          <label for="">Ngày khen thưởng<span>*</span></label>
+          <input type="date" [(ngModel)]="rewardDisciplineModel.dateRd" (change)="validateDate()">
+          <small class="error-validate" *ngIf="this.errorKhenThuong.date.error">{{this.errorKhenThuong.date.message}}</small>
+        </div>
+        <div class="col-md-12">
+          <label for="">Địa điểm khen thưởng <span>*</span></label>
+          <input type="text" [(ngModel)]="rewardDisciplineModel.rdAddress" (keyup)="validateDiaChi()" >
+          <small class="error-validate" *ngIf="this.errorKhenThuong.diachi.error">{{this.errorKhenThuong.diachi.message}}</small>
+        </div>
+        <div class="col-md-12">
+          <label for="">Nội dung khen thưởng</label>
+          <textarea name="rdContent" [(ngModel)]="rewardDisciplineModel.rdContent"></textarea>
+            <small class="error-validate" *ngIf="this.errorKhenThuong.noidung.error" >{{this.errorKhenThuong.noidung.message}}</small>
+        </div>
+      </div>
+
+    </div>
+      <div class="modal-footer">
+      <div class="btn-action">
+        <button type="reset" class="btn-md btn-gray" (click)="modalRef.hide()">Hủy bỏ</button>
+        <button type="button" class="btn-md btn-or" (click)="this.bouns()">Lưu lại</button>
+      </div>
+    </div>
+  </div>
+
+</ng-template>
+
+<!--cập nhật kỷ luật-->
+<ng-template #templateKyluat>
+  <div class="modal-content modal-dialog-custom">
+    <div class="modal-header">
+      <h4 class="modal-title" style="text-align: center;">cập nhật kỶ LUẬT</h4>
+
+      <button type="button" class="close" (click)="newUnit.hide()" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body" style="padding: 15px 10px !important;">
+      <div class="row">
+        <div class="col-md-12">
+          <p class="title-techer">Cán bộ/Giáo viên: <span>{{this.teacher.code}} - {{this.teacher.fullName}}</span></p>
+        </div>
+        <div class="col-md-12">
+          <h4 class="modal-title" style="text-align: left">THÔNG TIN KỶ LUẬT</h4>
+          <label for="">Hình thức kỷ luật <span>*</span></label>
+          <input type="text" [(ngModel)]="rewardDisciplineModel.rdType" (keyup)="validateKLHT()">
+            <small class="error-validate" *ngIf="this.errorKyLuat.ht.error" >{{this.errorKyLuat.ht.message}}</small>
+        </div>
+        <div class="col-md-6">
+          <label for="">Năm học <span>*</span></label>
+          <input type="text" [(ngModel)]="rewardDisciplineModel.rdYear" disabled="true" style="background-color: #F4F6FA">
+        </div>
+        <div class="col-md-6">
+          <label for="">Ngày kỷ luật<span>*</span></label>
+          <input type="date" [(ngModel)]="rewardDisciplineModel.dateRd" name="dateRd" (change)="validateKLDate()">
+            <small class="error-validate" *ngIf="this.errorKyLuat.date.error">{{this.errorKyLuat.date.message}}</small>
+        </div>
+        <div class="col-md-12">
+          <label for="">Địa điểm kỷ luật <span>*</span></label>
+          <input type="text" [(ngModel)]="rewardDisciplineModel.rdAddress" required name="rdAddress" ktSystems="250"  #diachi="ngModel" (keyup)="validateKLDiaChi()">
+          <small class="error-validate" *ngIf="this.errorKyLuat.diachi.error" >{{this.errorKyLuat.diachi.message}}</small>
+        </div>
+        <div class="col-md-12">
+          <label for="">Nội dung kỷ luật</label>
+          <textarea name="rdContent" [(ngModel)]="rewardDisciplineModel.rdContent" (keyup)="validateKLND()"></textarea>
+          <small class="error-validate" *ngIf="this.errorKyLuat.noidung.error" >{{this.errorKyLuat.noidung.message}}</small>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <div class="btn-action">
+        <button type="reset" class="btn-md btn-gray" (click)="modalRef.hide()">Hủy bỏ</button>
+        <button type="button" class="btn-md btn-or" (click)="discipline()">Lưu lại</button>
+      </div>
+    </div>
+  </div>
+
+</ng-template>
+
+<!--cập nhật nghi huu-->
+<ng-template #templateNghihuu>
+  <div class="modal-content modal-dialog-custom">
+    <div class="modal-header">
+      <h4 class="modal-title" style="text-align: center;">cập nhật nghỉ hưu</h4>
+
+      <button type="button" class="close" (click)="newUnit.hide()" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body" style="padding: 15px 10px !important;">
+      <div class="row">
+        <div class="col-md-12">
+          <p class="title-techer">Cán bộ/Giáo viên: <span>{{this.teacher.code}} - {{this.teacher.fullName}}</span></p>
+        </div>
+        <div class="col-md-12">
+          <h4 class="modal-title" style="text-align: left">THÔNG TIN NGHỈ HƯU</h4>
+        </div>
+        <div class="col-md-6">
+          <label for="">Quyết định nghỉ hưu <span>*</span></label>
+          <input type="text" [(ngModel)]="leaveJob.decision" required name="decision" ktSystems="250"  #qd="ngModel"  (change)="leaveJob.decision=leaveJob.decision.trim()"  >
+          <div *ngIf="qd.invalid && (qd.dirty || qd.touched)">
+            <small class="error-validate" *ngIf="qd.errors.required" >Quyết đinh nghỉ hưu không được bỏ trống</small>
+            <small class="error-validate" *ngIf="qd.errors.ktSystems" >Quyết định nghỉ hưu có độ dài tối đa là 250 ký tự</small>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <label for="">Ngày nghỉ hưu<span>*</span></label>
+          <input type="date" [(ngModel)]="leaveJob.dateLeave" name="dateLeave" max="3000-05-05"  ktSystems  #dateLeave="ngModel" (change)="validateLeaveDate($event)">
+            <small class="error-validate" *ngIf="this.errorDate == true" >Ngày nghỉ không được nhỏ hơn ngày hiện tại</small>
+          <div *ngIf="dateLeave.touched || dateLeave.dirty">
+            <small class="error-validate" *ngIf="isDate(leaveJob.dateLeave) == false" >Ngày nghỉ hưu không hợp lệ</small>
+          </div>
+        </div>
+        <div class="col-md-12">
+          <label for="">Ghi chú</label>
+          <textarea name="description" [(ngModel)]="leaveJob.description" ktSystems="250"  #description="ngModel" (change)="leaveJob.description = leaveJob.description.trim()"></textarea>
+          <div *ngIf="description.invalid && (description.dirty || description.touched)">
+            <small class="error-validate" *ngIf="description.errors.ktSystems" >Ghi chú có độ dài tối đa là 500 ký tự</small>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <div class="btn-action">
+        <button type="reset" class="btn-md btn-gray" (click)="modalRef.hide()">Hủy bỏ</button>
+        <button type="button" class="btn-md btn-or" (click)="this.quiJob(1)">Lưu lại</button>
+      </div>
+    </div>
+  </div>
+
+</ng-template>
+
+<!--cập nhật nghi viec-->
+<ng-template #templateNghiviec>
+  <div class="modal-content modal-dialog-custom">
+    <div class="modal-header">
+      <h4 class="modal-title" style="text-align: center;">cập nhật nghỉ việc</h4>
+
+      <button type="button" class="close" (click)="newUnit.hide()" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body" style="padding: 15px 10px !important;">
+      <div class="row">
+        <div class="col-md-12">
+          <p class="title-techer">Cán bộ/Giáo viên: <span>{{this.teacher.code}} - {{this.teacher.fullName}}</span></p>
+        </div>
+        <div class="col-md-12">
+          <h4 class="modal-title" style="text-align: left">THÔNG TIN NGHỈ VIỆC</h4>
+        </div>
+        <div class="col-md-6">
+          <label for="">Quyết định nghỉ việc <span>*</span></label>
+          <input type="text" [(ngModel)]="leaveJob.decision" required name="decision" ktSystems="250"  #qd="ngModel"  (change)="leaveJob.decision=leaveJob.decision.trim()"  >
+          <div *ngIf="qd.invalid && (qd.dirty || qd.touched)">
+            <small class="error-validate" *ngIf="qd.errors.required" >Quyết đinh nghỉ việc không được bỏ trống</small>
+            <small class="error-validate" *ngIf="qd.errors.ktSystems" >Quyết định nghỉ việc có độ dài tối đa là 250 ký tự</small>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <label for="">Ngày nghỉ việc <span>*</span></label>
+          <input type="date" [(ngModel)]="leaveJob.dateLeave" name="dateLeave" max="3000-05-05"  ktSystems  #dateLeave="ngModel" (change)="validateLeaveDate($event)">
+          <small class="error-validate" *ngIf="this.errorDate == true" >Ngày nghỉ không được nhỏ hơn ngày hiện tại</small>
+          <div *ngIf="dateLeave.touched || dateLeave.dirty">
+            <small class="error-validate" *ngIf="isDate(leaveJob.dateLeave) == false" >Ngày nghỉ việc không hợp lệ</small>
+          </div>
+        </div>
+        <div class="col-md-12">
+          <label for="">Lý do nghỉ việc <span>*</span></label>
+          <textarea name="reason" [(ngModel)]="leaveJob.reason" required name="reason" ktSystems="250"  #ld="ngModel"  (change)="leaveJob.reason=leaveJob.reason.trim()" ></textarea>
+          <div *ngIf="ld.invalid && (ld.dirty || ld.touched)">
+            <small class="error-validate" *ngIf="ld.errors.required" >Lý do nghỉ việc không được bỏ trống</small>
+            <small class="error-validate" *ngIf="ld.errors.ktSystems" >Lý do nghỉ việc có độ dài tối đa là 250 ký tự</small>
+          </div>
+        </div>
+        <div class="col-md-12">
+          <label for="">Ghi chú</label>
+          <textarea name="description" [(ngModel)]="leaveJob.description" ktSystems="250"  #description="ngModel" (change)="leaveJob.description = leaveJob.description.trim()"></textarea>
+          <div *ngIf="description.invalid && (description.dirty || description.touched)">
+            <small class="error-validate" *ngIf="description.errors.ktSystems" >Ghi chú có độ dài tối đa là 500 ký tự</small>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <div class="btn-action">
+        <button type="reset" class="btn-md btn-gray" (click)="modalRef.hide()">Hủy bỏ</button>
+        <button type="button" class="btn-md btn-or" (click)="this.quiJob(0)">Lưu lại</button>
+      </div>
+    </div>
+  </div>
+
+</ng-template>
+
+<!--cập nhật tam nghi-->
+<ng-template #templateTamnghi style="overflow-y:hidden; !important;">
+  <div class="modal-content modal-dialog-custom" >
+    <div class="modal-header">
+      <h4 class="modal-title" style="text-align: center;">cập nhật tạm nghỉ</h4>
+
+      <button type="button" class="close" (click)="newUnit.hide()" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body" style="padding: 15px 10px !important;">
+      <div class="row">
+        <div class="col-md-12">
+          <p class="title-techer">Cán bộ/Giáo viên: <span>{{this.teacher.code}} - {{this.teacher.fullName}}</span></p>
+        </div>
+        <div class="col-md-12">
+          <h4 class="modal-title" style="text-align: left">THÔNG TIN TẠM NGHỈ</h4>
+        </div>
+        <div class="col-md-6">
+          <label for="">Ngày nghỉ việc <span>*</span></label>
+          <input type="date" [(ngModel)]="leaveJob.dateLeave" name="dateLeave" max="3000-05-05"  ktSystems  #dateLeave="ngModel" (change)="validateLeaveDate($event)">
+          <small class="error-validate" *ngIf="this.errorDate == true" >Ngày nghỉ không được nhỏ hơn ngày hiện tại</small>
+          <div *ngIf="dateLeave.touched || dateLeave.dirty">
+            <small class="error-validate" *ngIf="isDate(leaveJob.dateLeave) == false" >Ngày tạm nghỉ không hợp lệ</small>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <label for="">Thời gian tạm nghỉ <span>*</span></label>
+          <div class="inner-nghi">
+            <input type="number" [(ngModel)]="leaveJob.breakTime" required name="breakTime" min="1" #breakTime="ngModel"  (keyup)="checkNgayTamNghi()" oninput="this.value = this.value.replace(/[^0-9.]/g)">
+            <span>tháng</span>
+          </div>
+            <small class="error-validate" *ngIf="errorTN === true && leaveJob.breakTime !== null">{{this.messgeTN}}</small>
+            <div *ngIf="breakTime.invalid && (breakTime.dirty || breakTime.touched)">
+              <small class="error-validate" *ngIf="breakTime.errors.required" >Thời gian tạm nghỉ không được bỏ trống</small>
+            </div>
+        </div>
+        <div class="col-md-12">
+          <label for="">Lý do tạm nghỉ <span>*</span></label>
+          <textarea name="reason" [(ngModel)]="leaveJob.reason" required name="reason" ktSystems="250"  #reason="ngModel"  (change)="leaveJob.reason=leaveJob.reason.trim()"  ></textarea>
+          <div *ngIf="reason.invalid && (reason.dirty || reason.touched)">
+            <small class="error-validate" *ngIf="reason.errors.required" >Lý do tạm nghỉ không được bỏ trống</small>
+            <small class="error-validate" *ngIf="reason.errors.ktSystems" >Lý do tạm nghỉ có độ dài tối đa là 250 ký tự</small>
+          </div>
+        </div>
+        <div class="col-md-12">
+          <label for="">Ghi chú</label>
+          <textarea name="description" [(ngModel)]="leaveJob.description" ktSystems="250"  #description="ngModel" (change)="leaveJob.description = leaveJob.description.trim()"></textarea>
+          <div *ngIf="description.invalid && (description.dirty || description.touched)">
+            <small class="error-validate" *ngIf="description.errors.ktSystems" >Ghi chú có độ dài tối đa là 500 ký tự</small>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <div class="btn-action">
+        <button type="reset" class="btn-md btn-gray" (click)="modalRef.hide()">Hủy bỏ</button>
+        <button type="button" class="btn-md btn-or" (click)="this.quiJob(2)">Lưu lại</button>
+      </div>
+    </div>
+  </div>
+
+</ng-template>
+
+<!--ck don vi phong ban-->
+<ng-template #templateChuyendonvi>
+  <div class="modal-content modal-dialog-custom">
+    <div class="modal-header">
+      <h4 class="modal-title" style="text-align: center;">chuyển đơn vị/phòng ban</h4>
+
+      <button type="button" class="close" (click)="newUnit.hide()" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body" style="padding: 15px 10px !important;">
+      <div class="row">
+        <div class="col-md-12">
+          <p class="title-techer">Cán bộ/Giáo viên: <span>{{this.teacher.code}} - {{this.teacher.fullName}}</span></p>
+        </div>
+        <div class="col-md-6">
+          <div class="info-dv">
+            <div class="name-dv">Đơn vị:</div>
+            <div class="value-dv">{{this.teacher.unitName}}</div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="info-dv">
+            <div class="name-dv">Chức vụ:</div>
+            <div class="value-dv">{{this.teacher.positionName}}</div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="info-dv">
+            <div class="name-dv">Khoa:</div>
+            <div class="value-dv">{{this.teacher.deptName}}</div>
+          </div>
+        </div>
+        <div class="col-md-12">
+          <div class="thongtinck">THÔNG TIN CHUYỂN</div>
+        </div>
+        <div class="col-md-12">
+          <div class="type-action">
+            <label class="container-radio">Chuyển cùng đơn vị
+              <input type="radio" name="aa" checked="true" [value]="0"  (change)="changeValue()" [(ngModel)]="chuyen">
+              <span class="checkmark"></span>
+            </label>
+            <label class="container-radio">Chuyển khác đơn vị
+              <input type="radio" name="aa" [value]="1" [(ngModel)]="chuyen" (change)="changeValue()">
+              <span class="checkmark"></span>
+            </label>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <label for="">Quyết định chuyển <span>*</span></label>
+          <input type="text" [(ngModel)]="jobTransferHistory.code" required name="code" ktSystems="250"  #code="ngModel">
+          <div *ngIf="code.invalid && (code.dirty || code.touched)">
+            <small class="error-validate" *ngIf="code.errors.required" >Quyết định chuyển không được bỏ trống</small>
+            <small class="error-validate" *ngIf="code.errors.ktSystems" >Quyết định chuyển có độ dài tối đa là 250 ký tự</small>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <label for="">Ngày chuyển<span>*</span></label>
+          <input type="date" [(ngModel)]="jobTransferHistory.dateTransfer" name="dateTransfer" max="3000-05-05"  ktSystems  #dateTransfer="ngModel" >
+          <div *ngIf="dateTransfer.touched || dateTransfer.dirty">
+            <small class="error-validate" *ngIf="isDate(jobTransferHistory.dateTransfer) == false" >Ngày chuyển không hợp lệ</small>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <label for="">Đơn vị chuyển<span>*</span></label>
+          <ng-select [items]="listDeptParent" bindLabel="name" bindValue="id"
+                     [(ngModel)]="jobTransferHistory.newDepartmentId"
+                     [ngModelOptions]="{standalone: true}" (change)="changedeptParent()" [clearable]="false" required name="newDepartment" #dv="ngModel" [disabled]="chuyen === 0">
+          </ng-select>
+          <div *ngIf="dv.invalid && (dv.dirty || dv.touched)">
+            <small class="error-validate" *ngIf="dv.errors.required" >Đơn vị không được bỏ trống</small>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <label for="">Khoa/Ban<span>*</span></label>
+          <ng-select [items]="listDept" bindLabel="name" bindValue="id" placeholder="Lựa chọn"
+                     [(ngModel)]="jobTransferHistory.newDeptId"
+                     [ngModelOptions]="{standalone: true}" [clearable]="false" required name="newDept" #khoa="ngModel">
+          </ng-select>
+          <div *ngIf="khoa.invalid && (khoa.dirty || khoa.touched)">
+            <small class="error-validate" *ngIf="khoa.errors.required" >Khoa/Ban không được bỏ trống</small>
+          </div>
+        </div>
+        <div class="col-md-12">
+          <label for="">Lý do chuyển<span>*</span></label>
+          <textarea name="" [(ngModel)]="jobTransferHistory.reason" required name="reason" ktSystems="250"  #ld="ngModel"></textarea>
+          <div *ngIf="ld.invalid && (ld.dirty || ld.touched)">
+            <small class="error-validate" *ngIf="ld.errors.required" >Lý do chuyển không được bỏ trống</small>
+            <small class="error-validate" *ngIf="ld.errors.ktSystems" >Lý do chuyển có độ dài tối đa là 250 ký tự</small>
+          </div>
+        </div>
+        <div class="col-md-12">
+          <label for="">Ghi chú</label>
+          <textarea name="description" [(ngModel)]="jobTransferHistory.description" ktSystems="500"  #description="ngModel" ></textarea>
+          <div *ngIf="description.invalid && (description.dirty || description.touched)">
+            <small class="error-validate" *ngIf="description.errors.ktSystems" >Ghi chú có độ dài tối đa là 500 ký tự</small>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <div class="btn-action">
+        <button type="reset" class="btn-md btn-gray" (click)="modalRef.hide()">Hủy bỏ</button>
+        <button type="button" class="btn-md btn-or" (click)="changeDepartment()">Lưu lại</button>
+      </div>
+    </div>
+  </div>
+
+</ng-template>
+
+
+<!--cập nhật THONG TIN LUONG PHU CAP-->
+<ng-template #templateLuongphucap>
+  <div class="modal-content modal-dialog-custom">
+    <div class="modal-header">
+      <h4 class="modal-title" style="text-align: center;">cập nhật thông tin lương/phụ cấp</h4>
+
+      <button type="button" class="close" (click)="newUnit.hide()" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body" style="padding: 15px 10px !important;">
+      <div class="row">
+        <div class="col-md-12">
+          <p class="title-techer">Cán bộ/Giáo viên: <span>{{this.teacher.code}} - {{this.teacher.fullName}}</span></p>
+        </div>
+        <div class="col-md-12">
+          <div class="thongtinck">THÔNG TIN LƯƠNG</div>
+        </div>
+        <div class="col-md-6">
+          <label for="">Ngày hưởng</label>
+          <input type="date" [(ngModel)]="salaryAllowances.datePay" name="datePay" max="3000-05-05"  ktSystems  #datePay="ngModel">
+          <div *ngIf="datePay.touched || datePay.dirty">
+            <small class="error-validate" *ngIf="isDate(salaryAllowances.datePay) == false" >Ngày hưởng không hợp lệ</small>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <label for="">Bậc lương <span>*</span></label>
+          <ng-select [items]="salaryLeavel" bindLabel="name" bindValue="id" placeholder="Đơn vị cha"
+                     [(ngModel)]="salaryAllowances.salaryLevelId"
+                     [ngModelOptions]="{standalone: true}" (change)="validateBL()"></ng-select>
+            <small class="error-validate" *ngIf="this.errorPhuCap.bl.error" >{{this.errorPhuCap.bl.message}}</small>
+        </div>
+        <div class="col-md-12">
+          <label for="">Hạng/Ngạch <span>*</span></label>
+          <ng-select [items]="this.rankSalary" bindLabel="name" bindValue="id" [(ngModel)]="salaryAllowances.rankId"
+                     [ngModelOptions]="{standalone: true}" [(ngModel)]="salaryAllowances.rankId" (change)="changeRankSalary()"></ng-select>
+            <small class="error-validate" *ngIf="this.errorPhuCap.hn.error" >{{this.errorPhuCap.hn.message}}</small>
+        </div>
+        <div class="col-md-6">
+          <label for="">Hệ số lương <span>*</span></label>
+          <input type="text" [(ngModel)]="salaryAllowances.coefficient" (keyup)="validateHS()">
+          <small class="error-validate" *ngIf="this.errorPhuCap.hs.error">{{this.errorPhuCap.hs.message}}</small>
+        </div>
+        <div class="col-md-6">
+          <label for="">% vượt khung</label>
+          <input type="text" [(ngModel)]="salaryAllowances.exceedFrame">
+<!--            <small class="error-validate" *ngIf="vh.errors.ktSystems" >%vượt khung có độ dài tối đa là 250 ký tự</small>-->
+        </div>
+        <div class="col-md-12">
+          <label for="">Ghi chú</label>
+          <textarea name="" id="" [(ngModel)]="salaryAllowances.description" (keyup)="validateGC()"></textarea>
+            <small class="error-validate" *ngIf="this.errorPhuCap.gc.error" >{{this.errorPhuCap.gc.message}}</small>
+        </div>
+        <div class="col-md-12">
+          <div class="thongtinck">CHẾ ĐỘ PHỤ CẤP</div>
+        </div>
+        <div class="col-md-12">
+          <label for="">Thông tin phụ cấp</label>
+          <input type="text" [(ngModel)]="salaryAllowances.allowanceMode" (keyup)="validateTT()"  >
+            <small class="error-validate" *ngIf="this.errorPhuCap.tt.error" >{{this.errorPhuCap.tt.message}}</small>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <div class="btn-action">
+        <button type="button" class="btn-md btn-gray" (click)="modalRef.hide()">Hủy bỏ</button>
+        <button type="button" class="btn-md btn-or" (click)="updateSalary()">Lưu lại</button>
+      </div>
+    </div>
+  </div>
+
+</ng-template>

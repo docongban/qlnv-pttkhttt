@@ -1,0 +1,11 @@
+entity WeekDetails {
+	id Long,
+    code String,
+    type String,
+	day String,
+	parentSode String
+}
+dto WeekDetails with mapstruct
+paginate WeekDetails with pagination
+service WeekDetails with serviceClass
+service WeekDetails with serviceImpl

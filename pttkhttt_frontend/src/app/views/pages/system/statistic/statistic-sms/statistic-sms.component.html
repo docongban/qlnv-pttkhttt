@@ -1,0 +1,83 @@
+<div class="modal-content modal-dialog-custom" >
+  <div class="modal-header">
+    <h4 class="modal-title" style="text-align: center; color: #101840">{{ 'STATISTIC_PACKAGE.STATISTIC_COUNT_SMS' | translate }}</h4>
+  </div>
+  <div class="modal-body" style="padding: 15px 10px !important;">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="col-md-6">
+          <div class="info-dv">
+            <div class="name-dv" style="color: #101840;">{{ 'STATISTIC_PACKAGE.SCHOOL1' | translate }}:</div>
+            <div class="value-dv">{{viewSMS.schoolCode}} - {{viewSMS.schoolName}}</div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="info-dv2">
+            <div class="name-dv2">{{ 'STATISTIC_PACKAGE.DATA_PACKAGE_REGISTERED' | translate }}:</div>
+            <div class="value-dv2">{{viewSMS.packageCode}}</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-12">
+        <div class="thongtinck">{{ 'STATISTIC_PACKAGE.NUMBER_OF_SMS' | translate }}</div>
+      </div>
+
+      <div class="col-md-12">
+        <kendo-chart>
+            <kendo-chart-value-axis>
+              <kendo-chart-value-axis-item *ngFor="let item of valueAxes" [name]="item.name"
+                                           [min]="item.min" [max]="item.max" [majorUnit]="item.majorUnit" [color]="item.color" [labels]="{font:'600 10px Inter'}">
+              </kendo-chart-value-axis-item>
+            </kendo-chart-value-axis>
+            <kendo-chart-category-axis>
+              <kendo-chart-category-axis-item [categories]="categories" [axisCrossingValue]="crossingValues" [labels]="labels" [majorGridLines]="{visible: false}">
+              </kendo-chart-category-axis-item>
+            </kendo-chart-category-axis>
+
+            <kendo-chart-series>
+              <kendo-chart-series-item *ngFor="let item of series" [data]="item.data1" [type]="item.type"
+                                       [stack]="item.stack" [color]="item.color" [axis]="item.axis" >
+<!--                <kendo-chart-series-item  [data]="series.data" [type]="series.type"-->
+<!--                                          [color]="series.color" [axis]="series.axis" >-->
+                <kendo-chart-series-item-tooltip>
+                  <ng-template let-value="value" let-category ="category" style="background: none !important;">
+                    <div style="margin-left: -90px;">
+                      <div class="hero3" style="display: flex;">
+                        <div style="width: 55%;">
+                          <span class="title-tooltip">{{ 'STATISTIC_PACKAGE.NUMBER_OF_SMS' | translate }}</span>
+                          <br/>
+                          <span class="main-tooltip" style="margin-left: -25px;">
+                              {{ value }}
+                            </span>
+                        </div>
+                        <div style="width: 0%; border-left: 1px solid rgba(255, 255, 255, 0.5); height: 60%; margin-top: 5%;"></div>
+                        <div style="width: 45%;">
+                          <span class="title-tooltip">{{ 'STATISTIC_PACKAGE.MONTH' | translate }}</span>
+                          <br/>
+                          <span class="main-tooltip">
+                              {{ category }}
+                            </span>
+                        </div>
+                      </div>
+                      <div class="hero4"></div>
+                    </div>
+                  </ng-template>
+                </kendo-chart-series-item-tooltip>
+<!--                <kendo-chart-series-item-tooltip>-->
+<!--                  <ng-template let-value="value">-->
+<!--                    Số lượng SMS: {{ value }}-->
+<!--                  </ng-template>-->
+<!--                </kendo-chart-series-item-tooltip>-->
+              </kendo-chart-series-item>
+            </kendo-chart-series>
+        </kendo-chart>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <div class="btn-action">
+      <button type="button" class="btn-md btn-gray" (click)="cancel()">{{ 'STATISTIC_PACKAGE.CANCEL' | translate }}</button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,28 @@
+<div class="modal-dialog-custom">
+  <form class="login-form">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" style="text-align: center;">KẾT CHUYỂN LỚP</h4>
+      </div>
+      <div class="modal-body">
+        <div class="row info">
+          Sau khi kết chuyển, toàn bộ thông tin lớp học đã chọn của năm học {{year}} sẽ được kết chuyển sang năm {{nextYear}}, bao gồm:
+        </div>
+        <div class="list-info">
+          <ul>
+            <li class="list-item">Thông tin lớp học</li>
+            <li class="list-item">Giáo viên chủ nhiệm</li>
+            <li class="list-item">Môn học thuộc lớp</li>
+          </ul>
+        </div>
+        <div class="notify">
+          Bạn có chắc chắn muốn kết chuyển thông tin lớp học sang năm học [{{nextYear}}]
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-md btn-gray" (click)="onDismiss()" tabIndex="0">Hủy bỏ</button>
+        <button type="submit" class="btn-md btn-or" (click)="onConfirm()" tabIndex="0">Đồng ý</button>
+      </div>
+    </div>
+  </form>
+</div>

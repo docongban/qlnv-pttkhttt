@@ -1,0 +1,92 @@
+<article id="send-mail" class="pl-14 pr-10">
+  <div class="row">
+    <div class="col-md-3">
+      <div class="tree-view mb-3">
+        <kt-tree-view
+          [config]="config1"
+          [items]="items1"
+          [selectAllTitle]="'Toàn trường (' + (listTreeViewTeacherRaw['totalTeachersOfSchool'] || 0) + ')'"
+          (valueChange)="treeviewValueChange($event)">
+        </kt-tree-view>
+<!--        [selectAllTitle]="'Toàn trường (' + (listTreeViewTeacherRaw?.totalTeachersOfSchool || 0) + ')'"-->
+      </div>
+      <div class="tree-view">
+        <kt-tree-view [config]="config2"
+                      [items]="items2"
+                      [selectAllTitle]="'Nhóm liên lạc'"
+                      (valueChange)="groupTeacherValueChange($event)"
+        ></kt-tree-view>
+        <div class="dropdown-divider"></div>
+        <div class="create-group-btn" (click)="navigateTo()">Tạo nhóm liên lạc mới</div>
+      </div>
+    </div>
+    <div class="col-md-9">
+      <div class="mail-form" [formGroup]="mailFormGroup">
+        <div class="form-header">
+          <strong class="text-uppercase font-size-18">Người nhận:</strong>
+          <strong class="text-uppercase font-size-18 text-grey">{{listRecipientTeacher().length}} cán bộ giáo viên</strong>
+        </div>
+        <div class="dropdown-divider"></div>
+        <div class="mt-5">
+          <strong class="mb-2 d-block">Danh sách người nhận tin nhắn</strong>
+          <div class="list-recipient" *ngIf="sendType() === '3'">
+            <span #listTeacher>{{listRecipientTeacher()?.join(', ')}}</span>
+            <span class="see-more" *ngIf="shouldShowBtn(listTeacher)" (click)="openDialog()">Xem thêm</span>
+          </div>
+          <div class="list-recipient" *ngIf="sendType() === '0'">
+            <span class="group-item text-bold mr-2">Toàn trường</span>
+          </div>
+          <div class="list-recipient" *ngIf="sendType() === '1' || sendType() === '2'">
+            <span class="group-item text-bold mr-2" *ngFor="let item of listRecipientGroup()">{{item}}</span>
+          </div>
+        </div>
+
+        <div class="mt-5">
+          <strong class="mb-2 d-block required">Tiêu đề</strong>
+          <div class="mail-title">
+            <input class="form-control" type="text" formControlName="title" />
+          </div>
+        </div>
+
+        <div class="mt-5">
+          <strong class="mb-2 d-block required">Nội dung tin nhắn</strong>
+          <div class="mail-title">
+            <kendo-editor formControlName="content" style="height: 300px;"></kendo-editor>
+          </div>
+        </div>
+
+        <div class="mt-5">
+          <strong class="mb-2 d-block">File đính kèm (nếu có)</strong>
+          <div class="file-upload">
+            <div class="upload-btn-area">
+              <label class="upload-btn" for="files">
+                <span class="k-icon k-i-upload"></span>
+                Chọn file
+              </label>
+              <input type="file" id="files" name="files" (change)="onFileChange($event)" class="d-none" multiple accept=".xlsx,.xls, .doc, .docx,.ppt, .pptx,.txt,.pdf"/>
+              <i style="font-size: 12px; margin-left: 16px">File đính kèm ở các định dạng JPG, DOC, PDF,... </i>
+            </div>
+            <div class="list-file-area mt-2">
+              <div *ngFor="let file of mailFormGroup.value.files; index as i" class="w-50 d-flex justify-content-between my-2">
+                <div>
+                  <span>{{file.name}} </span>
+                  <span class="mx-3" style="color: #25CBD6">({{(file.size/1024).toFixed(2)}}KB)</span>
+                </div>
+                <i class="fa fa-times text-danger cursor-pointer" (click)="removeFile(i)"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="my-5 text-center">
+          <button class="btn btn-secondary ml-3 text-nowrap">Hủy bỏ</button>
+          <button style="background: #F26522" class="btn ml-3 px-8 text-white text-nowrap" (click)="sendMail()">Gửi</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+
+
+
+
+

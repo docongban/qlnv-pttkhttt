@@ -1,0 +1,174 @@
+.text {
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 18px;
+}
+
+.hero3
+{
+    text-align: center;
+    width: 160px;
+    height: 44px;
+    margin: auto;
+    background-color: #3366ff;
+    border-radius: 5px;
+}
+
+.hero4
+{
+    width: 0px;
+    height: 0px;
+    border-style: solid;
+    margin: auto;
+    border-width: 10px 10px 0 10px;
+    border-color: #3366ff transparent transparent transparent;
+    line-height: 0px;
+    _border-color: #e15915 #000000 #000000 #000000;
+    _filter: progid:DXImageTransform.Microsoft.Chroma(color='#000000')
+}
+
+.hero5
+{
+    text-align: center;
+    width: 135px;
+    height: 44px;
+    margin: auto;
+    background-color: #3366ff;
+    border-radius: 5px;
+}
+
+.hero6
+{
+    width: 0px;
+    height: 0px;
+    border-style: solid;
+    margin: auto;
+    border-width: 10px 10px 0 10px;
+    border-color: #3366ff transparent transparent transparent;
+    line-height: 0px;
+    _border-color: #e15915 #000000 #000000 #000000;
+    _filter: progid:DXImageTransform.Microsoft.Chroma(color='#000000')
+}
+
+
+::ng-deep{
+
+    .k-chart-tooltip-wrapper{
+        border: none !important;
+        box-shadow: none !important;
+    }
+
+    .k-chart-tooltip{
+        background-color: none !important;
+        border-color: none !important;
+        box-shadow: none !important;
+        background: none !important;
+    }
+
+    .k-popup{
+        background-color: none;
+        background: none;
+        box-shadow: none !important;
+    }
+
+    .statistic-detail-modal {
+        max-width: 800px !important;
+        top: 0 !important;
+    }
+
+}
+
+.title-tooltip{
+    font-family: Google Sans;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 10px;
+    line-height: 16px;
+    color: #FFFFFF;
+    opacity: 0.65;
+}
+
+.main-tooltip{
+    font-family: Barlow;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 12px;
+    line-height: 16px;
+    color: #FFFFFF;
+    text-align: left;
+
+}
+
+.btn-action-subject {
+    display: flex;
+    align-items: center;
+    height: 32px;
+    font-weight: 600;
+    font-size: 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    justify-content: center;
+    margin-left: 15px;
+    border: none;
+    svg {
+      margin-right: 10px;
+    }
+
+    &:hover {
+        opacity: .7;
+    }
+}
+
+.btn-gray {
+    background: #e6e8f0;
+    margin-right: 10px;
+    color: #696f8c;
+    min-width: 95px;
+}
+
+.revenue-package {
+    color: #8F95B2;
+}
+
+.package-name {
+    color: #101840;
+    margin-left: 8px;
+}
+
+.revenue {
+    color: #101840;
+    font-size: 14px;
+}
+
+.text.show-chart {
+    color: #3366FF;
+    text-overflow: 'ellipsis';
+    overflow: 'hidden';
+}
+
+.header-title {
+    text-transform: uppercase;
+    color: #101840;
+    font-weight: 600;
+    font-size: 18px;
+}
+
+.chart-container {
+    display: flex;
+
+    .chart {
+        flex-basis: 98%;
+        margin-left: -16px;
+    }
+
+    .text.months-text {
+        display: flex;
+        align-items: flex-end;
+        margin-bottom: 20px;
+        color: #101840;
+        font-size: 14px;
+        font-weight: 600;
+    }
+}

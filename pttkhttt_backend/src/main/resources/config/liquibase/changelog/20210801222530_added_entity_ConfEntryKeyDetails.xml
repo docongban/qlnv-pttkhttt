@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <!--
+        Added the entity ConfEntryKeyDetails.
+    -->
+    <changeSet id="20210801222530-1" author="jhipster">
+        <createTable tableName="conf_entry_key_details">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="type_subjects" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <column name="score_name" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="entry_lock_date" type="${datetimeType}">
+                <constraints nullable="true" />
+            </column>
+            <column name="created_date" type="${datetimeType}">
+                <constraints nullable="true" />
+            </column>
+            <column name="updated_date" type="${datetimeType}">
+                <constraints nullable="true" />
+            </column>
+            <column name="updater_code" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="status" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <column name="code" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="parent_code" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="before_notify" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->
+        </createTable>
+        <dropDefaultValue tableName="conf_entry_key_details" columnName="entry_lock_date" columnDataType="${datetimeType}"/>
+        <dropDefaultValue tableName="conf_entry_key_details" columnName="created_date" columnDataType="${datetimeType}"/>
+        <dropDefaultValue tableName="conf_entry_key_details" columnName="updated_date" columnDataType="${datetimeType}"/>
+    </changeSet>
+
+    <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here -->
+
+    <!--
+        Load sample data generated with Faker.js
+        - This data can be easily edited using a CSV editor (or even MS Excel) and
+          is located in the 'src/main/resources/config/liquibase/fake-data' directory
+        - By default this data is applied when running with the JHipster 'dev' profile.
+          This can be customized by adding or removing 'faker' in the 'spring.liquibase.contexts'
+          Spring Boot configuration key.
+    -->
+    <changeSet id="20210801222530-1-data" author="jhipster" context="faker">
+        <loadData
+                  file="config/liquibase/fake-data/conf_entry_key_details.csv"
+                  separator=";"
+                  tableName="conf_entry_key_details">
+            <column name="id" type="numeric"/>
+            <column name="type_subjects" type="numeric"/>
+            <column name="score_name" type="string"/>
+            <column name="entry_lock_date" type="${datetimeType}"/>
+            <column name="created_date" type="${datetimeType}"/>
+            <column name="updated_date" type="${datetimeType}"/>
+            <column name="updater_code" type="string"/>
+            <column name="status" type="numeric"/>
+            <column name="code" type="string"/>
+            <column name="parent_code" type="string"/>
+            <column name="before_notify" type="numeric"/>
+            <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here -->
+        </loadData>
+    </changeSet>
+</databaseChangeLog>

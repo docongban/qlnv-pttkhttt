@@ -1,0 +1,14 @@
+entity JobTransferHistoryOut{
+	id Long,
+	teacherCode String,
+	code String,
+	oldPosition String,
+	startDate Instant,
+	endDate Instant,
+	description String
+}
+
+dto JobTransferHistoryOut with mapstruct
+paginate JobTransferHistoryOut with pagination
+service JobTransferHistoryOut with serviceClass
+service JobTransferHistoryOut with serviceImpl

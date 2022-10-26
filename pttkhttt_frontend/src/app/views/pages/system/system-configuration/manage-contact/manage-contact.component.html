@@ -1,0 +1,392 @@
+<div class="sy default-layout">
+  <div class="sy-heading">
+    <div class="title">
+      <h3 class="sy-heading-text" matTooltip="{{classRoomName}} {{_year}}" >
+        <!--      Danh sách liên lạc: Lớp 6A3 (Năm học 2020-2021)-->
+        Danh sách liên lạc: {{classRoomName}} {{_year}}
+      </h3>
+    </div>
+      <hr class="hori-grid-layout"/>
+
+    <div class="heading-list-actions" >
+<!--      <button-->
+<!--        *ngIf="selectedStudents.length > 0"-->
+<!--        class="sy-btn-action blue focus-button"-->
+<!--        (click)="registerMultiPackage()"-->
+<!--        tabindex="0"-->
+<!--      >-->
+<!--        <span class="sy-ic ic-size-12 ic-mr-8 ic-svg-plus"></span>-->
+<!--        Đăng ký gói cước-->
+<!--      </button>-->
+      <button class="sy-btn-action gray focus-button" (click)="exportData()"
+              tabindex="0">
+        <span class="sy-ic ic-size-12 ic-mr-8 ic-svg-export"></span>
+        Xuất Excel
+      </button>
+    </div>
+  </div>
+  <hr class="sy-line" />
+  <div class="sy-main-content">
+    <form [formGroup]="formSearch" class="sy-form search-form">
+      <div class="row">
+        <div class="col-md-10">
+          <div class="row">
+            <div class="col-md-2" style="padding-left: 20px">
+              <label class="sy-label"
+                >Khối <span class="sy-required">*</span></label
+              >
+              <ng-select
+                name="gradeLevelId"
+                [items]="listGradeLevel"
+                bindLabel="name"
+                bindValue="id"
+                placeholder="Tên khối"
+                [(ngModel)]="selectedGradeLevelId"
+                (ngModelChange)="onChangeGradeLevel($event)"
+                [ngModelOptions]="{ standalone: true }"
+                [searchable]="false"
+                [clearable]="false"
+                class="sy-select"
+              >
+                <ng-template ng-option-tmp let-item="item">
+                  <div [title]="item.name">{{ item.name }}</div>
+                </ng-template>
+              </ng-select>
+            </div>
+
+
+
+            <div class="col-md-2">
+              <label class="sy-label"
+                >Lớp <span class="sy-required">*</span></label
+              >
+              <ng-select
+                name="classId"
+                [items]="listClass"
+                bindLabel="name"
+                bindValue="id"
+                placeholder="Lựa chọn"
+                [(ngModel)]="selectedClassId"
+                (ngModelChange)="onChangeClass($event)"
+                [ngModelOptions]="{ standalone: true }"
+                [searchable]="true"
+                [clearable]="false"
+                class="sy-select"
+              >
+                <ng-template ng-option-tmp let-item="item">
+                  <div style="overflow: hidden; text-overflow: ellipsis;  white-space: nowrap;" title="{{ item.name }}">
+                    {{ item.name }}
+                  </div>
+                </ng-template>
+              </ng-select>
+            </div>
+            <div class="col-md-3">
+              <label class="sy-label">Trạng thái</label>
+              <ng-select
+                name="statusId"
+                [items]="listStatus"
+                bindLabel="name"
+                bindValue="id"
+                placeholder="Lựa chọn"
+                [(ngModel)]="selectedStatusId"
+                [ngModelOptions]="{ standalone: true }"
+                [searchable]="false"
+                [clearable]="true"
+                class="sy-select"
+                (ngModelChange)="changeStatus()"
+              >
+                <ng-template ng-option-tmp let-item="item">
+                  <div title="{{ item.name }}">{{ item.name }}</div>
+                </ng-template>
+              </ng-select>
+            </div>
+
+            <div class="col-md-2" style="padding-left: 20px">
+              <label class="sy-label"
+              >Học kỳ <span class="sy-required">*</span></label
+              >
+              <ng-select
+                name="gradeLevelId"
+                [items]="semestersInCurrentYear1"
+                bindLabel="name"
+                bindValue="value"
+                placeholder="Tên học kỳ"
+                [(ngModel)]="semesterValue"
+                (ngModelChange)="onChangeGradeLevel($event)"
+                [ngModelOptions]="{ standalone: true }"
+                [searchable]="false"
+                [clearable]="false"
+                class="sy-select"
+                [disabled]="booleanSemester === true"
+              >
+                <ng-template ng-option-tmp let-item="item">
+                  <div [title]="item.name">{{ item.name }}</div>
+                </ng-template>
+              </ng-select>
+            </div>
+
+            <div class="col-md-3">
+              <label class="sy-label">Học sinh</label>
+              <input (keyup.enter)="findListContacts(1)"
+                class="sy-input focus-button"
+                type="text"
+                name="studentName"
+                formControlName="studentName"
+                placeholder="Nhập thông tin tra cứu"
+
+              />
+<!--              style="width: 180px"-->
+            </div>
+          </div>
+        </div>
+        <div class="col-md-2">
+          <div class="search-action" >
+            <button tabindex="0" style="width: 180px"
+              class="focus-button sy-btn-action active large"
+              (click)="findListContacts(1)"
+            >
+              Tìm kiếm
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
+<!--    <div class="sy-table">-->
+<!--    <div class="row table-school table-class-room" style="margin: 24px 0 0 0;">-->
+<!--    <div class="table-school table-school-year" style="margin-top: 24px">-->
+<!--    <div class="row table-contact">-->
+    <div class="row table-school-year table-school" style="margin-top: 24px">
+      <ag-grid-angular
+        [suppressRowTransform]="true"
+        style="width: 100%; height: 440px; margin-right:13px; margin-left: 10px; "
+        class="ag-theme-balham"
+        [rowData]="rowData"
+        [columnDefs]="columnDefs"
+        [defaultColDef]="defaultColDef"
+        [getRowStyle]="rowStyle"
+        [rowHeight]="ROW_HEIGHT"
+        [headerHeight]="HEADER_HEIGHT"
+        [suppressRowClickSelection]="true"
+        [rowSelection]="rowSelection"
+        (gridReady)="onGridReady($event)"
+        (gridSizeChanged)="gridSizeChanged($event)"
+        (selectionChanged)="onSelectionChanged($event)"
+        [overlayNoRowsTemplate]="noRowsTemplate"
+        [debounceVerticalScrollbar]="true"
+      >
+      </ag-grid-angular>
+    </div>
+
+    <div *ngIf="total > 0" class="sy-paging w-100">
+      <span class="sy-paging-result"
+        >{{ first }}-{{ last }} của {{ total }} kết quả</span
+      >
+      <ul class="sy-pages">
+        <li
+          class="sy-ic ic-size-32 arrow"
+          [class.ic-svg-first-disabled]="currentPage === 1"
+          [class.ic-svg-first]="currentPage !== 1"
+          [class.disabled]="currentPage === 1"
+          (click)="goToPage(1)"
+        ></li>
+        <li
+          class="sy-ic ic-size-32 arrow"
+          [class.ic-svg-prev-disabled]="currentPage === 1"
+          [class.ic-svg-prev]="currentPage !== 1"
+          [class.disabled]="currentPage === 1"
+          (click)="goToPage(currentPage - 1)"
+        ></li>
+        <li
+          class="sy-page"
+          [class.sy-highlight]="i === currentPage"
+          [class.sy-dots]="i === '...'"
+          *ngFor="let i of rangeWithDots"
+          (click)="i !== '...' && goToPage(i)"
+        >
+          {{ i }}
+        </li>
+        <li
+          class="sy-ic ic-size-32 arrow"
+          [class.ic-svg-next-disabled]="currentPage === totalPage"
+          [class.ic-svg-next]="currentPage !== totalPage"
+          [class.disabled]="currentPage === totalPage"
+          (click)="goToPage(currentPage + 1)"
+        ></li>
+        <li
+          class="sy-ic ic-size-32 arrow"
+          [class.ic-svg-last-disabled]="currentPage === totalPage"
+          [class.ic-svg-last]="currentPage !== totalPage"
+          [class.disabled]="currentPage === totalPage"
+          (click)="goToPage(totalPage)"
+        ></li>
+      </ul>
+    </div>
+
+
+    <div class="col-md-12 col-xs-12" style="margin-bottom: 50px">
+      <button class="sy-btn-action gray focus-button"
+              tabindex="0" style="margin-left:30%; margin-right:4%"
+      >
+        Bỏ chọn
+      </button>
+
+      <button style="margin-right:4%"
+        class="sy-btn-action blue focus-button"
+        (click)="registerMultiPackage()"
+        tabindex="0"
+        [disabled]="selectedStudents.length ===0"
+      >
+        <span class="sy-ic ic-size-12 ic-mr-8 ic-svg-plus"></span>
+        Đăng ký gói cước
+      </button>
+
+
+      <button style="margin-right:4%"
+        class="sy-btn-action red button-cancel focus-button"
+              (click)="openModalDelete(deteleContactPackageModal)"
+              [disabled]="selectedStudents.length !==1"
+              >
+        Hủy dịch vụ
+      </button>
+
+
+    </div>
+  </div>
+</div>
+
+<!--Dang ky goi cuoc-->
+<ng-template #registerPackageModal>
+  <form class="sy-form">
+    <div class="modal-content modal-dialog-custom">
+      <div class="modal-header">
+        <h4 class="modal-title">ĐĂNG KÝ GÓI CƯỚC</h4>
+      </div>
+      <div class="modal-body">
+        <h4 class="title-register">CHI TIẾT ĐĂNG KÝ</h4>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="sy-form-group">
+              <label for="" class="sy-label"
+                >Chọn học kỳ đăng ký <span class="sy-required">*</span></label
+              >
+              <ng-select
+                style="font-size: 12px;line-height: 16px;"
+                class="focus-button"
+                name="semester"
+                [items]="listSemesters"
+                bindLabel="name"
+                bindValue="id"
+                placeholder="Lựa chọn"
+                [(ngModel)]="selectedSemester"
+                (ngModelChange)="onChangeSemester($event)"
+                [clearable]="false"
+              >
+              </ng-select>
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="sy-form-group">
+              <label class="sy-label"
+                >Gói đăng ký <span class="sy-required">*</span></label
+              >
+<!--              class="sy-input"-->
+              <input
+                class="input2"
+                type="text"
+                name="packageName"
+                disabled="true"
+                [(ngModel)]="packageName"
+              />
+              <p class="package-description">{{ packageDescription }}</p>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="sy-form-group">
+              <label class="sy-label">Thời gian áp dụng</label>
+              <input
+                class="input1"
+                type="text"
+                name="fromPackageDate"
+                [(ngModel)]="fromPackageDate"
+                disabled="true"
+              />
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="sy-form-group">
+              <label class="sy-label">Đến</label>
+              <input
+                class="input1"
+                type="text"
+                name="toPackageDate"
+                [(ngModel)]="toPackageDate"
+                disabled="true"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <div class="modal-actions">
+          <button type="button" class="focus-button sy-btn-action" tabindex="0"
+             (click)="modalRef.hide()">
+            Hủy bỏ
+          </button>
+          <button
+            type="button"
+            class="focus-button sy-btn-action active" tabindex="0"
+            (click)="updateRegisterPackage()"
+          >
+            Lưu lại
+          </button>
+        </div>
+      </div>
+    </div>
+  </form>
+</ng-template>
+
+<!--Huy goi cuoc-->
+<ng-template #deteleContactPackageModal>
+  <div class="modal-confirm" style="width: 418px">
+    <div class="modal-header">
+      <h4 class="modal-title">xác nhận huỷ dịch vụ</h4>
+      <p class="des">
+        Bạn có chắc chắn muốn huỷ dịch vụ gói cước sổ liên lạc điện tử?
+      </p>
+    </div>
+    <div class="modal-body">
+      <label for="" class="titleCancel" style="float: left"
+      >Chọn học kỳ muốn hủy </label
+      >
+      <ng-select
+        style="font-size: 12px;line-height: 16px; "
+        class="focus-button"
+        name="semester"
+        [items]="listSemesterRegistered"
+        bindLabel="name"
+        bindValue="id"
+        placeholder="Lựa chọn"
+        [(ngModel)]="selectedSemesterRegistered"
+        (ngModelChange)="onChangeSemester($event)"
+        [clearable]="false"
+      >
+      </ng-select>
+    </div>
+    <div class="modal-footer">
+      <div class="modal-actions">
+        <button type="button" class="focus-button sy-btn-action" (click)="modalRef.hide()"
+                tabIndex="0" >
+          Hủy bỏ
+        </button>
+        <button
+          type="button"
+          class="focus-button sy-btn-action active"
+          (click)="deteleContactPackage()"
+          tabIndex="0"
+        >
+          Đồng ý
+        </button>
+      </div>
+    </div>
+  </div>
+</ng-template>

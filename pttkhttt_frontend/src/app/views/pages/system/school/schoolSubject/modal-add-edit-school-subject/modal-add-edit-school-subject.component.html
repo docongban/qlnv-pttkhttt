@@ -1,0 +1,62 @@
+<ng-template #templateNewSubject>
+  <div class="modal-content modal-dialog-custom" >
+    <div class="modal-header">
+      <h4 class="modal-title" style="text-align: center;">Thêm mới môn học</h4>
+
+      <button type="button" class="close" (click)="newSubject.hide()" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body" style="padding: 15px 10px !important;">
+      <div class="row">
+        <div class="col-md-6">
+          <label for="">Mã môn học <span>*</span></label>
+          <input type="text" placeholder="Mã môn học" [(ngModel)]="maMonHocThem">
+        </div>
+        <div class="col-md-6">
+          <label for="">Tên môn học <span>*</span></label>
+          <input type="text" placeholder="Tên môn học" [(ngModel)]="tenMonHocThem">
+        </div>
+        <div class="col-md-6">
+          <label for="">Khối <span>*</span></label>
+          <ng-select [items]="khoi" bindLabel="name" bindValue="id" placeholder="Khối" [(ngModel)]="khoiThem"
+                     [ngModelOptions]="{standalone: true}">
+          </ng-select>
+        </div>
+        <div class="col-md-6">
+          <label for="">Khoa/Ban <span>*</span></label>
+          <ng-select [items]="khoa" bindLabel="name" bindValue="id" placeholder="Khoa/Ban" [(ngModel)]="khoaThem"
+                     [ngModelOptions]="{standalone: true}">
+            <ng-template ng-option-tmp let-item="item" let-search="searchTerm">
+              <div><b>Id:</b> {{item.id}} |  {{item.name}}</div>
+            </ng-template>
+          </ng-select>
+        </div>
+        <div class="col-md-6">
+          <label for="">Loại môn học</label>
+          <ng-select [items]="loaiMon" bindLabel="name" bindValue="id" placeholder="Loại môn học" [(ngModel)]="loaiMonThem"
+                     [ngModelOptions]="{standalone: true}">
+          </ng-select>
+        </div>
+        <div class="col-md-6">
+          <label for="">Kiểu môn </label>
+          <ng-select [items]="kieuMon" bindLabel="name" bindValue="id" placeholder="Kiểu môn" [(ngModel)]="kieuMonThem"
+                     [ngModelOptions]="{standalone: true}">
+          </ng-select>
+        </div>
+        <div class="col-md-12">
+          <label for="">Mô tả</label>
+          <textarea name="" id="" [(ngModel)]="moTaThem" ></textarea>
+        </div>
+      </div>
+
+    </div>
+    <div class="modal-footer">
+      <div class="btn-action">
+        <button type="button" class="btn-md btn-gray" (click)="modalRef.hide()">Hủy bỏ</button>
+        <button type="button" class="btn-md btn-or" (click)="Create()">Lưu lại</button>
+      </div>
+    </div>
+  </div>
+
+</ng-template>

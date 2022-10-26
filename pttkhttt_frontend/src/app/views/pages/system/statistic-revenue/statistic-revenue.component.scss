@@ -1,0 +1,157 @@
+h3 {
+    margin: 0;
+}
+
+.text {
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 16px;
+    color: #FFFFFF;
+}
+
+.row {
+    margin: 0 15px
+}
+
+.row-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 46px;
+    border-bottom: 1px solid #E6E8F0;
+    margin: 0px 18px 24px 26px;
+
+    .header-text {
+        font-size: 18px;
+        line-height: 30px;
+        font-weight: bold;
+        color: #101840;
+    }
+
+    .btn-export {
+        background: #696F8C;
+        border-radius: 5px;
+        padding: 8px 16px;
+        height: 32px;
+    }
+}
+
+.d-flex-column {
+    display: flex;
+    flex-direction: column;
+}
+
+.row-body {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 4px 30px 15px;
+
+    .header-text {
+        font-size: 16px;
+        line-height: 24px;
+        color: #101840;
+        margin-bottom: 16px;
+    }
+}
+
+button {
+    outline: none;
+    border: none;
+}
+
+// paging
+.sy-paging {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.sy-paging-result {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 24px;
+  color: #101840;
+}
+
+.arrow {
+    margin: 0 17px;
+    cursor: pointer;
+}
+.sy-page {
+  background: white;
+  border-radius: 3px;
+  color: #696F8C;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  padding: 8px 12px;
+  margin: 0 1px;
+  display: inline-block;
+  cursor: pointer;
+  &.sy-dots {
+      background-color: white;
+      color: #696f8c;
+      cursor: default;
+  }
+}
+.sy-highlight {
+  background: #FCE9E2 !important;
+  color: #F26522 !important;
+
+  //background: #ff070752;
+  //color: white;
+}
+
+
+:host ::ng-deep {
+
+  .ag-header{
+    height: 64px !important;
+  }
+
+  .ag-header-viewport{
+    .padding7px{
+      padding-left: 7px !important;
+      padding-right: 7px !important;
+    }
+  }
+
+
+  //.ag-header-viewport .ag-header-container .ag-header-group-cell-no-group
+
+  //.ag-header-group-cell-no-group{
+  //  height: 0px;
+  //}
+
+  .ag-header-container .ag-header-row:first-child {
+    height: 32px !important;
+    //height: 0px ;
+    .ag-header-group-cell-no-group{
+      height: 0px !important;
+    }
+
+    .ag-header-group-cell-with-group{
+      height: 32px !important;
+      z-index: 999999;
+    }
+  }
+
+  .ag-header-container .ag-header-row:last-child {
+    height: 64px !important;
+    top: 0px !important;
+    .ag-header-group-cell-no-group{
+      height: 64px !important;
+    }
+    .ag-header-group-cell-with-group{
+      height: 32px !important;
+    }
+    .ag-header-cell.ag-focus-managed.sub-header{
+      height: 32px !important;
+      top: 32px !important;
+    }
+  }
+}

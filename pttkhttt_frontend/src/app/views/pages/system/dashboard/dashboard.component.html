@@ -1,0 +1,401 @@
+<div class="background">
+</div>
+<div class="row" class="main-dashboard">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="row menu-action-dv">
+            <h3 style="padding-left: 18px; text-transform: uppercase">{{'DASHBOARD.DISTRIBUTE_BY_REGION' | translate}}</h3>
+            <div class="list-action-dv" style="padding-right: 1px;">
+              <!-- <div
+                class="btn-action-dv blue"
+                 tabindex="0" style=" margin-right: 16px;"
+              >
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <g clip-path="url(#clip0)">
+                <path d="M10.8685 3.81223L10.3714 0.331969C10.3305 0.0466406 9.9798 -0.0719297 9.77467 0.133195L9.05059 0.857273C8.11949 0.295594 7.06241 0 5.97545 0C2.70667 0 0.0823026 2.55844 0.000599487 5.82448C-0.00385364 6.003 0.12592 6.15612 0.302381 6.18152L1.70725 6.38236C1.91669 6.41292 2.11152 6.24848 2.10862 6.02944C2.07948 3.87389 3.82047 2.10938 5.97545 2.10938C6.49729 2.10938 7.01296 2.21545 7.48951 2.41835L6.79155 3.11632C6.58771 3.32016 6.7034 3.67193 6.99032 3.71302L10.4706 4.21015C10.6999 4.24472 10.9014 4.04529 10.8685 3.81223Z" fill="white"/>
+                <path d="M11.6982 5.8456L10.2943 5.64509C10.113 5.62213 9.89299 5.77754 9.89299 6.02345C9.89299 8.15581 8.15817 9.89063 6.0258 9.89063C5.50671 9.89063 4.99343 9.78559 4.51863 9.58473L5.19429 8.90907C5.39812 8.70524 5.28243 8.35346 4.99551 8.31238L1.51526 7.81489C1.28667 7.78224 1.08424 7.97827 1.11733 8.21281L1.61444 11.6931C1.65536 11.9787 2.00576 12.0965 2.21114 11.8919L2.95272 11.1506C3.87935 11.7072 4.93575 12 6.0258 12C9.27879 12 11.9028 9.45427 12 6.20438C12.0051 6.02551 11.8753 5.87101 11.6982 5.8456Z" fill="white"/>
+                </g>
+                <defs>
+                <clipPath id="clip0">
+                <rect width="12" height="12" fill="white"/>
+                </clipPath>
+                </defs>
+                </svg>
+
+                Đồng bộ dữ liệu
+              </div> -->
+              <div class="btn-action-dv" style="background: #FFFFFF; width: 158px; color: #474D66; background: #FFFFFF; height: 36px; margin-right: 25px;" tabindex="0">
+                <!-- <mat-form-field style=" border-radius: 5px;"> -->
+                  <div *ngIf="!viewEn" class="month-ip" style="cursor: default;">
+                    {{'DASHBOARD.MONTH' | translate}}
+                  </div>
+                  <input *ngIf="!viewEn"
+                    matInput
+                    readonly
+                    (click)="openPopup()"
+                    [matDatepicker]="dp"
+                    [formControl]="date"
+                    [max]="maxDate"
+                    (dateChange)="searchData()"
+                    class="ip-date"
+                    style="background: none !important; cursor: pointer;"
+                  />
+                  <mat-datepicker-toggle *ngIf="!viewEn" matSuffix [for]="dp" class="mat-picker-ip">
+                    <mat-icon class="mat-icon-ip" matDatepickerToggleIcon>arrow_drop_down</mat-icon>
+                  </mat-datepicker-toggle>
+                  <mat-datepicker *ngIf="!viewEn"
+                    #dp
+                    startView="multi-year"
+                    (yearSelected)="chosenYearHandler($event)"
+                    (monthSelected)="chosenMonthHandler($event, dp)"
+                    panelClass="example-month-picker"
+                    (closed)="onClosed(dp)"
+                  >
+                  </mat-datepicker>
+
+                  <input  *ngIf="viewEn"
+                          dateFormat1
+                          matInput
+                          readonly
+                          (click)="openPopup()"
+                          [matDatepicker]="dp1"
+                          [formControl]="date"
+                          [max]="maxDate"
+                          (dateChange)="searchData()"
+                          class="ip-date-en"
+                          style="background: none !important; cursor: pointer;"
+                  />
+                  <mat-datepicker-toggle *ngIf="viewEn" matSuffix [for]="dp1" class="mat-picker-ip">
+                    <mat-icon class="mat-icon-ip" matDatepickerToggleIcon>arrow_drop_down</mat-icon>
+                  </mat-datepicker-toggle>
+                  <mat-datepicker *ngIf="viewEn"
+                    #dp1
+                    startView="multi-year"
+                    (yearSelected)="chosenYearHandler($event)"
+                    (monthSelected)="chosenMonthHandler($event, dp1)"
+                    panelClass="example-month-picker"
+                    (closed)="onClosed(dp1)"
+                  >
+                  </mat-datepicker>
+
+                <!-- </mat-form-field> -->
+              </div>
+            </div>
+          </div>
+        <div class="row" style="margin-right: 15px;">
+            <div class="col-md-4 col-sm-12 col-xs-12">
+                <div class="map" id="position-cal" style="height: 100%;">
+                  <div id="SLTP" #SLTP  (mouseenter)="toolTipCanClick()" (mouseleave)="toolTipCanNotClick()" >
+                    <div *ngIf="enableTooltip && showToolTip">
+                      <div class="hero1" >
+                        <span class="tool-tip-text" style="font-weight: 500;">{{provinceName}}</span>
+                        <br>
+                        <span *ngIf="school > 1" (click)="openDialog(proviceID,provinceName)" class="tool-tip-text" style="font-weight: 700; cursor: pointer;">{{school}} {{'DASHBOARD.SCHOOL1' | translate}}</span>
+                        <span *ngIf="school <= 1" (click)="openDialog(proviceID,provinceName)" class="tool-tip-text" style="font-weight: 700; cursor: pointer;">{{school}} {{'DASHBOARD.SCHOOL' | translate}}</span>
+                      </div>
+                      <div class="hero2"></div>
+                    </div>
+                  </div>
+                  <svg class="w-100" width="295" height="352" viewBox="0 0 295 352" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path *ngFor="let item of maps" [attr.d]="item.pathSvg" [attr.id]="item.id" [attr.data-name]="item.prNameEn"
+                      (mouseenter)="mouseEnter( 'SLTP', $event,  item.id)"
+		                  (mouseleave)="mouseLeave( 'SLTP', $event,  item.id)"
+                      [attr.fill]="colors.default" stroke="white" stroke-width="0.5"
+                      style="cursor: pointer;"
+                      />
+                  </svg>
+                </div>
+            </div>
+            <div class="col-md-8 col-sm-12 col-xs-12">
+                <!-- <div class="row" > -->
+                    <div style="display: flex; justify-content: center; flex-wrap: wrap; margin-top: -10px;">
+                        <div class="col-md-6 col-sm-12 col-xs-12 material-dashboard">
+                          <div class="materila-dashboard-content row" id="first">
+                            <div class="sub-material-dashboard col-md-3 col-sm-3 col-xs-3">
+                              <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect opacity="0.05" width="64" height="64" rx="32" fill="#3366FF"/>
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M26.4133 18.6667H37.588C41.7067 18.6667 44 21.0401 44 25.1067V38.8801C44 43.0134 41.7067 45.3334 37.588 45.3334H26.4133C22.36 45.3334 20 43.0134 20 38.8801V25.1067C20 21.0401 22.36 18.6667 26.4133 18.6667ZM26.7732 24.8799V24.8666H30.7585C31.3332 24.8666 31.7999 25.3333 31.7999 25.9053C31.7999 26.4933 31.3332 26.9599 30.7585 26.9599H26.7732C26.1985 26.9599 25.7332 26.4933 25.7332 25.9199C25.7332 25.3466 26.1985 24.8799 26.7732 24.8799ZM26.7732 32.9865H37.2265C37.7999 32.9865 38.2665 32.5198 38.2665 31.9465C38.2665 31.3732 37.7999 30.9052 37.2265 30.9052H26.7732C26.1985 30.9052 25.7332 31.3732 25.7332 31.9465C25.7332 32.5198 26.1985 32.9865 26.7732 32.9865ZM26.7734 39.0798H37.2267C37.7587 39.0265 38.1601 38.5718 38.1601 38.0398C38.1601 37.4932 37.7587 37.0398 37.2267 36.9865H26.7734C26.3734 36.9465 25.9867 37.1332 25.7734 37.4798C25.5601 37.8132 25.5601 38.2532 25.7734 38.5998C25.9867 38.9332 26.3734 39.1332 26.7734 39.0798Z" fill="#3366FF"/>
+                                </svg>
+                            </div>
+                            <div class="sub-material-dashboard1 col-md-9 col-sm-9 col-xs-9">
+                              <span class="material-dashboard-text" style="color: #3366FF;">{{'DASHBOARD.QUANTITY_DATA_PACKAGE' | translate}}</span>
+                              <br/>
+                              <span class="material-dashboard-quantity" [matTooltip]="numberOfDataPackage">{{numberOfDataPackage | number}}</span>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12 col-xs-12 material-dashboard">
+                          <div class="materila-dashboard-content row" id="second" [style.background-image]="image.image1">
+                            <div class="sub-material-dashboard col-md-3 col-sm-3 col-xs-3">
+                              <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect opacity="0.05" width="64" height="64" rx="32" fill="#F3A412"/>
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M34.9501 26.3499C34.9501 29.8749 32.0656 32.6998 28.4661 32.6998C24.8679 32.6998 21.9821 29.8749 21.9821 26.3499C21.9821 22.8249 24.8679 20 28.4661 20C32.0656 20 34.9501 22.8249 34.9501 26.3499ZM18.667 39.8899C18.667 36.6268 23.181 35.8104 28.4661 35.8104C33.7799 35.8104 38.2652 36.6549 38.2652 39.9205C38.2652 43.1836 33.7512 44.0001 28.4661 44.0001C23.1523 44.0001 18.667 43.1555 18.667 39.8899ZM37.565 26.465C37.565 28.2601 37.0144 29.9351 36.049 31.3264C35.9486 31.4695 36.0373 31.6624 36.2121 31.6931C36.4548 31.7327 36.7039 31.757 36.9583 31.7621C39.4893 31.8273 41.7607 30.2315 42.3882 27.8282C43.3184 24.2623 40.5891 21.0606 37.1123 21.0606C36.7353 21.0606 36.3739 21.0989 36.0216 21.1692C35.9733 21.1794 35.9212 21.2024 35.8951 21.2433C35.8611 21.2957 35.8859 21.3634 35.9199 21.4081C36.9649 22.8429 37.565 24.5894 37.565 26.465ZM41.7568 34.2697C43.458 34.5955 44.5761 35.2586 45.0392 36.2258C45.4319 37.0179 45.4319 37.9378 45.0392 38.7299C44.3308 40.2273 42.0451 40.709 41.1567 40.8329C40.9727 40.8585 40.8253 40.7052 40.8448 40.5238C41.2989 36.374 37.6889 34.4064 36.7548 33.9541C36.7157 33.9324 36.7065 33.9017 36.7105 33.8813C36.7131 33.8685 36.73 33.8481 36.76 33.8442C38.7809 33.8059 40.9544 34.0781 41.7568 34.2697Z" fill="#F3A412"/>
+                                </svg>
+                            </div>
+                            <div class="sub-material-dashboard1 col-md-9 col-sm-9 col-xs-9">
+                              <span class="material-dashboard-text" style="color: #F3A312;">{{'DASHBOARD.QUANTITY_USER' | translate}}</span>
+                              <br/>
+                              <div style="display: flex;">
+                                <div class="dashboard-infor-statistical1" [style.min-width]="minWidth1 + '%'" >
+                                  <span class="material-dashboard-quantity" [matTooltip]="numberOfUser">{{numberOfUser | number}}</span>
+                                </div>
+                                <div class="dashboard-infor-statistical">
+                                  <svg *ngIf="userGrowthRate != null && userGrowthRate >= 0" style="margin-left: 10px; margin-top: -4px; margin-right:1px;" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <g clip-path="url(#clip0)">
+                                    <path d="M6.26795 1C7.03775 -0.333332 8.96225 -0.333334 9.73205 0.999999L14.9282 10C15.698 11.3333 14.7358 13 13.1962 13H2.80385C1.26425 13 0.301996 11.3333 1.0718 10L6.26795 1Z" fill="#19C09A"/>
+                                    </g>
+                                    <defs>
+                                    <clipPath id="clip0">
+                                    <rect width="16" height="16" fill="white" transform="translate(0 16) rotate(-90)"/>
+                                    </clipPath>
+                                    </defs>
+                                    </svg>
+                                    <svg *ngIf="userGrowthRate != null && userGrowthRate < 0" style="margin-left: 10px; margin-right:1px; margin-top: -7px;" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                      <g clip-path="url(#clip0)">
+                                      <path d="M9.73205 15C8.96225 16.3333 7.03775 16.3333 6.26795 15L1.0718 6C0.301997 4.66667 1.26425 3 2.80385 3L13.1962 3C14.7358 3 15.698 4.66667 14.9282 6L9.73205 15Z" fill="#D14343"/>
+                                      </g>
+                                      <defs>
+                                      <clipPath id="clip0">
+                                      <rect width="16" height="16" fill="white" transform="translate(16) rotate(90)"/>
+                                      </clipPath>
+                                      </defs>
+                                      </svg>
+                                  <span [matTooltip]="(userGrowthRate | number: '1.0-2') + '%'" class="growthRate" style="color: #19C09A;" *ngIf="userGrowthRate != null && userGrowthRate >= 0">{{userGrowthRate | number:'1.0-2'}}%</span>
+                                  <span [matTooltip]="(-userGrowthRate | number: '1.0-2') + '%'" class="growthRate" style="color: #D14343;" *ngIf="userGrowthRate != null && userGrowthRate < 0">{{-userGrowthRate | number:'1.0-2'}}%</span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12 col-xs-12 material-dashboard">
+
+                          <div class="materila-dashboard-content row" id="third" [style.background-image]="image.image2">
+                            <div class="sub-material-dashboard col-md-3 col-sm-3 col-xs-3">
+                              <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect opacity="0.05" width="64" height="64" rx="32" fill="#F26522"/>
+                                <path d="M33.7121 37.3706C33.2374 37.6617 32.6296 37.822 32.0005 37.822C31.3714 37.822 30.7636 37.6617 30.289 37.3706L22.5402 32.6182C22.5402 32.6182 21.8408 32.1895 21.8408 33.1607C21.8408 34.2635 21.8408 37.572 21.8408 37.572C21.8408 37.6162 21.8408 37.8376 21.8408 37.9062C21.8408 40.4061 26.3894 43.1012 32.0003 43.1012C37.6112 43.1012 42.1598 40.4062 42.1598 37.9062C42.1598 37.8376 42.1598 37.6162 42.1598 37.572C42.1598 37.572 42.1598 34.0629 42.1598 32.8931C42.1598 32.1136 41.6626 32.4945 41.6626 32.4945L33.7121 37.3706Z" fill="#F26522"/>
+                                <path d="M44.8871 28.8379C45.4825 28.4728 45.4825 27.8753 44.8871 27.51L33.0828 21.6072C32.4874 21.242 31.5131 21.242 30.9177 21.6072L19.1135 27.51C18.5181 27.8752 18.5181 28.4727 19.1135 28.8379L30.9177 36.0776C31.5131 36.4427 32.4874 36.4427 33.0828 36.0776" fill="#F26522"/>
+                                <path d="M44.3986 39.5688C44.3986 37.5699 44.3986 31.5732 44.3986 31.5732C44.3986 31.5732 44.4042 31.1945 44.1795 31.3195C43.9992 31.4199 43.5573 31.6662 43.4017 31.8016C43.2219 31.9578 43.2624 32.3084 43.2624 32.3084C43.2624 32.3084 43.2624 37.7537 43.2624 39.5688C43.2624 39.6719 43.1739 39.721 43.1316 39.7459C42.7236 39.9858 42.4492 40.4286 42.4492 40.9362C42.4492 41.6991 43.0676 42.3176 43.8306 42.3176C44.5935 42.3176 45.2119 41.6991 45.2119 40.9362C45.2119 40.4267 44.9355 39.9825 44.5248 39.7432C44.484 39.7194 44.3986 39.6718 44.3986 39.5688Z" fill="#F26522"/>
+                                </svg>
+                            </div>
+                            <div class="sub-material-dashboard1 col-md-9 col-sm-9 col-xs-9">
+                              <span class="material-dashboard-text" style="color: #F26522;">{{'DASHBOARD.QUANTITY_SCHOOL' | translate}}</span>
+                              <br/>
+                              <div style="display: flex;">
+                                <div class="dashboard-infor-statistical1" [style.min-width]="minWidth2 + '%'">
+                                  <span class="material-dashboard-quantity" [matTooltip]="numberOfSchoolOnSystem">{{numberOfSchoolOnSystem | number}}</span>
+                                </div>
+                                <div class="dashboard-infor-statistical">
+                                  <svg *ngIf="schoolGrowthRate != null && schoolGrowthRate >= 0" style="margin-left: 10px; margin-top: -4px; margin-right:1px;" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <g clip-path="url(#clip0)">
+                                    <path d="M6.26795 1C7.03775 -0.333332 8.96225 -0.333334 9.73205 0.999999L14.9282 10C15.698 11.3333 14.7358 13 13.1962 13H2.80385C1.26425 13 0.301996 11.3333 1.0718 10L6.26795 1Z" fill="#19C09A"/>
+                                    </g>
+                                    <defs>
+                                    <clipPath id="clip0">
+                                    <rect width="16" height="16" fill="white" transform="translate(0 16) rotate(-90)"/>
+                                    </clipPath>
+                                    </defs>
+                                    </svg>
+                                    <svg *ngIf="schoolGrowthRate && schoolGrowthRate < 0" style="margin-left: 10px; margin-top: -7px; margin-right:1px;" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                      <g clip-path="url(#clip0)">
+                                      <path d="M9.73205 15C8.96225 16.3333 7.03775 16.3333 6.26795 15L1.0718 6C0.301997 4.66667 1.26425 3 2.80385 3L13.1962 3C14.7358 3 15.698 4.66667 14.9282 6L9.73205 15Z" fill="#D14343"/>
+                                      </g>
+                                      <defs>
+                                      <clipPath id="clip0">
+                                      <rect width="16" height="16" fill="white" transform="translate(16) rotate(90)"/>
+                                      </clipPath>
+                                      </defs>
+                                      </svg>
+                                  <span [matTooltip]="(schoolGrowthRate | number: '1.0-2') + '%'" class="growthRate" style="color: #19C09A;" *ngIf="schoolGrowthRate != null && schoolGrowthRate >= 0">{{schoolGrowthRate | number:'1.0-2'}}%</span>
+                                  <span [matTooltip]="(-schoolGrowthRate | number: '1.0-2') + '%'" class="growthRate" style="color: #D14343;;" *ngIf="schoolGrowthRate != null && schoolGrowthRate < 0">{{-schoolGrowthRate | number:'1.0-2'}}%</span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12 col-xs-12 material-dashboard">
+                          <div class="materila-dashboard-content row" id="fourth" [style.background-image]="image.image3">
+                            <div class="sub-material-dashboard col-md-3 col-sm-3 col-xs-3">
+                              <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect opacity="0.05" width="64" height="64" rx="32" fill="#897AE3"/>
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M32.4356 18.9462C32.6485 18.7551 32.9302 18.6549 33.2185 18.6678C39.3129 18.8502 44.4062 23.2744 45.3293 29.1875C45.3352 29.2228 45.3352 29.2588 45.3293 29.2941C45.3492 29.5739 45.2547 29.8499 45.0666 30.0611C44.8785 30.2723 44.6124 30.4013 44.3271 30.4195L34.0878 31.0948C33.7492 31.1248 33.4134 31.0134 33.1629 30.7879C32.9123 30.5624 32.7703 30.2437 32.7717 29.9101L32.0834 19.8524V19.6866C32.096 19.4037 32.2227 19.1373 32.4356 18.9462ZM31.7332 33.7248L40.6081 33.1561L40.6684 33.1798C41.0495 33.186 41.4125 33.3406 41.6775 33.6094C41.9424 33.8782 42.0876 34.2393 42.0812 34.6132C41.7315 39.7094 37.9952 43.9674 32.9107 45.0643C27.8262 46.1613 22.6139 43.8339 20.1174 39.3519C19.3833 38.061 18.9194 36.6392 18.7529 35.17C18.6884 34.7347 18.6601 34.2949 18.6684 33.8551C18.6852 28.4361 22.5434 23.7588 27.9417 22.6127C28.5953 22.4904 29.2505 22.8167 29.5356 23.4064C29.6066 23.5134 29.6634 23.6289 29.7046 23.75C29.8058 25.3121 29.9108 26.8594 30.0153 28.4002C30.0979 29.617 30.1802 30.8298 30.2601 32.0425C30.256 32.3282 30.3009 32.6126 30.3929 32.8837C30.6096 33.417 31.1488 33.7554 31.7332 33.7248Z" fill="#897AE3"/>
+                                </svg>
+                            </div>
+                            <div class="sub-material-dashboard1 col-md-9 col-sm-9 col-xs-9">
+                              <span class="material-dashboard-text" style="color: #897AE3;">{{'DASHBOARD.REVENUE' | translate}}</span>
+                              <br/>
+                              <div style="display: flex;">
+                                <div>
+                                  <span class="material-dashboard-quantity" [matTooltip]="'$'+revenue">${{revenue}}</span>
+                                </div>
+                                <div class="dashboard-infor-statistical">
+                                  <svg *ngIf="revenueGrowthRate != null && revenueGrowthRate >= 0" style="margin-left: 10px; margin-top: -4px; margin-right:1px;" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <g clip-path="url(#clip0)">
+                                    <path d="M6.26795 1C7.03775 -0.333332 8.96225 -0.333334 9.73205 0.999999L14.9282 10C15.698 11.3333 14.7358 13 13.1962 13H2.80385C1.26425 13 0.301996 11.3333 1.0718 10L6.26795 1Z" fill="#19C09A"/>
+                                    </g>
+                                    <defs>
+                                    <clipPath id="clip0">
+                                    <rect width="16" height="16" fill="white" transform="translate(0 16) rotate(-90)"/>
+                                    </clipPath>
+                                    </defs>
+                                    </svg>
+                                    <svg *ngIf="revenueGrowthRate && revenueGrowthRate < 0" style="margin-left: 10px; margin-right:1px;" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                      <g clip-path="url(#clip0)">
+                                      <path d="M9.73205 15C8.96225 16.3333 7.03775 16.3333 6.26795 15L1.0718 6C0.301997 4.66667 1.26425 3 2.80385 3L13.1962 3C14.7358 3 15.698 4.66667 14.9282 6L9.73205 15Z" fill="#D14343"/>
+                                      </g>
+                                      <defs>
+                                      <clipPath id="clip0">
+                                      <rect width="16" height="16" fill="white" transform="translate(16) rotate(90)"/>
+                                      </clipPath>
+                                      </defs>
+                                      </svg>
+                                  <span [matTooltip]="(revenueGrowthRate | number: '1.0-2') + '%'" class="growthRate" style="color: #19C09A;" *ngIf="revenueGrowthRate != null && revenueGrowthRate >= 0">{{revenueGrowthRate | number:'1.0-2'}}%</span>
+                                  <span [matTooltip]="(-revenueGrowthRate | number: '1.0-2') + '%'" class="growthRate" style="color: #D14343;" *ngIf="revenueGrowthRate && revenueGrowthRate < 0">{{-revenueGrowthRate | number:'1.0-2'}}%</span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+                <!-- </div> -->
+            </div>
+        </div>
+        <div class="row" style="margin-right: 25px;">
+          <div class="col-md-12 col-xs-12" style="margin-top: 20px; margin-bottom: 20px ; height: 100%; background: #ffffff; border-radius: 8px;">
+            <div class="menu-action-dv">
+              <h3 style="padding-left: 15px; text-transform: uppercase">{{'DASHBOARD.REVENUE_BY_DTPK' | translate}}</h3>
+            </div>
+            <div class="menu-action-dv row h-100" style="margin-top: 24px;">
+              <div class="col-md-2" style="text-align: left">
+                <span class="chart-title" style="position: absolute; bottom: 0; left: 6px;">{{'DASHBOARD.REVENUE' | translate}} ($)</span>
+              </div>
+              <div class="col-md-8 col-xs-12"></div>
+              <div class="col-md-2" style="text-align: right">
+                  <span class="chart-title" style="position: absolute; bottom: 0; right: 18px;">{{'DASHBOARD.QUANTITY_USER' | translate}}</span>
+              </div>
+            </div>
+            <div style="display: block; box-sizing: border-box;">
+              <div #container>
+              </div>
+              <kendo-chart style="margin-bottom: 20px; width: 98%; margin-left: 1%" #chart>
+                <!--    <kendo-chart-title text="DOANH THU THEO GÓI CƯỚC"></kendo-chart-title>-->
+                <!--          <kendo-chart-legend position="top"></kendo-chart-legend>-->
+                          <kendo-chart-value-axis>
+                            <kendo-chart-value-axis-item [name]="valueAxesCol.name"
+                                [min]="valueAxesCol.min" [max]="colMax" [majorUnit]="colMajorUnit" [color]="valueAxesCol.color"
+                                 [labels]="{
+                                   font: valueAxesCol.labels.font,
+                                   color: valueAxesCol.labels.color,
+                                   margin: {
+                                     right: marginLabelCol,
+                                     bottom: valueAxesCol.labels.margin.bottom
+                                   }
+                                 }"
+                                [majorTicks]="{
+                                  size: majorTickColSize,
+                                  color: 'rgb(216, 218, 229)',
+                                  width: 1
+                                }"
+                                >
+                            </kendo-chart-value-axis-item>
+                            <kendo-chart-value-axis-item [name]="valueAxesLine.name"
+                                [min]="valueAxesLine.min" [max]="lineMax" [majorUnit]="lineMajorUnit" [color]="valueAxesLine.color"
+                                 [labels]="{
+                                  font: valueAxesLine.labels.font,
+                                  color: valueAxesLine.labels.color,
+                                  margin: {
+                                    left: marginLabelLine,
+                                    bottom: valueAxesLine.labels.margin.bottom
+                                  }
+                                }"
+                                [majorTicks]="{
+                                  size: majorTickLineSize,
+                                  color: 'rgb(216, 218, 229)',
+                                  width: 1
+                                }"
+                                >
+                            </kendo-chart-value-axis-item>
+                          </kendo-chart-value-axis>
+                          <kendo-chart-tooltip> </kendo-chart-tooltip>
+                            <kendo-chart-category-axis >
+                                <kendo-chart-category-axis-item [categories]="categories" [axisCrossingValue]="crossingValues"
+                                [majorGridLines]="{visible: false}" [line]="{color:'#D8DAE5'}" [majorTicks]="categoryMajorTicks"
+                                [labels]="{visual: visual3}"
+                                >
+                                  <kendo-chart-category-axis-item-labels [rotation]="labels.rotation" [font]="labels.font"
+                                    [color]="labels.color" [content]="content1" [visible]="true" [position]="'start'"
+                                    [visual]="visual3"
+                                  >
+                                  </kendo-chart-category-axis-item-labels>
+                                </kendo-chart-category-axis-item>
+                            </kendo-chart-category-axis>
+
+                            <kendo-chart-series>
+                              <kendo-chart-series-item  [data]="seriesLine.data" [type]="seriesLine.type"
+                                  [color]="seriesLine.color" [axis]="seriesLine.axis" [markers]="markers" [highlight]="highlightLine" >
+                                  <kendo-chart-series-item-tooltip>
+                                    <ng-template let-value="value" let-category ="category" style="background: none !important;">
+                                      <div style="position: relative;" [style.margin-left.px]="margin(category)">
+                                        <div class="hero3" style="display: flex;">
+                                          <div style="min-width: fit-content;">
+                                            <span class="title-tooltip">{{'DASHBOARD.QUANTITY_USER_SHORT' | translate}}</span>
+                                            <br/>
+                                            <span class="main-tooltip" style="margin-left: -25px; padding: 10px;">
+                                              {{ value | number }}
+                                            </span>
+                                          </div>
+                                          <div style="width: 0%; border-left: 1px solid rgba(255, 255, 255, 0.5); height: 60%; margin-top: 5%;"></div>
+                                          <div style="min-width: fit-content;">
+                                            <span class="title-tooltip">{{'DASHBOARD.DATA_PACKAGE' | translate}}</span>
+                                            <br/>
+                                            <span class="main-tooltip" style="padding: 10px;">
+                                              {{ category }}
+                                            </span>
+                                          </div>
+                                        </div>
+                                        <div class="hero4"></div>
+                                      </div>
+                                    </ng-template>
+                                  </kendo-chart-series-item-tooltip>
+                              </kendo-chart-series-item>
+                              <kendo-chart-series-item  [data]="seriesCol.data" [type]="seriesCol.type"
+                                  [color]="seriesCol.color" [axis]="seriesCol.axis" [highlight]="{ visual : visualCol}" [border]="{width: 0}" >
+                                  <kendo-chart-series-item-tooltip>
+                                    <ng-template let-value="value" let-category ="category" style="background: none !important;">
+                                      <div style="position: relative; margin-top: -55px;" [style.margin-left.px]="margin(category)">
+                                        <div class="hero5" style="display: flex;">
+                                          <div>
+                                            <span class="title-tooltip">{{'DASHBOARD.REVENUE' | translate}}</span>
+                                            <br/>
+                                            <span class="main-tooltip" style="padding: 10px;">
+                                              ${{ value | number }}
+                                            </span>
+                                          </div>
+                                          <div style="width: 0%; border-left: 1px solid rgba(255, 255, 255, 0.5); height: 60%; margin-top: 5%;"></div>
+                                          <div>
+                                            <span class="title-tooltip">{{'DASHBOARD.DATA_PACKAGE' | translate}}</span>
+                                            <br/>
+                                            <span class="main-tooltip" style="padding: 10px;">
+                                              {{ category }}
+                                            </span>
+                                          </div>
+                                        </div>
+                                        <div class="hero6"></div>
+                                      </div>
+                                    </ng-template>
+                                  </kendo-chart-series-item-tooltip>
+                              </kendo-chart-series-item>
+                            </kendo-chart-series>
+                </kendo-chart>
+                <kendo-popup [anchor]="state.anchor" *ngIf="state.show">
+                  <div style="font-size: 10px; font-weight: bold; background-color: #FFFFFF; font-family: Inter; z-index: 999;">
+                    {{state.popupValue}}
+                  </div>
+                </kendo-popup>
+            </div>
+         </div>
+        </div>
+    </div>
+    <div class="page-loading-class" style="top: -100px !important; height: 113% !important; bottom: 0 !important;" *ngIf="hide===false">
+      <div class="bee-spinner-sc"></div>
+    </div>
+  </div>

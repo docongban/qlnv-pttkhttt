@@ -1,0 +1,86 @@
+<div class="row" style="margin: 0 22px;">
+  <div class="col-md-4">
+    <div class="info-basic">
+      <div class="avatar">
+        <img [src]="imageUrl">
+      </div>
+      <div class="info-basic-avatar">
+        <h3 class="name-student overflow-dot" [matTooltip]="infoStudent.fullName">{{ infoStudent?.fullName }}</h3>
+        <div class="info-basic-gv">
+          <div class="info-basic-gv-key">
+            <div class="name-ifgv text overflow-dot">{{ 'STUDENT.INFO.CODE' | translate }}</div>
+            <div class="name-ifgv text">{{ 'STUDENT.STATUS' | translate }}</div>
+          </div>
+          <div class="info-basic-gv-value">
+            <div class="value-ifgv text code overflow-dot" [matTooltip]="infoStudent.code">{{ infoStudent?.code }}</div>
+            <div class="value-ifgv text status" [style.color]="infoStudent?.status.color" [matTooltip]="infoStudent?.status.name">{{ infoStudent?.status.name }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="info-basic-gv one-column">
+      <div class="info-basic-gv-key">
+        <div class="name-ifgv text">{{ 'STUDENT.INFO.START_DATE' | translate }}</div>
+        <div class="name-ifgv text">{{ 'STUDENT.INFO.ELECT_FORMAT' | translate }}</div>
+      </div>
+      <div class="info-basic-gv-value">
+        <div class="value-ifgv text" [matTooltip]="infoStudent?.startDate | date: 'dd/MM/yyyy'">{{ infoStudent?.startDate | date:'dd/MM/yyyy' }}</div>
+        <div class="value-ifgv text" [matTooltip]="infoStudent?.electFormat">{{ infoStudent?.electFormat }}</div>
+      </div>
+    </div>
+
+  </div>
+  <div class="col-md-4">
+    <div class="info-basic-gv one-column">
+      <div class="info-basic-gv-key">
+        <div class="name-ifgv text">{{ 'STUDENT.INFO.PHONE' | translate }}</div>
+        <div class="name-ifgv text">{{ 'STUDENT.INFO.EMAIL' | translate }}</div>
+      </div>
+      <div class="info-basic-gv-value">
+        <div class="value-ifgv text" [matTooltip]="infoStudent?.phone">{{ infoStudent?.phone }}</div>
+        <div class="value-ifgv text" [matTooltip]="infoStudent?.email">{{ infoStudent?.email }}</div>
+      </div>
+    </div>
+  </div> 
+</div>
+<!--tab-->
+<div class="row detail-hs table-school" style="padding: 0 25px 50px 56px">
+  <ngb-tabset [destroyOnHide]="false" *ngIf="infoStudent">
+    <ngb-tab>
+      <ng-template ngbTabTitle> {{ 'STUDENT.TAB_SET.DETAIL' | translate}}</ng-template>
+      <ng-template ngbTabContent>
+        <kt-student-infomation [infoStudent]="infoStudent"></kt-student-infomation>
+      </ng-template>
+    </ngb-tab>
+
+    <ngb-tab>
+      <ng-template ngbTabTitle> {{ 'STUDENT.TAB_SET.SCORE' | translate}}</ng-template>
+      <ng-template ngbTabContent>
+        <kt-student-score [studentCode]="studentCode"></kt-student-score>
+      </ng-template>
+    </ngb-tab> 
+
+    <ngb-tab>
+      <ng-template ngbTabTitle> {{ 'STUDENT.TAB_SET.REWARD_DISCIPLINE' | translate}}</ng-template>
+      <ng-template ngbTabContent>
+        <kt-student-reward-discipline [studentCode]="infoStudent.code"></kt-student-reward-discipline>
+      </ng-template>
+    </ngb-tab>
+
+    <ngb-tab>
+      <ng-template ngbTabTitle> {{ 'STUDENT.TAB_SET.EXEMPTION' | translate}}</ng-template>
+      <ng-template ngbTabContent>
+        <kt-student-exemption [studentCode]="infoStudent.code"></kt-student-exemption>
+      </ng-template>
+    </ngb-tab>
+
+    <ngb-tab>
+      <ng-template ngbTabTitle> {{ 'STUDENT.TAB_SET.RESERVE_LEAVE' | translate}}</ng-template>
+      <ng-template ngbTabContent>
+        <kt-student-reserve [studentCode]="infoStudent.code"></kt-student-reserve>
+      </ng-template>
+    </ngb-tab>
+  </ngb-tabset>
+</div>

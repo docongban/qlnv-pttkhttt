@@ -1,0 +1,615 @@
+<div class="sy default-layout" style="padding-bottom: 0px">
+  <div class="sy-heading">
+    <h3 style="width: 700px; padding-top: 14px"
+        class="sy-heading-text">
+      {{ 'MANAGER_REGISTER.TITLE' | translate }}
+    </h3>
+    <div class="heading-list-actions font-label search-dv">
+
+      <button class="sy-btn-action1 gray focus-button" (click)="exportData()"
+              tabindex="0">
+        <span class="sy-ic ic-size-12 ic-mr-8 ic-svg-export"></span>
+        {{ 'MANAGER_REGISTER.EXPORT' | translate }}
+      </button>
+    </div>
+  </div>
+  <hr class="sy-line"/>
+
+  <div>
+    <div class="search-form">
+      <!--      style="margin-left: 0.001%;"-->
+      <div class="row">
+        <div class="col-md-12 responsive-condition"
+             style="display: flex;flex-direction: row; flex-wrap: wrap; justify-content: space-between;">
+          <div class="responsive-element" style="width: 13%;">
+            <label class="sy-label responsive-label"
+            > {{ 'MANAGER_REGISTER.SCHOOL' | translate }}</label
+            >
+            <!--                          <ng-select-->
+            <!--                            name="schoolCode"-->
+            <!--                            style="font-size: 12px; font-family: Inter;"-->
+            <!--                            [items]="listSchool"-->
+            <!--                            bindLabel="schoolNameCode"-->
+            <!--                            bindValue="code"-->
+            <!--                            placeholder="{{ 'MANAGER_REGISTER.SELECTION' | translate }}"-->
+            <!--                            [(ngModel)]="schoolCode"-->
+            <!--                            [searchable]="true"-->
+            <!--                            [clearable]="true"-->
+            <!--                            (search)="autoSearchSchool($event)"-->
+            <!--                            (clear)="autoSearchSchoolClear()"-->
+            <!--                            class="sy-select responsive-element-search"-->
+            <!--                          >-->
+            <!--                          <ng-template ng-option-tmp let-item="item">-->
+            <!--                              <div style="overflow: hidden; text-overflow: ellipsis;  white-space: nowrap;" title="{{item.schoolNameCode}}">-->
+            <!--                                {{item.schoolNameCode}}-->
+            <!--                              </div>-->
+            <!--                           </ng-template>-->
+            <!--                          </ng-select>-->
+          </div>
+
+          <div class="responsive-element" style="width: 13%;">
+            <!--            <div style="width: 13.7%; margin-right: 0.497%">-->
+            <label class="sy-label"
+            >{{ 'MANAGER_REGISTER.PACKAGE_REGISTER' | translate }}</label
+            >
+            <!--                        <ng-select-->
+            <!--                          style="font-size: 12px; font-family: Inter;"-->
+            <!--                          name="dataPackageCode"-->
+            <!--                          bindLabel="dataPackageNameCode"-->
+            <!--                          bindValue="code"-->
+            <!--                          [items]="listDataPackage"-->
+            <!--                          [(ngModel)]="dataPackageCode"-->
+            <!--                          placeholder="{{ 'MANAGER_REGISTER.SELECTION' | translate }}"-->
+            <!--                            [searchable]="true"-->
+            <!--                          [clearable]="true"-->
+            <!--                          class="sy-select"-->
+            <!--                          (search)="autoSearchDataPackage($event)"-->
+            <!--                          (clear)="autoSearchDataPackageClear()"-->
+            <!--                        >-->
+            <!--                          <ng-template ng-option-tmp let-item="item">-->
+            <!--                            <div style="overflow: hidden; text-overflow: ellipsis;  white-space: nowrap;" title="{{item.dataPackageNameCode}}">-->
+            <!--                              {{item.dataPackageNameCode}}-->
+            <!--                            </div>-->
+            <!--                          </ng-template>-->
+            <!--                        </ng-select>-->
+          </div>
+
+          <div class="responsive-element" style="width: 13%;">
+            <label class="sy-label responsive-label"
+            >{{ 'MANAGER_REGISTER.STATUS' | translate }}</label
+            >
+            <!--                        <ng-select-->
+            <!--                          style="font-size: 12px; font-family: Inter;"-->
+            <!--                          name="semesterCode"-->
+            <!--                          [items]="listStatus"-->
+            <!--                          bindLabel="name"-->
+            <!--                          bindValue="id"-->
+            <!--                          [(ngModel)]="statusId"-->
+            <!--                          placeholder="{{ 'MANAGER_REGISTER.SELECTION' | translate }}"-->
+            <!--                          [searchable]="false"-->
+            <!--                          [clearable]="true"-->
+            <!--                          class="sy-select responsive-element-search"-->
+            <!--                        >-->
+            <!--                          <ng-template ng-option-tmp let-item="item">-->
+            <!--                            <div title="{{ item.name }}">{{ item.name }}</div>-->
+            <!--                          </ng-template>-->
+            <!--                        </ng-select>-->
+          </div>
+
+          <div class="responsive-element" style="width: 13%;">
+            <!--            <div style="width: 14.7%; margin-right: 0.497%">-->
+            <!--                              (change)="onChangeDateFrom($event)"-->
+            <!--                              <label class="sy-label responsive-label">Ngày đăng ký từ</label>-->
+            <label class="sy-label responsive-label">{{ 'MANAGER_REGISTER.DATE_FROM' | translate }}</label>
+            <!--                        <div class="position-parent">-->
+            <!--                          <div class="responsive-element" style="width: 100%">-->
+            <!--&lt;!&ndash;                                  ktNumberic&ndash;&gt;-->
+            <!--                            <input  class="form-control" placeholder="dd/mm/yyyy" style="font-size: 12px"-->
+            <!--                                    name="dp1" [(ngModel)]="dateFrom" ngbDatepicker #d1="ngbDatepicker"-->
+            <!--                                    (ngModelChange)="validateFromDate()"-->
+            <!--                                    [minDate]=" {year: 1, month : 1, day : 1}"-->
+            <!--                                    [maxDate]=" {year: 9999, month : 12, day : 31}"-->
+            <!--                                    oninput="this.value = this.value.replace(/[^0-9/]/g, '').replace(/(\..*?)\..*/g, '$1');"-->
+            <!--                                    maxlength="10" >-->
+            <!--                          </div>-->
+            <!--                          <div class="input-group-addon position-input-children"-->
+            <!--                                (click)="d1.toggle()">-->
+            <!--                              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">-->
+            <!--                                <rect width="24" height="24" rx="4" fill="#F4F6FA"/>-->
+            <!--                                <path fill-rule="evenodd" clip-rule="evenodd" d="M18.8914 10.6265H5.62699C5.31889 10.6265 5.06885 10.3765 5.06885 10.0684C5.06885 9.7603 5.31889 9.51025 5.62699 9.51025H18.8914C19.1995 9.51025 19.4495 9.7603 19.4495 10.0684C19.4495 10.3765 19.1995 10.6265 18.8914 10.6265Z" fill="#8F95B2"/>-->
+            <!--                                <path fill-rule="evenodd" clip-rule="evenodd" d="M15.5684 13.5328C15.2603 13.5328 15.0073 13.2827 15.0073 12.9746C15.0073 12.6666 15.2536 12.4165 15.5617 12.4165H15.5684C15.8765 12.4165 16.1266 12.6666 16.1266 12.9746C16.1266 13.2827 15.8765 13.5328 15.5684 13.5328Z" fill="#8F95B2"/>-->
+            <!--                                <path fill-rule="evenodd" clip-rule="evenodd" d="M12.2662 13.5328C11.9581 13.5328 11.7051 13.2827 11.7051 12.9746C11.7051 12.6666 11.9514 12.4165 12.2595 12.4165H12.2662C12.5743 12.4165 12.8243 12.6666 12.8243 12.9746C12.8243 13.2827 12.5743 13.5328 12.2662 13.5328Z" fill="#8F95B2"/>-->
+            <!--                                <path fill-rule="evenodd" clip-rule="evenodd" d="M8.95688 13.5328C8.64879 13.5328 8.39502 13.2827 8.39502 12.9746C8.39502 12.6666 8.64209 12.4165 8.95018 12.4165H8.95688C9.26497 12.4165 9.51502 12.6666 9.51502 12.9746C9.51502 13.2827 9.26497 13.5328 8.95688 13.5328Z" fill="#8F95B2"/>-->
+            <!--                                <path fill-rule="evenodd" clip-rule="evenodd" d="M15.5684 16.4251C15.2603 16.4251 15.0073 16.1751 15.0073 15.867C15.0073 15.5589 15.2536 15.3088 15.5617 15.3088H15.5684C15.8765 15.3088 16.1266 15.5589 16.1266 15.867C16.1266 16.1751 15.8765 16.4251 15.5684 16.4251Z" fill="#8F95B2"/>-->
+            <!--                                <path fill-rule="evenodd" clip-rule="evenodd" d="M12.2662 16.4251C11.9581 16.4251 11.7051 16.1751 11.7051 15.867C11.7051 15.5589 11.9514 15.3088 12.2595 15.3088H12.2662C12.5743 15.3088 12.8243 15.5589 12.8243 15.867C12.8243 16.1751 12.5743 16.4251 12.2662 16.4251Z" fill="#8F95B2"/>-->
+            <!--                                <path fill-rule="evenodd" clip-rule="evenodd" d="M8.95688 16.4251C8.64879 16.4251 8.39502 16.1751 8.39502 15.867C8.39502 15.5589 8.64209 15.3088 8.95018 15.3088H8.95688C9.26497 15.3088 9.51502 15.5589 9.51502 15.867C9.51502 16.1751 9.26497 16.4251 8.95688 16.4251Z" fill="#8F95B2"/>-->
+            <!--                                <path fill-rule="evenodd" clip-rule="evenodd" d="M15.2647 7.5654C14.9566 7.5654 14.7065 7.31535 14.7065 7.00726V4.55814C14.7065 4.25005 14.9566 4 15.2647 4C15.5728 4 15.8228 4.25005 15.8228 4.55814V7.00726C15.8228 7.31535 15.5728 7.5654 15.2647 7.5654Z" fill="#8F95B2"/>-->
+            <!--                                <path fill-rule="evenodd" clip-rule="evenodd" d="M9.25345 7.5654C8.94536 7.5654 8.69531 7.31535 8.69531 7.00726V4.55814C8.69531 4.25005 8.94536 4 9.25345 4C9.56155 4 9.81159 4.25005 9.81159 4.55814V7.00726C9.81159 7.31535 9.56155 7.5654 9.25345 7.5654Z" fill="#8F95B2"/>-->
+            <!--                                <mask id="mask0" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="5" y="5" width="15" height="15">-->
+            <!--                                  <path fill-rule="evenodd" clip-rule="evenodd" d="M5 5.17505H19.5116V19.9999H5V5.17505Z" fill="white"/>-->
+            <!--                                </mask>-->
+            <!--                                <g mask="url(#mask0)">-->
+            <!--                                  <path fill-rule="evenodd" clip-rule="evenodd" d="M9.10865 6.29167C7.17898 6.29167 6.11628 7.32088 6.11628 9.18953V15.9237C6.11628 17.8333 7.17898 18.884 9.10865 18.884H15.403C17.3327 18.884 18.3953 17.8526 18.3953 15.9802V9.18953C18.3983 8.27046 18.1513 7.55604 17.6608 7.06488C17.1563 6.55883 16.3786 6.29167 15.4097 6.29167H9.10865ZM15.403 20H9.10865C6.5747 20 5 18.4379 5 15.9233V9.18919C5 6.71254 6.5747 5.17505 9.10865 5.17505H15.4097C16.6815 5.17505 17.733 5.55607 18.4512 6.2757C19.1485 6.97598 19.5153 7.98286 19.5116 9.19068V15.9799C19.5116 18.4595 17.9369 20 15.403 20Z" fill="#8F95B2"/>-->
+            <!--                                </g>-->
+            <!--                              </svg>-->
+            <!--                          </div>-->
+            <!--                        </div>-->
+<!--            <span class="error-validate" *ngIf="this.showErrDateFrom === true">{{this.messageErrDateFrom}}</span>-->
+          </div>
+
+          <div class="responsive-element" style="width: 13%;">
+            <label class="sy-label">{{ 'MANAGER_REGISTER.DATE_TO' | translate }}</label>
+
+            <!--                          <div class="position-parent">-->
+            <!--&lt;!&ndash;                                  ktNumberic&ndash;&gt;-->
+            <!--                            <div class="responsive-element" style="width: 100%">-->
+            <!--                                <input  class="form-control" placeholder="dd/mm/yyyy" style="font-size: 12px"-->
+            <!--                                  name="dp" [(ngModel)]="dateTo" ngbDatepicker #d="ngbDatepicker"-->
+            <!--                                  (ngModelChange)="validateDateTo()"-->
+            <!--                                        [minDate]=" {year: 1, month : 1, day : 1}"-->
+            <!--                                        [maxDate]=" {year: 9999, month : 12, day : 31}"-->
+            <!--                                        oninput="this.value = this.value.replace(/[^0-9/]/g, '').replace(/(\..*?)\..*/g, '$1');"-->
+            <!--                                        maxlength="10" >-->
+            <!--                            </div>-->
+            <!--                            <div class="input-group-addon position-input-children"-->
+            <!--                                (click)="d.toggle()">-->
+            <!--                              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">-->
+            <!--                                <rect width="24" height="24" rx="4" fill="#F4F6FA"/>-->
+            <!--                                <path fill-rule="evenodd" clip-rule="evenodd" d="M18.8914 10.6265H5.62699C5.31889 10.6265 5.06885 10.3765 5.06885 10.0684C5.06885 9.7603 5.31889 9.51025 5.62699 9.51025H18.8914C19.1995 9.51025 19.4495 9.7603 19.4495 10.0684C19.4495 10.3765 19.1995 10.6265 18.8914 10.6265Z" fill="#8F95B2"/>-->
+            <!--                                <path fill-rule="evenodd" clip-rule="evenodd" d="M15.5684 13.5328C15.2603 13.5328 15.0073 13.2827 15.0073 12.9746C15.0073 12.6666 15.2536 12.4165 15.5617 12.4165H15.5684C15.8765 12.4165 16.1266 12.6666 16.1266 12.9746C16.1266 13.2827 15.8765 13.5328 15.5684 13.5328Z" fill="#8F95B2"/>-->
+            <!--                                <path fill-rule="evenodd" clip-rule="evenodd" d="M12.2662 13.5328C11.9581 13.5328 11.7051 13.2827 11.7051 12.9746C11.7051 12.6666 11.9514 12.4165 12.2595 12.4165H12.2662C12.5743 12.4165 12.8243 12.6666 12.8243 12.9746C12.8243 13.2827 12.5743 13.5328 12.2662 13.5328Z" fill="#8F95B2"/>-->
+            <!--                                <path fill-rule="evenodd" clip-rule="evenodd" d="M8.95688 13.5328C8.64879 13.5328 8.39502 13.2827 8.39502 12.9746C8.39502 12.6666 8.64209 12.4165 8.95018 12.4165H8.95688C9.26497 12.4165 9.51502 12.6666 9.51502 12.9746C9.51502 13.2827 9.26497 13.5328 8.95688 13.5328Z" fill="#8F95B2"/>-->
+            <!--                                <path fill-rule="evenodd" clip-rule="evenodd" d="M15.5684 16.4251C15.2603 16.4251 15.0073 16.1751 15.0073 15.867C15.0073 15.5589 15.2536 15.3088 15.5617 15.3088H15.5684C15.8765 15.3088 16.1266 15.5589 16.1266 15.867C16.1266 16.1751 15.8765 16.4251 15.5684 16.4251Z" fill="#8F95B2"/>-->
+            <!--                                <path fill-rule="evenodd" clip-rule="evenodd" d="M12.2662 16.4251C11.9581 16.4251 11.7051 16.1751 11.7051 15.867C11.7051 15.5589 11.9514 15.3088 12.2595 15.3088H12.2662C12.5743 15.3088 12.8243 15.5589 12.8243 15.867C12.8243 16.1751 12.5743 16.4251 12.2662 16.4251Z" fill="#8F95B2"/>-->
+            <!--                                <path fill-rule="evenodd" clip-rule="evenodd" d="M8.95688 16.4251C8.64879 16.4251 8.39502 16.1751 8.39502 15.867C8.39502 15.5589 8.64209 15.3088 8.95018 15.3088H8.95688C9.26497 15.3088 9.51502 15.5589 9.51502 15.867C9.51502 16.1751 9.26497 16.4251 8.95688 16.4251Z" fill="#8F95B2"/>-->
+            <!--                                <path fill-rule="evenodd" clip-rule="evenodd" d="M15.2647 7.5654C14.9566 7.5654 14.7065 7.31535 14.7065 7.00726V4.55814C14.7065 4.25005 14.9566 4 15.2647 4C15.5728 4 15.8228 4.25005 15.8228 4.55814V7.00726C15.8228 7.31535 15.5728 7.5654 15.2647 7.5654Z" fill="#8F95B2"/>-->
+            <!--                                <path fill-rule="evenodd" clip-rule="evenodd" d="M9.25345 7.5654C8.94536 7.5654 8.69531 7.31535 8.69531 7.00726V4.55814C8.69531 4.25005 8.94536 4 9.25345 4C9.56155 4 9.81159 4.25005 9.81159 4.55814V7.00726C9.81159 7.31535 9.56155 7.5654 9.25345 7.5654Z" fill="#8F95B2"/>-->
+            <!--                                <mask id="mask0" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="5" y="5" width="15" height="15">-->
+            <!--                                  <path fill-rule="evenodd" clip-rule="evenodd" d="M5 5.17505H19.5116V19.9999H5V5.17505Z" fill="white"/>-->
+            <!--                                </mask>-->
+            <!--                                <g mask="url(#mask0)">-->
+            <!--                                  <path fill-rule="evenodd" clip-rule="evenodd" d="M9.10865 6.29167C7.17898 6.29167 6.11628 7.32088 6.11628 9.18953V15.9237C6.11628 17.8333 7.17898 18.884 9.10865 18.884H15.403C17.3327 18.884 18.3953 17.8526 18.3953 15.9802V9.18953C18.3983 8.27046 18.1513 7.55604 17.6608 7.06488C17.1563 6.55883 16.3786 6.29167 15.4097 6.29167H9.10865ZM15.403 20H9.10865C6.5747 20 5 18.4379 5 15.9233V9.18919C5 6.71254 6.5747 5.17505 9.10865 5.17505H15.4097C16.6815 5.17505 17.733 5.55607 18.4512 6.2757C19.1485 6.97598 19.5153 7.98286 19.5116 9.19068V15.9799C19.5116 18.4595 17.9369 20 15.403 20Z" fill="#8F95B2"/>-->
+            <!--                                </g>-->
+            <!--                              </svg>-->
+            <!--                            </div>-->
+            <!--                          </div>-->
+            <!--                          <span class="error-validate" *ngIf="showErrDateTo">{{messageErrDateTo}}</span>-->
+          </div>
+
+          <div class="responsive-element" style="width: 13%;">
+
+            <label class="sy-label responsive-label">{{ 'MANAGER_REGISTER.PHONE_NUMBER' | translate }}</label>
+            <!--                        <input (keyup.enter)="loadData(1)"-->
+            <!--                                type="text" style="height: 40px; font-size: 12px !important;" class="form-control responsive-element-search"-->
+            <!--                                name="infoClass" [(ngModel)]="valuePhoneSearch"-->
+            <!--                                placeholder="{{ 'MANAGER_REGISTER.ENTER_SEARCH_INFORMATION' | translate }}"-->
+            <!--                               oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"-->
+            <!--                        />-->
+          </div>
+
+          <div style="width: 13%; margin-right: -11px" class="search-subject font-label search-dv responsive-element">
+            <!--                          <button [disabled] = "showErrDateFrom==true || showErrDateTo ==true"-->
+            <!--                                  [ngClass]="(showErrDateFrom==true || showErrDateTo ==true) ? 'classDisable':'classActive'"-->
+            <!--                          class="responsive-search"-->
+            <!--                             (click)="loadData(1)"-->
+            <!--                             style= "width: 100%;margin-top: 28px;">-->
+            <!--                            {{ 'MANAGER_REGISTER.SEARCH' | translate }}-->
+            <!--                          </button>-->
+          </div>
+        </div>
+
+        <div class="col-md-12 responsive-condition"
+             style="display: flex;flex-direction: row; flex-wrap: wrap; justify-content: space-between;">
+          <div class="responsive-element" style="width: 13%;">
+            <!--            <label class="sy-label responsive-label"-->
+            <!--            > {{ 'MANAGER_REGISTER.SCHOOL' | translate }}</label-->
+            <!--            >-->
+            <ng-select
+              name="schoolCode"
+              style="font-size: 12px; font-family: Inter;"
+              [items]="listSchool"
+              bindLabel="schoolNameCode"
+              bindValue="code"
+              placeholder="{{ 'MANAGER_REGISTER.SELECTION' | translate }}"
+              [(ngModel)]="schoolCode"
+              [searchable]="true"
+              [clearable]="true"
+              (search)="autoSearchSchool($event)"
+              (clear)="autoSearchSchoolClear()"
+              class="sy-select responsive-element-search"
+            >
+              <ng-template ng-option-tmp let-item="item">
+                <div style="overflow: hidden; text-overflow: ellipsis;  white-space: nowrap;"
+                     title="{{item.schoolNameCode}}">
+                  {{item.schoolNameCode}}
+                </div>
+              </ng-template>
+            </ng-select>
+          </div>
+
+          <div class="responsive-element" style="width: 13%;">
+            <!--            <div style="width: 13.7%; margin-right: 0.497%">-->
+            <!--            <label class="sy-label"-->
+            <!--            >{{ 'MANAGER_REGISTER.PACKAGE_REGISTER' | translate }}</label-->
+            <!--            >-->
+            <ng-select
+              style="font-size: 12px; font-family: Inter;"
+              name="dataPackageCode"
+              bindLabel="dataPackageNameCode"
+              bindValue="code"
+              [items]="listDataPackage"
+              [(ngModel)]="dataPackageCode"
+              placeholder="{{ 'MANAGER_REGISTER.SELECTION' | translate }}"
+              [searchable]="true"
+              [clearable]="true"
+              class="sy-select"
+              (search)="autoSearchDataPackage($event)"
+              (clear)="autoSearchDataPackageClear()"
+            >
+              <ng-template ng-option-tmp let-item="item">
+                <div style="overflow: hidden; text-overflow: ellipsis;  white-space: nowrap;"
+                     title="{{item.dataPackageNameCode}}">
+                  {{item.dataPackageNameCode}}
+                </div>
+              </ng-template>
+            </ng-select>
+          </div>
+
+          <div class="responsive-element" style="width: 13%;">
+            <!--            <label class="sy-label responsive-label"-->
+            <!--            >{{ 'MANAGER_REGISTER.STATUS' | translate }}</label-->
+            <!--            >-->
+            <ng-select
+              style="font-size: 12px; font-family: Inter;"
+              name="semesterCode"
+              [items]="listStatus"
+              bindLabel="name"
+              bindValue="id"
+              [(ngModel)]="statusId"
+              placeholder="{{ 'MANAGER_REGISTER.SELECTION' | translate }}"
+              [searchable]="false"
+              [clearable]="true"
+              class="sy-select responsive-element-search"
+            >
+              <ng-template ng-option-tmp let-item="item">
+                <div title="{{ item.name }}">{{ item.name }}</div>
+              </ng-template>
+            </ng-select>
+          </div>
+
+          <div class="responsive-element" style="width: 13%;">
+            <!--            <div style="width: 14.7%; margin-right: 0.497%">-->
+            <!--                              (change)="onChangeDateFrom($event)"-->
+            <!--                              <label class="sy-label responsive-label">Ngày đăng ký từ</label>-->
+            <!--            <label class="sy-label responsive-label">{{ 'MANAGER_REGISTER.DATE_FROM' | translate }}</label>-->
+            <div class="position-parent">
+              <div class="responsive-element" style="width: 100%">
+                <!--                                  ktNumberic-->
+                <input class="form-control" placeholder="dd/mm/yyyy" style="font-size: 12px;height: 40px"
+                       name="dp1" [(ngModel)]="dateFrom" ngbDatepicker #d="ngbDatepicker"
+                       #datepicker="ngbDatepicker"
+                       (ngModelChange)="validateFromDate()"
+                       [minDate]=" {year: 1, month : 1, day : 1}"
+                       [maxDate]=" {year: 9999, month : 12, day : 31}"
+                       oninput="this.value = this.value.replace(/[^0-9/]/g, '').replace(/(\..*?)\..*/g, '$1');"
+                       maxlength="10" [footerTemplate]="OK">
+                <ng-template #OK>
+                  <div class="footer-button">
+                    <button class="btn btn-info-clear " type="button" (click)="clearDateFrom();datepicker.close()">Xóa</button>
+                    <button class="btn btn-info-today " type="button" (click)="selectTodayDateFrom(datepicker)">Hôm nay</button>
+                  </div>
+                </ng-template>
+              </div>
+              <div class="input-group-addon position-input-children"
+                   (click)="this.removeTabIndex(d)">
+                <svg style="cursor: pointer" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect width="24" height="24" rx="4" fill="#F4F6FA"/>
+                  <path fill-rule="evenodd" clip-rule="evenodd"
+                        d="M18.8914 10.6265H5.62699C5.31889 10.6265 5.06885 10.3765 5.06885 10.0684C5.06885 9.7603 5.31889 9.51025 5.62699 9.51025H18.8914C19.1995 9.51025 19.4495 9.7603 19.4495 10.0684C19.4495 10.3765 19.1995 10.6265 18.8914 10.6265Z"
+                        fill="#8F95B2"/>
+                  <path fill-rule="evenodd" clip-rule="evenodd"
+                        d="M15.5684 13.5328C15.2603 13.5328 15.0073 13.2827 15.0073 12.9746C15.0073 12.6666 15.2536 12.4165 15.5617 12.4165H15.5684C15.8765 12.4165 16.1266 12.6666 16.1266 12.9746C16.1266 13.2827 15.8765 13.5328 15.5684 13.5328Z"
+                        fill="#8F95B2"/>
+                  <path fill-rule="evenodd" clip-rule="evenodd"
+                        d="M12.2662 13.5328C11.9581 13.5328 11.7051 13.2827 11.7051 12.9746C11.7051 12.6666 11.9514 12.4165 12.2595 12.4165H12.2662C12.5743 12.4165 12.8243 12.6666 12.8243 12.9746C12.8243 13.2827 12.5743 13.5328 12.2662 13.5328Z"
+                        fill="#8F95B2"/>
+                  <path fill-rule="evenodd" clip-rule="evenodd"
+                        d="M8.95688 13.5328C8.64879 13.5328 8.39502 13.2827 8.39502 12.9746C8.39502 12.6666 8.64209 12.4165 8.95018 12.4165H8.95688C9.26497 12.4165 9.51502 12.6666 9.51502 12.9746C9.51502 13.2827 9.26497 13.5328 8.95688 13.5328Z"
+                        fill="#8F95B2"/>
+                  <path fill-rule="evenodd" clip-rule="evenodd"
+                        d="M15.5684 16.4251C15.2603 16.4251 15.0073 16.1751 15.0073 15.867C15.0073 15.5589 15.2536 15.3088 15.5617 15.3088H15.5684C15.8765 15.3088 16.1266 15.5589 16.1266 15.867C16.1266 16.1751 15.8765 16.4251 15.5684 16.4251Z"
+                        fill="#8F95B2"/>
+                  <path fill-rule="evenodd" clip-rule="evenodd"
+                        d="M12.2662 16.4251C11.9581 16.4251 11.7051 16.1751 11.7051 15.867C11.7051 15.5589 11.9514 15.3088 12.2595 15.3088H12.2662C12.5743 15.3088 12.8243 15.5589 12.8243 15.867C12.8243 16.1751 12.5743 16.4251 12.2662 16.4251Z"
+                        fill="#8F95B2"/>
+                  <path fill-rule="evenodd" clip-rule="evenodd"
+                        d="M8.95688 16.4251C8.64879 16.4251 8.39502 16.1751 8.39502 15.867C8.39502 15.5589 8.64209 15.3088 8.95018 15.3088H8.95688C9.26497 15.3088 9.51502 15.5589 9.51502 15.867C9.51502 16.1751 9.26497 16.4251 8.95688 16.4251Z"
+                        fill="#8F95B2"/>
+                  <path fill-rule="evenodd" clip-rule="evenodd"
+                        d="M15.2647 7.5654C14.9566 7.5654 14.7065 7.31535 14.7065 7.00726V4.55814C14.7065 4.25005 14.9566 4 15.2647 4C15.5728 4 15.8228 4.25005 15.8228 4.55814V7.00726C15.8228 7.31535 15.5728 7.5654 15.2647 7.5654Z"
+                        fill="#8F95B2"/>
+                  <path fill-rule="evenodd" clip-rule="evenodd"
+                        d="M9.25345 7.5654C8.94536 7.5654 8.69531 7.31535 8.69531 7.00726V4.55814C8.69531 4.25005 8.94536 4 9.25345 4C9.56155 4 9.81159 4.25005 9.81159 4.55814V7.00726C9.81159 7.31535 9.56155 7.5654 9.25345 7.5654Z"
+                        fill="#8F95B2"/>
+                  <mask id="mask0" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="5" y="5" width="15"
+                        height="15">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M5 5.17505H19.5116V19.9999H5V5.17505Z"
+                          fill="white"/>
+                  </mask>
+                  <g mask="url(#mask0)">
+                    <path fill-rule="evenodd" clip-rule="evenodd"
+                          d="M9.10865 6.29167C7.17898 6.29167 6.11628 7.32088 6.11628 9.18953V15.9237C6.11628 17.8333 7.17898 18.884 9.10865 18.884H15.403C17.3327 18.884 18.3953 17.8526 18.3953 15.9802V9.18953C18.3983 8.27046 18.1513 7.55604 17.6608 7.06488C17.1563 6.55883 16.3786 6.29167 15.4097 6.29167H9.10865ZM15.403 20H9.10865C6.5747 20 5 18.4379 5 15.9233V9.18919C5 6.71254 6.5747 5.17505 9.10865 5.17505H15.4097C16.6815 5.17505 17.733 5.55607 18.4512 6.2757C19.1485 6.97598 19.5153 7.98286 19.5116 9.19068V15.9799C19.5116 18.4595 17.9369 20 15.403 20Z"
+                          fill="#8F95B2"/>
+                  </g>
+                </svg>
+              </div>
+            </div>
+            <span class="error-validate" *ngIf="this.showErrDateFrom === true">{{this.messageErrDateFrom}}</span>
+          </div>
+
+          <div class="responsive-element" style="width: 13%;">
+            <!--            <label class="sy-label">{{ 'MANAGER_REGISTER.DATE_TO' | translate }}</label>-->
+            <!--                              (ngModelChange)="test2($event)"-->
+            <!--                              (keyup)="checkDateTo($event)"-->
+            <div class="position-parent">
+              <!--                                  ktNumberic-->
+              <div class="responsive-element" style="width: 100%">
+                <input class="form-control" placeholder="dd/mm/yyyy" style="font-size: 12px;height: 40px"
+                       name="dp" [(ngModel)]="dateTo" ngbDatepicker #d1="ngbDatepicker"
+                       #datepicker1="ngbDatepicker"
+                       (ngModelChange)="validateDateTo()"
+                       [minDate]=" {year: 1, month : 1, day : 1}"
+                       [maxDate]=" {year: 9999, month : 12, day : 31}"
+                       oninput="this.value = this.value.replace(/[^0-9/]/g, '').replace(/(\..*?)\..*/g, '$1');"
+                       maxlength="10" [footerTemplate]="OK1">
+                <ng-template #OK1>
+                  <div class="footer-button">
+                    <button class="btn btn-info-clear " type="button" (click)="clearDateTo();datepicker1.close()">Xóa</button>
+                    <button class="btn btn-info-today " type="button" (click)="selectTodayDateTo(datepicker1)">Hôm nay</button>
+                  </div>
+                </ng-template>
+              </div>
+              <div class="input-group-addon position-input-children"
+                   (click)="this.removeTabIndex(d1)">
+                <svg style="cursor: pointer" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect width="24" height="24" rx="4" fill="#F4F6FA"/>
+                  <path fill-rule="evenodd" clip-rule="evenodd"
+                        d="M18.8914 10.6265H5.62699C5.31889 10.6265 5.06885 10.3765 5.06885 10.0684C5.06885 9.7603 5.31889 9.51025 5.62699 9.51025H18.8914C19.1995 9.51025 19.4495 9.7603 19.4495 10.0684C19.4495 10.3765 19.1995 10.6265 18.8914 10.6265Z"
+                        fill="#8F95B2"/>
+                  <path fill-rule="evenodd" clip-rule="evenodd"
+                        d="M15.5684 13.5328C15.2603 13.5328 15.0073 13.2827 15.0073 12.9746C15.0073 12.6666 15.2536 12.4165 15.5617 12.4165H15.5684C15.8765 12.4165 16.1266 12.6666 16.1266 12.9746C16.1266 13.2827 15.8765 13.5328 15.5684 13.5328Z"
+                        fill="#8F95B2"/>
+                  <path fill-rule="evenodd" clip-rule="evenodd"
+                        d="M12.2662 13.5328C11.9581 13.5328 11.7051 13.2827 11.7051 12.9746C11.7051 12.6666 11.9514 12.4165 12.2595 12.4165H12.2662C12.5743 12.4165 12.8243 12.6666 12.8243 12.9746C12.8243 13.2827 12.5743 13.5328 12.2662 13.5328Z"
+                        fill="#8F95B2"/>
+                  <path fill-rule="evenodd" clip-rule="evenodd"
+                        d="M8.95688 13.5328C8.64879 13.5328 8.39502 13.2827 8.39502 12.9746C8.39502 12.6666 8.64209 12.4165 8.95018 12.4165H8.95688C9.26497 12.4165 9.51502 12.6666 9.51502 12.9746C9.51502 13.2827 9.26497 13.5328 8.95688 13.5328Z"
+                        fill="#8F95B2"/>
+                  <path fill-rule="evenodd" clip-rule="evenodd"
+                        d="M15.5684 16.4251C15.2603 16.4251 15.0073 16.1751 15.0073 15.867C15.0073 15.5589 15.2536 15.3088 15.5617 15.3088H15.5684C15.8765 15.3088 16.1266 15.5589 16.1266 15.867C16.1266 16.1751 15.8765 16.4251 15.5684 16.4251Z"
+                        fill="#8F95B2"/>
+                  <path fill-rule="evenodd" clip-rule="evenodd"
+                        d="M12.2662 16.4251C11.9581 16.4251 11.7051 16.1751 11.7051 15.867C11.7051 15.5589 11.9514 15.3088 12.2595 15.3088H12.2662C12.5743 15.3088 12.8243 15.5589 12.8243 15.867C12.8243 16.1751 12.5743 16.4251 12.2662 16.4251Z"
+                        fill="#8F95B2"/>
+                  <path fill-rule="evenodd" clip-rule="evenodd"
+                        d="M8.95688 16.4251C8.64879 16.4251 8.39502 16.1751 8.39502 15.867C8.39502 15.5589 8.64209 15.3088 8.95018 15.3088H8.95688C9.26497 15.3088 9.51502 15.5589 9.51502 15.867C9.51502 16.1751 9.26497 16.4251 8.95688 16.4251Z"
+                        fill="#8F95B2"/>
+                  <path fill-rule="evenodd" clip-rule="evenodd"
+                        d="M15.2647 7.5654C14.9566 7.5654 14.7065 7.31535 14.7065 7.00726V4.55814C14.7065 4.25005 14.9566 4 15.2647 4C15.5728 4 15.8228 4.25005 15.8228 4.55814V7.00726C15.8228 7.31535 15.5728 7.5654 15.2647 7.5654Z"
+                        fill="#8F95B2"/>
+                  <path fill-rule="evenodd" clip-rule="evenodd"
+                        d="M9.25345 7.5654C8.94536 7.5654 8.69531 7.31535 8.69531 7.00726V4.55814C8.69531 4.25005 8.94536 4 9.25345 4C9.56155 4 9.81159 4.25005 9.81159 4.55814V7.00726C9.81159 7.31535 9.56155 7.5654 9.25345 7.5654Z"
+                        fill="#8F95B2"/>
+                  <mask id="mask0" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="5" y="5" width="15"
+                        height="15">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M5 5.17505H19.5116V19.9999H5V5.17505Z"
+                          fill="white"/>
+                  </mask>
+                  <g mask="url(#mask0)">
+                    <path fill-rule="evenodd" clip-rule="evenodd"
+                          d="M9.10865 6.29167C7.17898 6.29167 6.11628 7.32088 6.11628 9.18953V15.9237C6.11628 17.8333 7.17898 18.884 9.10865 18.884H15.403C17.3327 18.884 18.3953 17.8526 18.3953 15.9802V9.18953C18.3983 8.27046 18.1513 7.55604 17.6608 7.06488C17.1563 6.55883 16.3786 6.29167 15.4097 6.29167H9.10865ZM15.403 20H9.10865C6.5747 20 5 18.4379 5 15.9233V9.18919C5 6.71254 6.5747 5.17505 9.10865 5.17505H15.4097C16.6815 5.17505 17.733 5.55607 18.4512 6.2757C19.1485 6.97598 19.5153 7.98286 19.5116 9.19068V15.9799C19.5116 18.4595 17.9369 20 15.403 20Z"
+                          fill="#8F95B2"/>
+                  </g>
+                </svg>
+              </div>
+            </div>
+            <span class="error-validate" *ngIf="showErrDateTo">{{messageErrDateTo}}</span>
+          </div>
+
+          <div class="responsive-element" style="width: 13%;">
+
+            <!--            <label class="sy-label responsive-label">{{ 'MANAGER_REGISTER.PHONE_NUMBER' | translate }}</label>-->
+            <input (keyup.enter)="loadData(1)"
+                   type="text" style="height: 40px; font-size: 12px !important;"
+                   class="form-control responsive-element-search"
+                   name="infoClass" [(ngModel)]="valuePhoneSearch"
+                   placeholder="{{ 'MANAGER_REGISTER.ENTER_SEARCH_INFORMATION' | translate }}"
+                   oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"
+            />
+          </div>
+
+          <div style="width: 13%; margin-right: -11px" class="search-subject font-label search-dv responsive-element">
+            <button [disabled]="showErrDateFrom==true || showErrDateTo ==true"
+                    [ngClass]="(showErrDateFrom==true || showErrDateTo ==true) ? 'classDisable':'classActive'"
+                    class="responsive-search"
+                    (click)="loadData(1)"
+                    style="width: 100%;">
+              {{ 'MANAGER_REGISTER.SEARCH' | translate }}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="row table-school table-school-year package_management" style="margin-top: 24px">
+    <ag-grid-angular
+      [suppressRowTransform]="true"
+      style="width: 100%; height: 480px; padding-left: 13px; "
+      class="ag-theme-balham"
+      [rowData]="rowData"
+      [columnDefs]="columnDefs"
+      [rowHeight]="ROW_HEIGHT"
+      [headerHeight]="HEADER_HEIGHT"
+      [suppressRowClickSelection]="true"
+      [tooltipShowDelay]="0"
+      [rowSelection]="rowSelection"
+      (gridReady)="onGridReady($event)"
+      (gridSizeChanged)="gridSizeChanged($event)"
+      [overlayNoRowsTemplate]="noRowsTemplate"
+      [suppressMovableColumns]="true"
+      (selectionChanged)="onSelectionChanged($event)"
+      [applyColumnDefOrder]="true"
+    >
+    </ag-grid-angular>
+  </div>
+  <!--  selectedId.length>0-->
+  <div *ngIf="showPagination">
+    <div *ngIf="total > 0" class="sy-paging w-100 row"
+         [ngClass]="selectedId.length > 0 ? 'sy-paging w-100 row page2': 'sy-paging w-100 row page1'">
+        <span class="sy-paging-result" style="padding-left: 13px"
+        >{{ first }}
+          -{{ last }} {{ 'MANAGER_REGISTER.OF' | translate }} {{ total }} {{ 'MANAGER_REGISTER.RESULT' | translate }}</span
+        >
+      <ul class="sy-pages">
+        <li
+          class="sy-ic ic-size-32 arrow"
+          [class.ic-svg-first-disabled]="currentPage === 1"
+          [class.ic-svg-first]="currentPage !== 1"
+          [class.disabled]="currentPage === 1"
+          (click)="goToPage(1)"
+        ></li>
+        <li
+          class="sy-ic ic-size-32 arrow"
+          [class.ic-svg-prev-disabled]="currentPage === 1"
+          [class.ic-svg-prev]="currentPage !== 1"
+          [class.disabled]="currentPage === 1"
+          (click)="goToPage(currentPage - 1)"
+        ></li>
+        <li
+          class="sy-page"
+          [class.sy-highlight]="i === currentPage"
+          [class.sy-dots]="i === '...'"
+          *ngFor="let i of rangeWithDots"
+          (click)="i !== '...' && goToPage(i)"
+        >
+          {{ i }}
+        </li>
+        <li
+          class="sy-ic ic-size-32 arrow"
+          [class.ic-svg-next-disabled]="currentPage === totalPage"
+          [class.ic-svg-next]="currentPage !== totalPage"
+          [class.disabled]="currentPage === totalPage"
+          (click)="goToPage(currentPage + 1)"
+        ></li>
+        <li
+          class="sy-ic ic-size-32 arrow"
+          [class.ic-svg-last-disabled]="currentPage === totalPage"
+          [class.ic-svg-last]="currentPage !== totalPage"
+          [class.disabled]="currentPage === totalPage"
+          (click)="goToPage(totalPage)"
+        ></li>
+      </ul>
+    </div>
+  </div>
+
+
+  <div class="col-md-12 col-xs-12 font-label search-dv" style="margin-bottom: 20px; margin-top: 16px"
+       *ngIf="selectedId.length>0">
+    <button style="margin-left: 40%; margin-right:1.3%;"
+            (click)="unSelected()"
+            class="sy-btn-action button-cancel focus-button"
+    >
+      <svg width="18" height="13" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path
+          d="M10.8 3.6V7.2C10.7989 8.15446 10.4193 9.06953 9.74442 9.74443C9.06951 10.4193 8.15445 10.799 7.19999 10.8H3.6C3.44087 10.8 3.28826 10.8632 3.17574 10.9757C3.06321 11.0883 3 11.2409 3 11.4C3 11.5591 3.06321 11.7117 3.17574 11.8243C3.28826 11.9368 3.44087 12 3.6 12H7.19999C8.47258 11.9985 9.69263 11.4924 10.5925 10.5925C11.4923 9.69264 11.9985 8.47259 12 7.2V3.6C12 3.44087 11.9368 3.28826 11.8243 3.17574C11.7117 3.06321 11.5591 3 11.4 3C11.2409 3 11.0882 3.06321 10.9757 3.17574C10.8632 3.28826 10.8 3.44087 10.8 3.6Z"
+          fill="white"/>
+        <path
+          d="M7.19999 10.2C7.99535 10.199 8.75787 9.88268 9.32027 9.32027C9.88268 8.75787 10.199 7.99535 10.2 7.19999V3C10.199 2.20463 9.88268 1.44212 9.32027 0.879713C8.75787 0.317308 7.99535 0.000936868 7.19999 0H3C2.20463 0.000936868 1.44212 0.317308 0.879713 0.879713C0.317308 1.44212 0.000936868 2.20463 0 3V7.19999C0.000936868 7.99535 0.317308 8.75787 0.879713 9.32027C1.44212 9.88268 2.20463 10.199 3 10.2H7.19999ZM3.48599 4.44845L4.25297 5.50901L6.79241 3.15942C6.90927 3.05133 7.06429 2.9941 7.22335 3.00032C7.38241 3.00653 7.53249 3.07567 7.64057 3.19253C7.74865 3.3094 7.80588 3.46441 7.79967 3.62347C7.79346 3.78253 7.72431 3.93261 7.60745 4.04069L4.57121 6.84959C4.5089 6.90721 4.43506 6.95095 4.35459 6.97792C4.27412 7.0049 4.18885 7.0145 4.10439 7.00608C4.01994 6.99767 3.93823 6.97143 3.86467 6.92911C3.7911 6.88678 3.72736 6.82933 3.67763 6.76055L2.514 5.15153C2.42544 5.02245 2.39084 4.86387 2.41758 4.70963C2.44432 4.55539 2.53027 4.4177 2.65711 4.32596C2.78395 4.23421 2.94162 4.19567 3.09648 4.21856C3.25133 4.24144 3.39112 4.32394 3.48599 4.44845Z"
+          fill="white"/>
+      </svg>
+      {{ 'MANAGER_REGISTER.UNSELECTED' | translate }}
+    </button>
+
+
+    <!--[ngClass]="true:sy"-->
+    <!--[disabled]="disableActive"-->
+    <button class="sy-btn-action button-save focus-button font-label"
+            (click)="activeMultiRegister()"
+            *ngIf="disableActive"
+    >
+      <svg width="20" height="13" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" clip-rule="evenodd"
+              d="M10 3C9.72 3 9.47 3.11 9.29 3.29L5 7.59L2.71 5.29C2.53 5.11 2.28 5 2 5C1.45 5 1 5.45 1 6C1 6.28 1.11 6.53 1.29 6.71L4.29 9.71C4.47 9.89 4.72 10 5 10C5.28 10 5.53 9.89 5.71 9.71L10.71 4.71C10.89 4.53 11 4.28 11 4C11 3.45 10.55 3 10 3Z"
+              fill="white"/>
+      </svg>
+      {{ 'MANAGER_REGISTER.ACTIVE' | translate }}
+    </button>
+  </div>
+</div>
+
+
+<!--<ng-template #confirmRegisterModal>-->
+<!--  <div class="modal-confirm" style="width: 418px" tabindex="0">-->
+<!--    <div class="modal-header">-->
+<!--      <h4 class="modal-title">xác nhận kích hoạt</h4>-->
+<!--      <p class="des">-->
+<!--        Bạn có chắc chắn muốn kích hoạt bản ghi đã chọn?-->
+<!--      </p>-->
+<!--    </div>-->
+<!--    <div class="modal-footer">-->
+<!--      <div class="modal-actions font-label search-dv">-->
+<!--        <button type="button" class="focus-button sy-btn-action" (click)="modalRef.hide()"-->
+<!--                tabIndex="0" >-->
+<!--          Hủy bỏ-->
+<!--        </button>-->
+<!--        &lt;!&ndash;*ngIf="checkEnableButton"&ndash;&gt;-->
+<!--        <button-->
+<!--          type="button"-->
+<!--          class="focus-button sy-btn-action active"-->
+<!--          (click)="activeRegister()"-->
+
+<!--          tabIndex="0"-->
+<!--        >-->
+<!--          Đồng ý-->
+<!--        </button>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</ng-template>-->
+
+
+<ng-template #confirmRegisterModal>
+  <form class="sy-form">
+    <div class="modal-content " style="width: 418px" tabindex="0">
+      <div class="modal-header">
+        <h4 class="modal-title"> {{ 'MANAGER_REGISTER.CONFIRM_ACTIVE_TITLE' | translate }}</h4>
+        <p class="des">
+          {{ 'MANAGER_REGISTER.CONFIRM_ACTIVE' | translate }}
+        </p>
+      </div>
+      <div class="modal-footer">
+        <div class="modal-actions">
+          <button type="button" class="focus-button sy-btn-action btn-action-dv" (click)="modalRef.hide()"
+          >
+            {{ 'MANAGER_REGISTER.CANCEL' | translate }}
+          </button>
+          <button
+            type="button"
+            class="focus-button sy-btn-action active btn-action-dv"
+            (click)="activeRegister()"
+
+          >
+            {{ 'MANAGER_REGISTER.AGREE' | translate }}
+          </button>
+        </div>
+      </div>
+    </div>
+  </form>
+</ng-template>
+
+
+<div class="page-loading-class" *ngIf="hide===false">
+  <div class="bee-spinner-sc"></div>
+</div>

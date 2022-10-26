@@ -1,0 +1,100 @@
+<div class="page-loading-class" *ngIf="isLoading">
+    <div class="bee-spinner-sc"></div>
+</div>
+<div class="row d-flex-column">
+
+    <div class="row-header">
+        <h3 class="text header-text" style="text-transform: uppercase;">{{ 'STATISTIC_REVENUE.TITLE' | translate }}</h3>
+        <button class="text btn-action-dv btn-export" (click)="exportExcel()">
+            <svg width="12" height="11" viewBox="0 0 12 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10.2663 6.91635V8.97915C10.2659 9.31938 10.1306 9.64558 9.89001 9.88616C9.64943 10.1267 9.32324 10.2621 8.98301 10.2624H1.28329C0.943053 10.2621 0.616861 10.1267 0.376279 9.88616C0.135697 9.64558 0.000373641 9.31938 0 8.97915V4.27377C0.000373641 3.93353 0.135697 3.60734 0.376279 3.36676C0.616861 3.12618 0.943053 2.99085 1.28329 2.99048H2.88667C1.18204 4.36565 0.702899 6.42113 1.57344 8.59523C1.67972 8.8641 1.87368 9.08918 2.1239 9.234C2.37412 9.37883 2.66591 9.4349 2.95199 9.39312C3.23806 9.35134 3.50163 9.21417 3.69999 9.00384C3.89834 8.79351 4.01984 8.52236 4.04479 8.23433C4.08697 7.74767 5.73954 6.54582 7.27179 6.27432V6.81275C7.27595 7.06466 7.35366 7.30986 7.49536 7.51819C7.63707 7.72651 7.83658 7.88886 8.06935 7.98527C8.30212 8.08168 8.558 8.10795 8.8055 8.06083C9.053 8.01371 9.28133 7.89527 9.4624 7.72007L10.2663 6.91635Z" fill="white"/>
+                <path d="M11.7496 4.22322L8.8576 7.11523C8.7973 7.17376 8.72117 7.21335 8.63863 7.22913C8.55609 7.24491 8.47073 7.23617 8.39309 7.20401C8.31545 7.17185 8.24892 7.11767 8.20171 7.04814C8.1545 6.97862 8.12867 6.89679 8.12741 6.81276V5.37741C7.17457 5.2759 5.66444 5.741 4.50311 6.53237C3.71321 7.07135 3.23574 7.66482 3.19271 8.16026C3.18269 8.25514 3.14138 8.344 3.07529 8.41281C3.0092 8.48163 2.92208 8.52649 2.82768 8.54033C2.73327 8.55417 2.63695 8.5362 2.55389 8.48925C2.47082 8.44229 2.40575 8.36903 2.36892 8.28101C1.84466 6.95495 1.87892 5.76539 2.47086 4.74526C3.31509 3.28993 5.21748 2.31416 8.12741 1.84255V0.42392C8.1287 0.339903 8.15454 0.258099 8.20176 0.188593C8.24897 0.119087 8.3155 0.064918 8.39313 0.0327649C8.47076 0.000611686 8.55611 -0.00811995 8.63864 0.00764641C8.72117 0.0234128 8.79729 0.062988 8.8576 0.121492L11.7496 3.01346C11.9099 3.17396 11.9999 3.39151 11.9999 3.61834C11.9999 3.84517 11.9099 4.06272 11.7496 4.22322Z" fill="white"/>
+            </svg>
+            {{ 'STATISTIC_REVENUE.EXPORT' | translate }}
+        </button>
+    </div>
+
+    <div class="row-body">
+        <div class="statistic-user col-md-6 col-sm-12 col-xs-12" style="padding-left: 5px">
+            <h3 class="text header-text">{{ 'STATISTIC_REVENUE.STATISTIC_USER.TITLE' | translate }}</h3>
+            <ag-grid-angular
+                style="width: 100%; height: 145px;"
+                class="ag-theme-balham"
+                rowHeight="56"
+                [overlayNoRowsTemplate]="overlayNoRowsTemplate"
+                [rowData]="rowDataStatisticUser"
+                [columnDefs]="columnDefsStatisticUser"
+                (gridSizeChanged)="gridSizeChanged($event)"
+                (gridReady)="onGridReady($event)"
+            >
+            </ag-grid-angular>
+        </div>
+        <div class="statistic-revenue col-md-6 col-sm-12 col-xs-12">
+            <h3 class="text header-text">{{ 'STATISTIC_REVENUE.STATISTIC_REVENUE.TITLE' | translate }}</h3>
+            <ag-grid-angular
+                style="width: 100%; height: 145px;"
+                class="ag-theme-balham"
+                [headerHeight]="headerHeight"
+                rowHeight="56"
+                [overlayNoRowsTemplate]="overlayNoRowsTemplate"
+                [rowData]="rowDataStatisticRevenue"
+                [columnDefs]="columnDefsStatisticRevenue"
+                (gridSizeChanged)="gridSizeChangedDetail($event)"
+                (gridReady)="onGridReady($event)"
+            >
+            </ag-grid-angular>
+
+        </div>
+        <div class="statistic-detail col-md-12 col-sm-12 col-xs-12">
+            <h3 style="margin-top: 24px;" class="text header-text">{{ 'STATISTIC_REVENUE.DETAIL_STATISTIC.TITLE' | translate }}</h3>
+            <ag-grid-angular
+                style="width: 100%; height: 300px; "
+                class="ag-theme-balham"
+                headerHeight="32"
+                rowHeight="56"
+                [overlayNoRowsTemplate]="overlayNoRowsTemplate"
+                [rowData]="rowDataStatisticDetail"
+                [columnDefs]="columnDefsStatisticDetail"
+                (gridSizeChanged)="gridSizeChanged($event)"
+                (gridReady)="onGridReady($event)"
+            >
+            </ag-grid-angular>
+        </div>
+        <div class="sy-paging w-100 row align-items-center" *ngIf="totalRecord > 0">
+            <span class="sy-paging-result"
+              >{{first}}-{{last}} {{ 'COMMON.OF' | translate }} {{totalRecord}} {{ 'COMMON.RESULT' | translate }}</span>
+              <ul style="display: flex; align-items: center;list-style-type: none;">
+                <li class="sy-page" (click)="paging(1)">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M7.8075 6L10.275 3.5325C10.4175 3.3975 10.5 3.21 10.5 3C10.5 2.5875 10.1625 2.25 9.75 2.25C9.54 2.25 9.3525 2.3325 9.2175 2.4675L6.2175 5.4675C6.0825 5.6025 6 5.79 6 6C6 6.21 6.0825 6.3975 6.2175 6.5325L9.2175 9.5325C9.3525 9.6675 9.54 9.75 9.75 9.75C10.1625 9.75 10.5 9.4125 10.5 9C10.5 8.79 10.4175 8.6025 10.2825 8.4675L7.8075 6Z" fill="#8F95B2"/>
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M2.8075 6L5.275 3.5325C5.4175 3.3975 5.5 3.21 5.5 3C5.5 2.5875 5.1625 2.25 4.75 2.25C4.54 2.25 4.3525 2.3325 4.2175 2.4675L1.2175 5.4675C1.0825 5.6025 1 5.79 1 6C1 6.21 1.0825 6.3975 1.2175 6.5325L4.2175 9.5325C4.3525 9.6675 4.54 9.75 4.75 9.75C5.1625 9.75 5.5 9.4125 5.5 9C5.5 8.79 5.4175 8.6025 5.2825 8.4675L2.8075 6Z" fill="#8F95B2"/>
+                    </svg>
+                </li>
+                <li class="sy-page" (click)="prev()">
+                    <svg width="6" height="8" viewBox="0 0 6 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M2.5575 4L5.025 1.5325C5.1675 1.3975 5.25 1.21 5.25 1C5.25 0.5875 4.9125 0.25 4.5 0.25C4.29 0.25 4.1025 0.3325 3.9675 0.4675L0.9675 3.4675C0.8325 3.6025 0.75 3.79 0.75 4C0.75 4.21 0.8325 4.3975 0.9675 4.5325L3.9675 7.5325C4.1025 7.6675 4.29 7.75 4.5 7.75C4.9125 7.75 5.25 7.4125 5.25 7C5.25 6.79 5.1675 6.6025 5.0325 6.4675L2.5575 4Z" fill="#8F95B2"/>
+                    </svg>
+                </li>
+                <li class="sy-page"
+                [class.sy-highlight]="i == currentPage"
+                [class.sy-dots]="i === '...'"
+                *ngFor="let i of rangeWithDots"
+                (click)="i !== '...' && paging(i)" >
+                {{ i }}
+                </li>
+                <li class="sy-page" (click)="next()">
+                    <svg width="6" height="8" viewBox="0 0 6 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M5.0325 3.4675L2.0325 0.4675C1.8975 0.3325 1.71 0.25 1.5 0.25C1.0875 0.25 0.75 0.5875 0.75 1C0.75 1.21 0.8325 1.3975 0.9675 1.5325L3.4425 4L0.975 6.4675C0.8325 6.6025 0.75 6.79 0.75 7C0.75 7.4125 1.0875 7.75 1.5 7.75C1.71 7.75 1.8975 7.6675 2.0325 7.5325L5.0325 4.5325C5.1675 4.3975 5.25 4.21 5.25 4C5.25 3.79 5.1675 3.6025 5.0325 3.4675Z" fill="#8F95B2"/>
+                    </svg>
+                </li>
+                <li class="sy-page" (click)="paging(totalPage)">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M5.2825 5.4675L2.2825 2.4675C2.1475 2.3325 1.96 2.25 1.75 2.25C1.3375 2.25 1 2.5875 1 3C1 3.21 1.0825 3.3975 1.2175 3.5325L3.6925 6L1.225 8.4675C1.0825 8.6025 1 8.79 1 9C1 9.4125 1.3375 9.75 1.75 9.75C1.96 9.75 2.1475 9.6675 2.2825 9.5325L5.2825 6.5325C5.4175 6.3975 5.5 6.21 5.5 6C5.5 5.79 5.4175 5.6025 5.2825 5.4675Z" fill="#8F95B2"/>
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M10.2825 5.4675L7.2825 2.4675C7.1475 2.3325 6.96 2.25 6.75 2.25C6.3375 2.25 6 2.5875 6 3C6 3.21 6.0825 3.3975 6.2175 3.5325L8.6925 6L6.225 8.4675C6.0825 8.6025 6 8.79 6 9C6 9.4125 6.3375 9.75 6.75 9.75C6.96 9.75 7.1475 9.6675 7.2825 9.5325L10.2825 6.5325C10.4175 6.3975 10.5 6.21 10.5 6C10.5 5.79 10.4175 5.6025 10.2825 5.4675Z" fill="#8F95B2"/>
+                    </svg>
+                </li>
+              </ul>
+          </div>
+    </div>
+
+</div>

@@ -1,0 +1,11 @@
+entity AttendanceStudent {
+	id Long,
+    code String,
+	shoolYear String,
+	semester String,
+	month String
+}
+dto AttendanceStudent with mapstruct
+paginate AttendanceStudent with pagination
+service AttendanceStudent with serviceClass
+service AttendanceStudent with serviceImpl

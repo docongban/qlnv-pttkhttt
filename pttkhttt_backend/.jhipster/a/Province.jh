@@ -1,0 +1,9 @@
+entity Province {
+	id Long,
+    prName String,
+	prNameEn String
+}
+dto Province with mapstruct
+paginate Province with pagination
+service Province with serviceClass
+service Province with serviceImpl

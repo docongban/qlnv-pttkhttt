@@ -1,0 +1,11 @@
+<div style="display: flex; flex-direction: column;justify-content: center;
+ align-items: center">
+    <input type="date" class="sy-popup-input" tabindex="0" [(ngModel)]="this.rowSelect.entryLockDate" (blur)="checkValid()"
+           placeholder="mm/dd/yyyy" (keyup)="validateKeyUp($event)"/>
+  <div style="color: red; line-height: 12px;
+  font-size: 11px !important;word-wrap: break-word;
+    display: flex; white-space: normal; height: 30px; width: 200px"
+       *ngIf="invalid">
+    {{message}}
+  </div>
+</div>

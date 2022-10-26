@@ -1,0 +1,4 @@
+<select [title]="ability" [(ngModel)]="params.value" (change)="this.refresh(this.params)" class="select-op">
+  <option *ngIf="params.value === ''" title="lựa chọn" value=''>Lựa chọn</option>
+  <option *ngFor="let d of dataSelect" [title]="d.name" [value]="d.code">{{d.name}}</option>
+</select> 

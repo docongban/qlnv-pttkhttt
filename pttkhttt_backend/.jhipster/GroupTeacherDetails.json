@@ -1,0 +1,28 @@
+{
+  "name": "GroupTeacherDetails",
+  "fields": [
+    {
+      "fieldName": "id",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "teacherId",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "parentGroupCode",
+      "fieldType": "String"
+    }
+  ],
+  "relationships": [],
+  "entityTableName": "group_teacher_details",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "changelogDate": "20210830150527"
+}

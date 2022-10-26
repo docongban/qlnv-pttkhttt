@@ -1,0 +1,60 @@
+{
+  "name": "TransferStudentsDetails",
+  "fields": [
+    {
+      "fieldName": "id",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "code",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "currentSchoolYear",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "currentClassCode",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "studentCode",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "academicAbility",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "conduct",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "status",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "newClassCode",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "newSchoolYear",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "parentCode",
+      "fieldType": "String"
+    }
+  ],
+  "relationships": [],
+  "entityTableName": "transfer_students_details",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "changelogDate": "20210830162110"
+}

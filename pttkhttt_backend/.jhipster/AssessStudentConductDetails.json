@@ -1,0 +1,48 @@
+{
+  "name": "AssessStudentConductDetails",
+  "fields": [
+    {
+      "fieldName": "id",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "studentCode",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "numberOff",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "numberOffAllowed",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "academicAbitity",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "conduct",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "competitionTitle",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "parentCode",
+      "fieldType": "String"
+    }
+  ],
+  "relationships": [],
+  "entityTableName": "assess_student_conduct_details",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "changelogDate": "20210830161948"
+}

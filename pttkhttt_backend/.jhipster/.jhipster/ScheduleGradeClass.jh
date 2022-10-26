@@ -1,0 +1,17 @@
+entity ScheduleGradeClass {
+	id Long,
+    code String,
+    gradeLevel String,
+    parentCode Long,
+    endDate Instant,
+	applyStatus Long,
+	applyDate Instant,
+	classCode String,
+	crateDate Instant,
+	creator String,
+	status Long
+}
+dto ScheduleGradeClass with mapstruct
+paginate ScheduleGradeClass with pagination
+service ScheduleGradeClass with serviceClass
+service ScheduleGradeClass with serviceImpl

@@ -1,0 +1,12 @@
+entity GradebookSubjectsDetails {
+	id Long,
+	code String,
+	studentCode String,
+	parentCode String,
+	avgScore Double,
+	subjectCode String
+}
+dto GradebookSubjectsDetails with mapstruct
+paginate GradebookSubjectsDetails with pagination
+service GradebookSubjectsDetails with serviceClass
+service GradebookSubjectsDetails with serviceImpl

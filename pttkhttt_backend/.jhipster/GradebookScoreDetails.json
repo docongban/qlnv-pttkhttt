@@ -1,0 +1,45 @@
+{
+  "name": "GradebookScoreDetails",
+  "fields": [
+    {
+      "fieldName": "code",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "parentCode",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "scoreCode",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "times",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "value",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "type",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "coeficient",
+      "fieldType": "Double"
+    }
+  ],
+  "relationships": [],
+  "changelogDate": "20210818085029",
+  "entityTableName": "gradebook_score_details",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}

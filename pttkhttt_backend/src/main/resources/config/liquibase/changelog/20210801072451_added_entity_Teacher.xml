@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <!--
+        Added the entity Teacher.
+    -->
+    <changeSet id="20210801072451-1" author="jhipster">
+        <createTable tableName="teacher">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="created_time" type="${datetimeType}">
+                <constraints nullable="true" />
+            </column>
+            <column name="created_name" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="update_time" type="${datetimeType}">
+                <constraints nullable="true" />
+            </column>
+            <column name="update_name" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="full_name" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="code" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="dept_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <column name="subject_parent_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <column name="position" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <column name="start_date" type="${datetimeType}">
+                <constraints nullable="true" />
+            </column>
+            <column name="contract_type" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <column name="phone" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="email" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="birth_day" type="${datetimeType}">
+                <constraints nullable="true" />
+            </column>
+            <column name="religion" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="home_town" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="nation" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="permanent_address" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="temporary_address" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="social_insurance_number" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="identity_card" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="issued_address" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="issued_date" type="${datetimeType}">
+                <constraints nullable="true" />
+            </column>
+            <column name="marriage_status" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <column name="sex" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <column name="party_number" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <column name="union_number" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <column name="date_of_party_member" type="${datetimeType}">
+                <constraints nullable="true" />
+            </column>
+            <column name="date_of_union_member" type="${datetimeType}">
+                <constraints nullable="true" />
+            </column>
+            <column name="adr_of_party_member" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="adr_of_union_member" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="specialize_level" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <column name="avatar" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="certificate_path" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="status" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->
+        </createTable>
+        <dropDefaultValue tableName="teacher" columnName="created_time" columnDataType="${datetimeType}"/>
+        <dropDefaultValue tableName="teacher" columnName="update_time" columnDataType="${datetimeType}"/>
+        <dropDefaultValue tableName="teacher" columnName="start_date" columnDataType="${datetimeType}"/>
+        <dropDefaultValue tableName="teacher" columnName="birth_day" columnDataType="${datetimeType}"/>
+        <dropDefaultValue tableName="teacher" columnName="issued_date" columnDataType="${datetimeType}"/>
+        <dropDefaultValue tableName="teacher" columnName="date_of_party_member" columnDataType="${datetimeType}"/>
+        <dropDefaultValue tableName="teacher" columnName="date_of_union_member" columnDataType="${datetimeType}"/>
+    </changeSet>
+
+    <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here -->
+
+    <!--
+        Load sample data generated with Faker.js
+        - This data can be easily edited using a CSV editor (or even MS Excel) and
+          is located in the 'src/main/resources/config/liquibase/fake-data' directory
+        - By default this data is applied when running with the JHipster 'dev' profile.
+          This can be customized by adding or removing 'faker' in the 'spring.liquibase.contexts'
+          Spring Boot configuration key.
+    -->
+    <changeSet id="20210801072451-1-data" author="jhipster" context="faker">
+        <loadData
+                  file="config/liquibase/fake-data/teacher.csv"
+                  separator=";"
+                  tableName="teacher">
+            <column name="id" type="numeric"/>
+            <column name="created_time" type="${datetimeType}"/>
+            <column name="created_name" type="string"/>
+            <column name="update_time" type="${datetimeType}"/>
+            <column name="update_name" type="string"/>
+            <column name="full_name" type="string"/>
+            <column name="code" type="string"/>
+            <column name="dept_id" type="numeric"/>
+            <column name="subject_parent_id" type="numeric"/>
+            <column name="position" type="numeric"/>
+            <column name="start_date" type="${datetimeType}"/>
+            <column name="contract_type" type="numeric"/>
+            <column name="phone" type="string"/>
+            <column name="email" type="string"/>
+            <column name="birth_day" type="${datetimeType}"/>
+            <column name="religion" type="string"/>
+            <column name="home_town" type="string"/>
+            <column name="nation" type="string"/>
+            <column name="permanent_address" type="string"/>
+            <column name="temporary_address" type="string"/>
+            <column name="social_insurance_number" type="string"/>
+            <column name="identity_card" type="string"/>
+            <column name="issued_address" type="string"/>
+            <column name="issued_date" type="${datetimeType}"/>
+            <column name="marriage_status" type="numeric"/>
+            <column name="sex" type="numeric"/>
+            <column name="party_number" type="numeric"/>
+            <column name="union_number" type="numeric"/>
+            <column name="date_of_party_member" type="${datetimeType}"/>
+            <column name="date_of_union_member" type="${datetimeType}"/>
+            <column name="adr_of_party_member" type="string"/>
+            <column name="adr_of_union_member" type="string"/>
+            <column name="specialize_level" type="numeric"/>
+            <column name="avatar" type="string"/>
+            <column name="certificate_path" type="string"/>
+            <column name="status" type="numeric"/>
+            <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here -->
+        </loadData>
+    </changeSet>
+</databaseChangeLog>

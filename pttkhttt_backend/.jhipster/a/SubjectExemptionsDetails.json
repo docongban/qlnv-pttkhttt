@@ -1,0 +1,40 @@
+{
+  "name": "SubjectExemptionsDetails",
+  "fields": [
+
+    { 
+      "fielddName": "subject_code", 
+      "fieldType": "String"
+    },
+    { 
+      "fielddName": "type_semester", 
+      "fieldType": "String"
+    },
+    { 
+      "fielddName": "exemption_object", 
+      "fieldType": "String"
+    },
+    { 
+      "fielddName": "parent_code", 
+      "fieldType": "String"
+    },
+    { 
+      "fielddName": "semester", 
+      "fieldType": "String"
+    }
+  ],
+  "relationships": [],
+  "changelogDate": "20210801072451",
+  "entityTableName": "subject_exemptions_details",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}
+
+

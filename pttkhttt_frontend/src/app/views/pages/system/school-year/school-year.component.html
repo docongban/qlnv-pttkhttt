@@ -1,0 +1,56 @@
+<div class="sy">
+  <div class="sy-heading">
+    <span class="sy-heading-text">THÔNG TIN CẤU HÌNH VÀ THỜI GIAN NĂM HỌC</span>
+    <button class="sy-heading-btn" (click)="openCreateSchoolYear()">
+      <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="5" width="2" height="12" rx="1" fill="white"/>
+        <rect x="12" y="5" width="2" height="12" rx="1" transform="rotate(90 12 5)" fill="white"/>
+      </svg>
+      Khai báo năm học
+    </button>
+  </div>
+  <hr class="sy-line" />
+  <div class="table-school table-school-year">
+    <ag-grid-angular
+      style="width: 100%; height: 420px"
+      class="ag-theme-balham"
+      [rowData]="rowData"
+      [columnDefs]="columnDefs"
+      [getRowStyle]="rowStyle"
+      [rowHeight]="ROW_HEIGHT"
+      [headerHeight]="HEADER_HEIGHT"
+      [context]="context"
+      (gridReady)="onGridReady($event)"
+      (gridSizeChanged)="gridSizeChanged($event)"
+    >
+    </ag-grid-angular>
+  </div>
+  <div class="sy-paging w-100">
+    <span class="sy-paging-result"
+      >{{ first }}-{{ last }} của {{ total }} kết quả</span
+    >
+    <ul>
+      <i
+        class="fas fa-angle-double-left arrow"
+        style="margin: 0"
+        (click)="page(1)"
+      ></i>
+      <i class="fas fa-angle-left arrow" (click)="prev()"></i>
+      <li
+        class="sy-page"
+        [class.sy-highlight]="i === currentPage"
+        [class.sy-dots]="i === '...'"
+        *ngFor="let i of rangeWithDots"
+        (click)="i !== '...' && page(i)"
+      >
+        {{ i }}
+      </li>
+      <i class="fas fa-angle-right arrow" (click)="next()"></i>
+      <i
+        class="fas fa-angle-double-right arrow"
+        style="margin: 0"
+        (click)="page(totalPage)"
+      ></i>
+    </ul>
+  </div>
+</div>

@@ -1,0 +1,150 @@
+<div class="row" xmlns="http://www.w3.org/1999/html">
+  <div class="col-md-12 col-xs-12" style="margin-left: 15px; padding-right: 30px;">
+    <div class="menu-action-dv">
+      <h3 style="font-weight: 700; font-family: Inter; font-size: 18px; line-height: 30px !important;">{{ 'STATISTIC_PACKAGE.TITLE' | translate }}</h3>
+      <div class="list-action-dv" >
+        <div class="btn-action-dv gray" (click)="exportData()" style="transform: translateY(10px)">
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M10.2663 7.91638V9.97918C10.2659 10.3194 10.1306 10.6456 9.89001 10.8862C9.64943 11.1268 9.32324 11.2621 8.98301 11.2625H1.28329C0.943053 11.2621 0.616861 11.1268 0.376279 10.8862C0.135697 10.6456 0.000373641 10.3194 0 9.97918V5.2738C0.000373641 4.93356 0.135697 4.60737 0.376279 4.36679C0.616861 4.12621 0.943053 3.99088 1.28329 3.99051H2.88667C1.18204 5.36568 0.702899 7.42116 1.57344 9.59526C1.67972 9.86413 1.87368 10.0892 2.1239 10.234C2.37412 10.3789 2.66591 10.4349 2.95199 10.3931C3.23806 10.3514 3.50163 10.2142 3.69999 10.0039C3.89834 9.79354 4.01984 9.52239 4.04479 9.23436C4.08697 8.7477 5.73954 7.54585 7.27179 7.27435V7.81278C7.27595 8.06469 7.35366 8.30989 7.49536 8.51822C7.63707 8.72654 7.83658 8.88889 8.06935 8.9853C8.30212 9.08171 8.558 9.10798 8.8055 9.06086C9.053 9.01374 9.28133 8.8953 9.4624 8.72011L10.2663 7.91638Z"
+              fill="white" />
+            <path
+              d="M11.7497 5.22322L8.85773 8.11523C8.79742 8.17376 8.7213 8.21335 8.63875 8.22913C8.55621 8.24491 8.47085 8.23617 8.39321 8.20401C8.31557 8.17185 8.24904 8.11767 8.20183 8.04814C8.15462 7.97862 8.12879 7.89679 8.12754 7.81276V6.37741C7.1747 6.2759 5.66457 6.741 4.50324 7.53237C3.71333 8.07135 3.23586 8.66482 3.19283 9.16026C3.18281 9.25514 3.1415 9.344 3.07541 9.41281C3.00932 9.48163 2.9222 9.52649 2.8278 9.54033C2.7334 9.55417 2.63707 9.5362 2.55401 9.48925C2.47095 9.44229 2.40587 9.36903 2.36904 9.28101C1.84478 7.95495 1.87904 6.76539 2.47098 5.74526C3.31521 4.28993 5.2176 3.31416 8.12754 2.84255V1.42392C8.12882 1.3399 8.15466 1.2581 8.20188 1.18859C8.2491 1.11909 8.31562 1.06492 8.39325 1.03276C8.47089 1.00061 8.55623 0.99188 8.63876 1.00765C8.7213 1.02341 8.79741 1.06299 8.85773 1.12149L11.7497 4.01346C11.91 4.17396 12.0001 4.39151 12.0001 4.61834C12.0001 4.84517 11.91 5.06272 11.7497 5.22322Z"
+              fill="white" />
+          </svg>
+          {{ 'STATISTIC_PACKAGE.EXPORT' | translate }}
+        </div>
+      </div>
+    </div>
+
+
+
+    <!-- Dashboard goi cuoc   -->
+    <div class="row color-container" style="border: 1px solid #D8DAE5;box-sizing: border-box;border-radius: 12px; margin-top: 24px;margin-left: 0px; margin-right: 0px; height: 300px">
+      <!--  Total > 0    -->
+      <div class="col-md-4" *ngIf="total !== 0" style="top: -50px;">
+        <kendo-chart>
+          <kendo-chart-legend [visible]="false"></kendo-chart-legend>
+          <kendo-chart-area background="none"></kendo-chart-area>
+          <kendo-chart-series>
+            <kendo-chart-series-item *ngFor="let series of internetGrowthData; let outermost = last;"
+                                     type="donut" [holeSize]="100"
+                                     [name]="series.name" [data]="series.data"
+                                     field="value" categoryField="category" colorField="color">
+              <kendo-chart-series-item-tooltip>
+                <ng-template let-value="value" let-category ="category" style="background: none !important;">
+                  <div style="position: relative; margin-left: -90px; z-index: 99">
+                    <div class="hero3" style="display: flex;">
+                      <div style="width: 100%;">
+                        <span class="title-tooltip"></span>
+                        <span class="main-tooltip">
+                              {{ category }}: {{ value }}%
+                            </span>
+                      </div>
+                  </div>
+                  </div>
+                </ng-template>
+              </kendo-chart-series-item-tooltip>
+            </kendo-chart-series-item>
+          </kendo-chart-series>
+        </kendo-chart>
+      </div>
+      <div class="col-md-4" *ngIf="total === 0" style="top: -50px; margin-left: -50px;">
+        <kendo-chart>
+          <kendo-chart-legend [visible]="false"></kendo-chart-legend>
+          <kendo-chart-area background="none"></kendo-chart-area>
+          <kendo-chart-series>
+            <kendo-chart-series-item *ngFor="let series of internetGrowthData2; let outermost = last;"
+                                     type="donut" [holeSize]="100"
+                                     [data]="series.data"
+                                     field="value" categoryField="category" colorField="color">
+            </kendo-chart-series-item>
+          </kendo-chart-series>
+        </kendo-chart>
+      </div>
+      <div class="col-8" style="height: 300px; overflow-y: auto; overflow-x: hidden;">
+        <div class="box-item">
+          <div style="position: relative" *ngFor="let o of this.data1">
+          <div class="data-package" [style.background-color]="o.color"></div>
+          <div class="col-6-item" style="width: 100%">
+            <p [matTooltip]="o.category" style="text-overflow: ellipsis;
+                      overflow: hidden;
+                      white-space: nowrap;
+                      width: 90%;"
+            >
+              {{o.category}}
+            </p>
+            <p>{{o.value}}%</p>
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!---->
+
+
+
+
+    <div class="row search-dv" style="margin:0px; top: -50px">
+      <div class="col-md-3" style="padding-left: 0">
+        <label style="font-size: 14px; font-weight: 600; font-family: Inter; line-height: 24px; color: #474D66 !important;">{{ 'STATISTIC_PACKAGE.DATA_PACKAGE' | translate }}</label>
+        <input type="text" style="font-size: 12px; font-weight: 400; font-family: Inter; line-height: 16px; color: #696F8C !important;" placeholder="{{ 'STATISTIC_PACKAGE.ENTER_SEARCH_INFORMATION' | translate }}" [(ngModel)]="searchReport.packageSearch" (change)="searchReport.packageSearch = searchReport.packageSearch.trim()" (keyup.enter)="onSearch()">
+      </div>
+      <div class="col-md-3">
+        <label style="font-size: 14px; font-weight: 600; font-family: Inter; line-height: 24px; color: #474D66 !important;">{{ 'STATISTIC_PACKAGE.SCHOOL' | translate }}</label>
+        <input type="text" style="font-size: 12px; font-weight: 400; font-family: Inter; line-height: 16px; color: #696F8C !important;" placeholder="{{ 'STATISTIC_PACKAGE.ENTER_SEARCH_INFORMATION' | translate }}" [(ngModel)]="searchReport.schoolSearch" (change)="searchReport.schoolSearch = searchReport.schoolSearch.trim()" (keyup.enter)="onSearch()">
+      </div>
+      <div class="col-md-2" style="padding-right: 0;">
+        <button (click)="onSearch()" style="font-size: 12px; font-weight: 600; line-height: 16px; font-family: Inter !important;">{{ 'STATISTIC_PACKAGE.SEARCH' | translate }}</button>
+      </div>
+    </div>
+    <div class="row table-school-export table-class-room" style="margin: 20px 0 0 0; margin-bottom: 30px">
+      <ag-grid-angular
+        style="width: 100%; height:570px;"
+        [suppressScrollOnNewData]="true"
+        class="ag-theme-balham"
+        [columnDefs]="columnDefs"
+        [defaultColDef]="defaultColDef"
+        [autoGroupColumnDef]="autoGroupColumnDef"
+        [rowModelType]="rowModelType"
+        [serverSideStoreType]="serverSideStoreType"
+        [treeData]="true"
+        [headerHeight]="headerHeight"
+        [rowHeight]="rowHeight"
+        [suppressRowTransform]="true"
+        [suppressRowClickSelection]="true"
+        [isServerSideGroupOpenByDefault]="isServerSideGroupOpenByDefault"
+        [isServerSideGroup]="isServerSideGroup"
+        [suppressContextMenu]="true"
+        [getServerSideGroupKey]="getServerSideGroupKey"
+        [rowData]="rowData"
+        (gridReady)="onGridReady($event)"
+        (gridSizeChanged)="gridSizeChanged($event)"
+        (gridColumnsChanged)="gridColumnsChanged($event)"
+        [tooltipShowDelay]="tooltipShowDelay"
+        [debounceVerticalScrollbar]="true"
+        [overlayNoRowsTemplate]="noRowsTemplate">
+      </ag-grid-angular>
+      <div class="icon-no-record" *ngIf="rowData.length===0">
+        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-left: 30px;">
+          <path d="M5.69873 25H30.2467V48H7.45215C6.98712 48 6.54113 47.8136 6.2123 47.4818C5.88347 47.15 5.69873 46.7 5.69873 46.2308V25Z" fill="#C1C4D6"/>
+          <path d="M30.2466 25H42.5206V46.2308C42.5206 46.7 42.3358 47.15 42.007 47.4818C41.6782 47.8136 41.2322 48 40.7671 48H30.2466V25Z" fill="#8F95B2"/>
+          <path d="M30.2466 25L35.726 31.1923H48L42.5206 25H30.2466Z" fill="#D8DAE5"/>
+          <path d="M30.4658 25L24.9863 31.1923H0L5.47945 25H30.4658Z" fill="#D8DAE5"/>
+          <path d="M24 20C29.5228 20 34 15.5228 34 10C34 4.47715 29.5228 0 24 0C18.4772 0 14 4.47715 14 10C14 15.5228 18.4772 20 24 20Z" fill="#C1C4D6"/>
+          <path d="M23.7475 6.84449L24.0657 7.3131L24.3827 6.84449C24.5962 6.62203 24.8523 6.44481 25.1358 6.32338C25.4192 6.20196 25.7242 6.13881 26.0325 6.13771C26.3409 6.13661 26.6463 6.19756 26.9306 6.31696C27.2149 6.43635 27.4723 6.61173 27.6874 6.83266L27.7514 6.89359C28.2155 7.3479 28.4821 7.9666 28.4937 8.61593C28.5053 9.26526 28.2608 9.89307 27.8132 10.3636L27.7514 10.4267L24.0657 14.0274L20.4712 10.4267C20.2361 10.1965 20.0493 9.92169 19.9217 9.61834C19.7942 9.31499 19.7285 8.98923 19.7285 8.66017C19.7285 8.3311 19.7942 8.00534 19.9217 7.70199C20.0493 7.39864 20.2361 7.1238 20.4712 6.89359C20.6743 6.66067 20.9242 6.4731 21.2045 6.34306C21.4848 6.21301 21.7894 6.14342 22.0984 6.13879C22.4074 6.13416 22.7139 6.1946 22.998 6.31618C23.2821 6.43776 23.5375 6.61777 23.7475 6.84449Z" fill="white"/>
+          <defs>
+            <clipPath id="clip0">
+              <rect width="48" height="48" fill="white"/>
+            </clipPath>
+          </defs>
+        </svg>
+        <div>
+          <p style='margin-top: 6px;' *ngIf="langKey !== 'la'">{{ 'MANAGES_SCHOOL.NO_INFO' | translate }}</p>
+          <p style='margin-top: 6px; margin-left: 26px' *ngIf="langKey === 'la'">{{ 'MANAGES_SCHOOL.NO_INFO' | translate }}</p>
+<!--          <p style='margin-top: 6px;'>Không có thông tin</p>-->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

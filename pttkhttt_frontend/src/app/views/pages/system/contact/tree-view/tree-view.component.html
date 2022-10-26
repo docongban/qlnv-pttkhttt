@@ -1,0 +1,72 @@
+<ngx-treeview
+  [config]="config"
+  [items]="items"
+  (filterChange)="onFilterChange($event)"
+  (selectedChange)="selectedChange($event)"
+  [headerTemplate]="headerTemplate"
+  [itemTemplate]="itemTemplate"
+>
+</ngx-treeview>
+
+<ng-template #headerTemplate let-config="config" let-item="item" let-onCollapseExpand="onCollapseExpand"
+             let-onCheckedChange="onCheckedChange" let-onFilterTextChange="onFilterTextChange">
+  <div class="row">
+    <div class="col-12">
+      <div class="d-flex justify-content-between w-100">
+        <div class="form-check d-flex mb-3">
+          <mat-checkbox [disabled]="!config.checkboxEnabled" [(ngModel)]="item.checked" *ngIf="config.hasAllCheckBox"
+                        (ngModelChange)="onCheckedChange()"></mat-checkbox>
+          <strong style="font-size: 16px">{{selectAllTitle}}</strong>
+        </div>
+        <i class="mr-1" (click)="onCollapseExpand()" aria-hidden="true" [ngSwitch]="item.collapsed">
+          <svg *ngSwitchCase="false" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M17 14.3232L12.0354 9.99983L6.99999 14.3232" stroke="#101840" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <svg  *ngSwitchCase="true" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M7 9.67676L11.9646 14.0002L17 9.67676" stroke="#101840" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </i>
+      </div>
+      <div class="form-check mb-3" *ngIf="config.hasSelectByGroup">
+        <mat-checkbox [disabled]="!config.checkboxEnabled" [(ngModel)]="config.selectByGroupValue"><strong>CHỌN THEO NHÓM</strong></mat-checkbox>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="config.hasFilter" class="row row-filter mb-4">
+    <div class="col-12">
+      <div class="ml-4 d-flex">
+        <input class="form-control" type="text" placeholder="Nhập mã hoặc tên giáo viên tìm kiếm..." [(ngModel)]="filterText"
+               style="font-size: 12px"/>
+        <button style="background: #F26522" (click)="onFilterTextChange(filterText)"class="btn ml-3 text-white text-nowrap">Tìm kiếm</button>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="config.hasDivider" class="dropdown-divider"></div>
+</ng-template>
+<ng-template #itemTemplate let-item="item" let-onCollapseExpand="onCollapseExpand"
+             let-onCheckedChange="onCheckedChange">
+  <div class="d-flex justify-content-between w-100 mb-2">
+    <div class="form-check d-flex">
+      <mat-checkbox [disabled]="!config.checkboxEnabled" *ngIf="shouldShowCheckbox(item)" [(ngModel)]="item.checked"
+                    (ngModelChange)="onCheckedChange()">
+      </mat-checkbox>
+      <span
+        style="margin-top: 5px"
+        class="cursor-pointer"
+        (click)="onCollapseExpand()"
+        [class.text-bold]="!item.value.isTeacher"
+        [class.text-grey]="!config.checkboxEnabled"
+        [class.text-uppercase]="item.children?.length">
+        {{item.text}} {{item.value?.isRoot ?('('+ item.value?.totalTeachersOfUnit +')'): ''}}
+      </span>
+    </div>
+    <i *ngIf="item.children" class="mr-1 cursor-pointer" (click)="onCollapseExpand()" aria-hidden="true" [ngSwitch]="item.collapsed">
+      <svg *ngSwitchCase="false" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M17 14.3232L12.0354 9.99983L6.99999 14.3232" stroke="#101840" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <svg  *ngSwitchCase="true" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M7 9.67676L11.9646 14.0002L17 9.67676" stroke="#101840" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </i>
+  </div>
+</ng-template>

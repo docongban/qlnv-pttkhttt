@@ -1,0 +1,679 @@
+<div class="row" style="margin: 0 22px;">
+  <div class="col-md-4">
+    <div class="info-basic">
+      <div class="avata" *ngIf="this.teacher.avatar !== null">
+        <img [src]="avatar" alt="" width="100" height="100" style="margin-top: 0px;">
+      </div>
+      <div class="avata" *ngIf="this.teacher.avatar === null">
+        <label>
+          <svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g opacity="0.64">
+              <rect width="100" height="100" rx="12" fill="#FDF1EC"/>
+              <g opacity="0.7">
+                <path fill-rule="evenodd" clip-rule="evenodd"
+                      d="M36.896 26.8049C36.932 26.8655 36.995 26.9088 37.076 26.9088C39.236 26.9088 41 28.6055 41 30.6832V35.8255C41 37.9032 39.236 39.6 37.076 39.6H26.924C24.755 39.6 23 37.9032 23 35.8255V30.6832C23 28.6055 24.755 26.9088 26.924 26.9088C26.996 26.9088 27.068 26.8741 27.095 26.8049L27.149 26.701C27.18 26.6381 27.2119 26.5735 27.2442 26.5079C27.4744 26.0409 27.7292 25.5243 27.887 25.2206C28.301 24.4415 29.003 24.0087 29.876 24H34.115C34.988 24.0087 35.699 24.4415 36.113 25.2206C36.2547 25.4933 36.4707 25.9326 36.6789 26.356C36.7218 26.4433 36.7644 26.53 36.806 26.6144L36.896 26.8049ZM36.2386 30.1291C36.2386 30.5619 36.5986 30.9082 37.0486 30.9082C37.4986 30.9082 37.8676 30.5619 37.8676 30.1291C37.8676 29.6962 37.4986 29.3413 37.0486 29.3413C36.5986 29.3413 36.2386 29.6962 36.2386 30.1291ZM30.4425 31.471C30.8655 31.0641 31.4145 30.8477 31.9995 30.8477C32.5845 30.8477 33.1335 31.0641 33.5475 31.4624C33.9615 31.8606 34.1865 32.3887 34.1865 32.9514C34.1775 34.1114 33.2055 35.055 31.9995 35.055C31.4145 35.055 30.8655 34.8386 30.4515 34.4404C30.0375 34.0422 29.8125 33.5141 29.8125 32.9514V32.9427C29.8035 32.3973 30.0285 31.8692 30.4425 31.471ZM34.4927 35.358C33.8537 35.9726 32.9717 36.3535 31.9997 36.3535C31.0547 36.3535 30.1727 35.9986 29.4977 35.358C28.8317 34.7087 28.4627 33.8603 28.4627 32.9513C28.4537 32.051 28.8227 31.2026 29.4887 30.5533C30.1637 29.904 31.0547 29.5491 31.9997 29.5491C32.9447 29.5491 33.8357 29.904 34.5017 30.5447C35.1677 31.1939 35.5367 32.051 35.5367 32.9513C35.5277 33.8949 35.1317 34.7433 34.4927 35.358Z"
+                      fill="#101840"/>
+              </g>
+            </g>
+          </svg>
+        </label>
+      </div>
+      <div class="info-basic-avatar">
+        <h3 class="name-student overflow-dot" [matTooltip]="teacher.fullName">{{ teacher?.fullName }}</h3>
+        <div class="info-basic-gv">
+          <div class="info-basic-gv-key">
+            <div class="name-ifgv text overflow-dot">Mã cán bộ</div>
+            <div class="name-ifgv text">Trạng thái</div>
+          </div>
+          <div class="info-basic-gv-value">
+            <div class="value-ifgv text code overflow-dot" [matTooltip]="teacher.code">{{ teacher.code }}</div>
+            <div class="value-ifgv staust" *ngIf="teacher.status === 0" style="color: #52BD94;" [matTooltip]="teacher.statusStr">
+              {{teacher.statusStr}}
+            </div>
+            <!-- Đang nghỉ việc   -->
+            <div class="value-ifgv staust" *ngIf="teacher.status === 1" style="color: #D14343;" [matTooltip]="teacher.statusStr">
+              {{teacher.statusStr}}
+            </div>
+            <!-- Đang nghỉ hưu   -->
+            <div class="value-ifgv staust" *ngIf="teacher.status === 2" style="color: #474D66;" [matTooltip]="teacher.statusStr">
+              {{teacher.statusStr}}
+            </div>
+            <!-- Tạm nghỉ   -->
+            <div class="value-ifgv staust" *ngIf="teacher.status === 3" style="color: #F26522;" [matTooltip]="teacher.statusStr">
+              {{teacher.statusStr}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="info-basic-gv one-column">
+      <div class="info-basic-gv-key">
+        <div class="name-ifgv text">Ngày vào trường</div>
+        <div class="name-ifgv text">Loại hợp đồng</div>
+      </div>
+      <div class="info-basic-gv-value">
+        <div class="value-ifgv text" [matTooltip]="teacher.startDate | date: 'dd/MM/yyyy'">{{teacher?.startDate | date:'dd/MM/yyyy' }}</div>
+        <div class="value-ifgv text" [matTooltip]="teacher.contractTypeStr">{{ teacher.contractTypeStr }}</div>
+      </div>
+    </div>
+
+  </div>
+  <div class="col-md-4">
+    <div class="info-basic-gv one-column">
+      <div class="info-basic-gv-key">
+        <div class="name-ifgv text">Số điện thoại</div>
+        <div class="name-ifgv text">Email</div>
+      </div>
+      <div class="info-basic-gv-value">
+        <div class="value-ifgv text" [matTooltip]="teacher?.phone">{{ teacher?.phone }}</div>
+        <div class="value-ifgv text overflow-dot" [matTooltip]="teacher?.email">{{ teacher?.email }}</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ------------- -->
+<!--<div class="row" style="    margin-left: 25px;">-->
+<!--  <div class="col-md-4">-->
+<!--    <div class="info-basic">-->
+<!--      <div class="avata" *ngIf="this.teacher.avatar !== null">-->
+<!--        <img [src]="avatar" alt="" width="100" height="100" style="margin-top: 0px;">-->
+<!--      </div>-->
+<!--      <div class="avata" *ngIf="this.teacher.avatar === null">-->
+<!--        &lt;!&ndash;        <img src="../../../../../../assets/media/img/avata.png" alt="" width="100" height="100">&ndash;&gt;-->
+<!--        <label for="">-->
+<!--          <svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">-->
+<!--            <g opacity="0.64">-->
+<!--              <rect width="100" height="100" rx="12" fill="#FDF1EC"/>-->
+<!--              <g opacity="0.7">-->
+<!--                <path fill-rule="evenodd" clip-rule="evenodd"-->
+<!--                      d="M36.896 26.8049C36.932 26.8655 36.995 26.9088 37.076 26.9088C39.236 26.9088 41 28.6055 41 30.6832V35.8255C41 37.9032 39.236 39.6 37.076 39.6H26.924C24.755 39.6 23 37.9032 23 35.8255V30.6832C23 28.6055 24.755 26.9088 26.924 26.9088C26.996 26.9088 27.068 26.8741 27.095 26.8049L27.149 26.701C27.18 26.6381 27.2119 26.5735 27.2442 26.5079C27.4744 26.0409 27.7292 25.5243 27.887 25.2206C28.301 24.4415 29.003 24.0087 29.876 24H34.115C34.988 24.0087 35.699 24.4415 36.113 25.2206C36.2547 25.4933 36.4707 25.9326 36.6789 26.356C36.7218 26.4433 36.7644 26.53 36.806 26.6144L36.896 26.8049ZM36.2386 30.1291C36.2386 30.5619 36.5986 30.9082 37.0486 30.9082C37.4986 30.9082 37.8676 30.5619 37.8676 30.1291C37.8676 29.6962 37.4986 29.3413 37.0486 29.3413C36.5986 29.3413 36.2386 29.6962 36.2386 30.1291ZM30.4425 31.471C30.8655 31.0641 31.4145 30.8477 31.9995 30.8477C32.5845 30.8477 33.1335 31.0641 33.5475 31.4624C33.9615 31.8606 34.1865 32.3887 34.1865 32.9514C34.1775 34.1114 33.2055 35.055 31.9995 35.055C31.4145 35.055 30.8655 34.8386 30.4515 34.4404C30.0375 34.0422 29.8125 33.5141 29.8125 32.9514V32.9427C29.8035 32.3973 30.0285 31.8692 30.4425 31.471ZM34.4927 35.358C33.8537 35.9726 32.9717 36.3535 31.9997 36.3535C31.0547 36.3535 30.1727 35.9986 29.4977 35.358C28.8317 34.7087 28.4627 33.8603 28.4627 32.9513C28.4537 32.051 28.8227 31.2026 29.4887 30.5533C30.1637 29.904 31.0547 29.5491 31.9997 29.5491C32.9447 29.5491 33.8357 29.904 34.5017 30.5447C35.1677 31.1939 35.5367 32.051 35.5367 32.9513C35.5277 33.8949 35.1317 34.7433 34.4927 35.358Z"-->
+<!--                      fill="#101840"/>-->
+<!--              </g>-->
+<!--            </g>-->
+<!--          </svg>-->
+<!--        </label>-->
+<!--      </div>-->
+
+<!--      <div class="info-basic-avata" style="margin-left: 15px">-->
+<!--        <h3 class="name-techer">{{teacher.fullName}}</h3>-->
+<!--        <div class="info-basic-gv">-->
+<!--          <div class="name-ifgv">-->
+<!--            Mã cán bộ-->
+<!--          </div>-->
+<!--          <div class="value-ifgv code">-->
+<!--            {{teacher.code}}-->
+<!--          </div>-->
+<!--          <div class="name-ifgv">-->
+<!--            Trạng thái-->
+<!--          </div>-->
+<!--          &lt;!&ndash; Đang làm việc   &ndash;&gt;-->
+<!--          <div class="value-ifgv staust" *ngIf="teacher.status === 0" style="color: #52BD94;">-->
+<!--            {{teacher.statusStr}}-->
+<!--          </div>-->
+<!--          &lt;!&ndash; Đang nghỉ việc   &ndash;&gt;-->
+<!--          <div class="value-ifgv staust" *ngIf="teacher.status === 1" style="color: #D14343;">-->
+<!--            {{teacher.statusStr}}-->
+<!--          </div>-->
+<!--          &lt;!&ndash; Đang nghỉ hưu   &ndash;&gt;-->
+<!--          <div class="value-ifgv staust" *ngIf="teacher.status === 2" style="color: #474D66;">-->
+<!--            {{teacher.statusStr}}-->
+<!--          </div>-->
+<!--          &lt;!&ndash; Tạm nghỉ   &ndash;&gt;-->
+<!--          <div class="value-ifgv staust" *ngIf="teacher.status === 3" style="color: #F26522;">-->
+<!--            {{teacher.statusStr}}-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--  <div class="col-md-4">-->
+<!--    <div class="info-basic-gv one-column">-->
+<!--      <div class="name-ifgv">-->
+<!--        Ngày vào trường-->
+<!--      </div>-->
+<!--      <div class="value-ifgv bold">-->
+<!--        {{teacher.startDate}}-->
+<!--      </div>-->
+<!--      <div class="name-ifgv">-->
+<!--        Loại hợp đồng-->
+<!--      </div>-->
+<!--      <div class="value-ifgv bold">-->
+<!--        {{teacher.contractTypeStr}}-->
+<!--      </div>-->
+<!--    </div>-->
+
+<!--  </div>-->
+<!--  <div class="col-md-4">-->
+<!--    <div class="info-basic-gv one-column">-->
+<!--      <div class="name-ifgv">-->
+<!--        Số điện thoại-->
+<!--      </div>-->
+<!--      <div class="value-ifgv bold">-->
+<!--        {{teacher.phone}}-->
+<!--      </div>-->
+<!--      <div class="name-ifgv">-->
+<!--        Email-->
+<!--      </div>-->
+<!--      <div class="value-ifgv bold">-->
+<!--        {{teacher.email}}-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
+
+<!--tab-->
+<div class="row detail-hs  table-school" style="margin-left: 25px;padding-left: 14px;">
+  <ngb-tabset [destroyOnHide]="false">
+    <!--=============================Tab chi tiet ho so===================================-->
+    <ngb-tab>
+      <ng-template ngbTabTitle>chi tiết hồ sơ</ng-template>
+      <ng-template ngbTabContent>
+        <h3 class="title-tab">
+          <svg width="4" height="20" viewBox="0 0 4 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0 0H1C2.65685 0 4 1.34315 4 3V17C4 18.6569 2.65685 20 1 20H0V0Z" fill="#101840" />
+          </svg>
+          Lý lịch cá nhân
+        </h3>
+        <div class="row">
+          <div class="col-md-4">
+            <div class="list-item-hs">
+              <div class="name-item">
+                Tổ bộ môn
+              </div>
+              <div class="value-item overflow-dot" [matTooltip]="teacher.subjectParentName">
+                {{teacher.subjectParentName}}
+              </div>
+            </div>
+            <div class="list-item-hs">
+              <div class="name-item">
+                Khoa
+              </div>
+              <div class="value-item overflow-dot" [matTooltip]="teacher.deptName">
+                {{teacher.deptName}}
+              </div>
+            </div>
+            <div class="list-item-hs">
+              <div class="name-item">
+                Đơn vị
+              </div>
+              <div class="value-item overflow-dot" [matTooltip]="teacher.unitName">
+                {{teacher.unitName}}
+              </div>
+            </div>
+            <div class="list-item-hs">
+              <div class="name-item">
+                Chức vụ
+              </div>
+              <div class="value-item overflow-dot" [matTooltip]="teacher.positionName">
+                {{teacher.positionName}}
+              </div>
+            </div>
+            <div class="list-item-hs">
+              <div class="name-item">
+                Ngày sinh
+              </div>
+              <div class="value-item" [matTooltip]="teacher.birthDay">
+                {{teacher.birthDay}}
+              </div>
+            </div>
+            <div class="list-item-hs no-boder">
+              <div class="name-item">
+                Giới tính
+              </div>
+              <div class="value-item">
+                {{teacher.sexStr}}
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="list-item-hs">
+              <div class="name-item">
+                Tôn giáo
+              </div>
+              <div class="value-item overflow-dot" [matTooltip]="teacher.religion">
+                {{teacher.religion}}
+              </div>
+            </div>
+            <div class="list-item-hs">
+              <div class="name-item">
+                Dân tộc
+              </div>
+              <div class="value-item overflow-dot" [matTooltip]="teacher.nation">
+                {{teacher.nation}}
+              </div>
+            </div>
+            <div class="list-item-hs">
+              <div class="name-item">
+                Tình trạng hôn nhân
+              </div>
+              <div class="value-item" [matTooltip]="teacher.marriageStatusStr">
+                {{teacher.marriageStatusStr}}
+              </div>
+            </div>
+            <div class="list-item-hs">
+              <div class="name-item">
+                Số CMND/TCC
+              </div>
+              <div class="value-item overflow-dot" [matTooltip]="teacher.identityCard">
+                {{teacher.identityCard}}
+              </div>
+            </div>
+            <div class="list-item-hs">
+              <div class="name-item">
+                Nơi cấp CMND/TCC
+              </div>
+              <div class="value-item overflow-dot" [matTooltip]="teacher.issuedAddress">
+                {{teacher.issuedAddress}}
+              </div>
+            </div>
+            <div class="list-item-hs no-boder">
+              <div class="name-item">
+                Ngày cấp CMND/TCC
+              </div>
+              <div class="value-item" [matTooltip]="teacher.issuedDate">
+                {{teacher.issuedDate}}
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-3">
+            <div class="list-item-hs">
+              <div class="name-item">
+                Số BHXH
+              </div>
+              <div class="value-item  overflow-dot" [matTooltip]="teacher.socialInsuranceNumber">
+                {{teacher.socialInsuranceNumber}}
+              </div>
+            </div>
+            <div class="list-item-hs">
+              <div class="name-item">
+                Quê quán
+              </div>
+              <div class="value-item overflow-dot" [matTooltip]="teacher.homeTown">
+                {{teacher.homeTown}}
+              </div>
+            </div>
+            <div class="list-item-hs">
+              <div class="name-item">
+                Địa chỉ thường trú
+              </div>
+              <div class="value-item overflow-dot" [matTooltip]="teacher.permanentAddress">
+                {{teacher.permanentAddress}}
+              </div>
+            </div>
+            <div class="list-item-hs no-boder">
+              <div class="name-item">
+                Địa chỉ tạm trú
+              </div>
+              <div class="value-item overflow-dot" [matTooltip]="teacher.temporaryAddress">
+                {{teacher.temporaryAddress}}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <h3 class="title-tab">
+          <svg width="4" height="20" viewBox="0 0 4 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0 0H1C2.65685 0 4 1.34315 4 3V17C4 18.6569 2.65685 20 1 20H0V0Z" fill="#101840" />
+          </svg>
+          THÔNG TIN ĐÀO TẠO/TRÌNH ĐỘ CHUYÊN MÔN
+        </h3>
+        <div class="row" style="margin-left: 0px; margin-top: 15px; margin-bottom: 10px"><h4>TRÌNH ĐỘ ĐÀO TẠO: <b>{{this.trinhdo}}</b></h4></div>
+        <!--tab 1-->
+        <div class="row detail-hs1  table-school" style="margin-left: 0px;">
+          <ngb-tabset [destroyOnHide]="false">
+            <ngb-tab>
+              <ng-template ngbTabTitle>1.đại học</ng-template>
+              <ng-template ngbTabContent>
+                <div class="row">
+                  <div class="col-md-4">
+                    <div class="list-item-hs">
+                      <div class="name-item">
+                        Hệ đào tạo
+                      </div>
+                      <div class="value-item">
+                        {{university.sysEdu}}
+                      </div>
+                    </div>
+
+                    <div class="list-item-hs no-boder">
+                      <div class="name-item">
+                        Nơi đào tạo
+                      </div>
+                      <div class="value-item overflow-dot" [matTooltip]="university.trainingPlaces">
+                        {{university.trainingPlaces}}
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-4">
+                    <div class="list-item-hs">
+                      <div class="name-item">
+                        Ngành học
+                      </div>
+                      <div class="value-item overflow-dot" [matTooltip]="university.specialized">
+                        {{university.specialized}}
+                      </div>
+                    </div>
+
+                    <div class="list-item-hs no-boder">
+                      <div class="name-item">
+                        Năm tốt nghiệp
+                      </div>
+                      <div class="value-item ">
+                        {{university.graduationYear}}
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-4">
+                    <div class="list-item-hs">
+                      <div class="name-item">
+                        Bằng đại học
+                      </div>
+                      <div class="value-item blue" *ngIf="university.degreePath !== null">
+                        <a (click)="viewFileDH(university)" style="cursor: pointer;">{{university.name}}</a>
+                      </div>
+                    </div>
+
+                    <div class="list-item-hs no-boder">
+                      <div class="name-item">
+                        Nước đào tạo
+                      </div>
+                      <div class="value-item overflow-dot" [matTooltip]="teacher.positionName">
+                        {{university.tranningCountry}}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </ng-template>
+            </ngb-tab>
+
+            <ngb-tab>
+              <ng-template ngbTabTitle>2. sau đại học</ng-template>
+              <ng-template ngbTabContent>
+                <div class="row">
+                  <div class="col-md-4" *ngFor="let item of listMaster">
+                    <div class="list-item-hs">
+                      <div class="name-item bold">
+                        1. Bằng thạc sỹ
+                      </div>
+                      <div class="value-item blue" *ngIf="item.degreePath !== null">
+<!--                        Bangthacsy.pdf-->
+                        <a (click)="viewFileDH(item)" style="cursor: pointer;">{{fileNameMaster}}</a>
+                      </div>
+                    </div>
+
+                    <div class="list-item-hs">
+                      <div class="name-item">
+                        Nơi đào tạo
+                      </div>
+                      <div class="value-item overflow-dot" [matTooltip]="item.trainingPlaces">
+                        {{item.trainingPlaces}}
+                      </div>
+                    </div>
+
+                    <div class="list-item-hs no-boder">
+                      <div class="name-item">
+                        Chuyên ngành
+                      </div>
+                      <div class="value-item overflow-dot" [matTooltip]="item.specialized">
+                        {{item.specialized}}
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-4" *ngFor="let item of listDoctor">
+                    <div class="list-item-hs">
+                      <div class="name-item bold">
+                        2. Bằng tiến sỹ
+                      </div>
+                      <div class="value-item blue" *ngIf="item.degreePath !== null">
+<!--                        Bangtiensy.pdf-->
+                        <a (click)="viewFileDH(item)" style="cursor: pointer;">{{fileNameDoctor}}</a>
+                      </div>
+                    </div>
+
+                    <div class="list-item-hs">
+                      <div class="name-item">
+                        Nơi đào tạo
+                      </div>
+                      <div class="value-item overflow-dot" [matTooltip]="item.trainingPlaces">
+                        {{item.trainingPlaces}}
+                      </div>
+                    </div>
+                    <div class="list-item-hs no-boder">
+                      <div class="name-item">
+                        Chuyên ngành
+                      </div>
+                      <div class="value-item overflow-dot" [matTooltip]="item.specialized">
+                        {{item.specialized}}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </ng-template>
+            </ngb-tab>
+            <ngb-tab>
+              <ng-template ngbTabTitle>3. Ngoại ngữ</ng-template>
+              <ng-template ngbTabContent>
+                <div class="row">
+                  <div class="col-md-4" *ngFor="let item of teacher.foreignLanguageDTOList">
+                    <div class="list-item-hs">
+                      <div class="name-item">
+                        Ngôn ngữ
+                      </div>
+                      <div class="value-item overflow-dot" [matTooltip]="item.languageName">
+                        {{item.languageName}}
+                      </div>
+                    </div>
+
+                    <div class="list-item-hs no-boder">
+                      <div class="name-item">
+                        Trình độ
+                      </div>
+                      <div class="value-item overflow-dot" [matTooltip]="item.level">
+                        {{item.level}}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </ng-template>
+            </ngb-tab>
+            <ngb-tab>
+                  <ng-template ngbTabTitle>4. chứng chỉ</ng-template>
+                  <ng-template ngbTabContent>
+                    <div class="row">
+                      <div class="col-md-4">
+                        <div class="list-item-hs" *ngFor="let item of certificates">
+                          <a (click)="viewFile(item)" style="cursor: pointer; color:#3366FF">{{item.name}}</a>
+<!--                              <a (click)="viewFile(item)" style="cursor: pointer;"></a>-->
+                        </div>
+                      </div>
+                    </div>
+                  </ng-template>
+                </ngb-tab>
+          </ngb-tabset>
+        </div>
+        <!--tab2-->
+        <h3 class="title-tab" style="margin-top: 30px;     margin-left: 0px; margin-bottom: 20px;">
+          <svg width="4" height="20" viewBox="0 0 4 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0 0H1C2.65685 0 4 1.34315 4 3V17C4 18.6569 2.65685 20 1 20H0V0Z" fill="#101840" />
+          </svg>
+          THÔNG TIN ĐOÀN - ĐẢNG
+        </h3>
+        <div class="row" style="margin-left: 25px;">
+          <div class="col-md-4" style="padding-left: 0px;">
+            <label class="container-radio">Đã là đoàn viên
+              <input type="checkbox" name="aa1" [checked]="this.teacher.unionMember == 1" disabled="true">
+              <span class="checkmark"></span>
+            </label>
+            <div class="list-item-hs">
+              <div class="name-item">
+                Ngày KN Đoàn
+              </div>
+              <div class="value-item">
+                {{teacher.dateOfUnionMember}}
+              </div>
+            </div>
+
+            <div class="list-item-hs no-boder">
+              <div class="name-item">
+                Nơi KN Đoàn
+              </div>
+              <div class="value-item overflow-dot" [matTooltip]="teacher.adrOfUnionMember">
+                {{teacher.adrOfUnionMember}}
+              </div>
+            </div>
+          </div>
+
+
+          <div class="col-md-4">
+            <label class="container-radio">Đã là đảng viên
+              <input type="checkbox" name="aa" [checked]="this.teacher.partyMember == 1" disabled="true">
+              <span class="checkmark"></span>
+            </label>
+            <div class="list-item-hs">
+              <div class="name-item">
+                Ngày KN Đảng
+              </div>
+              <div class="value-item">
+                {{teacher.dateOfPartyMember}}
+              </div>
+            </div>
+
+            <div class="list-item-hs no-boder">
+              <div class="name-item">
+                Nơi KN Đảng
+              </div>
+              <div class="value-item overflow-dot" [matTooltip]="teacher.adrOfPartyMember">
+                {{teacher.adrOfPartyMember}}
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+
+    </ngb-tab>
+
+    <!-- ==================================Tab qua trinh cong tac====================================-->
+    <ngb-tab>
+      <ng-template ngbTabTitle>QUÁ TRÌNH CÔNG TÁC</ng-template>
+      <ng-template ngbTabContent>
+        <div class="row table-school table-class-room" style="margin: 20px 0 0 0;">
+          <ag-grid-angular [suppressRowTransform]="true" [suppressRowClickSelection]="true"
+                           style="width: 100%; height: 300px;" class="ag-theme-balham" [rowData]="rowDataJobTransfer"
+                           [columnDefs]="columnDefsJobTransfer" [headerHeight]="headerHeight" [rowHeight]="rowHeight"
+                           (gridReady)="onGridReady($event)">
+          </ag-grid-angular>
+        </div>
+        <div class="row table-school table-class-room" style="margin: 20px 0 0 0; width: 100%; height: 300px">
+<!--          <ag-grid-angular [suppressRowTransform]="true" [suppressRowClickSelection]="true"-->
+<!--                           style="width: 100%; height: 300px;" class="ag-theme-balham" [rowData]="rowDataJobTransfer"-->
+<!--                           [columnDefs]="columnDefsJobTransfer" [headerHeight]="headerHeight" [rowHeight]="rowHeight"-->
+<!--                           (gridReady)="onGridReady($event)">-->
+<!--          </ag-grid-angular>-->
+          <p></p>
+        </div>
+      </ng-template>
+    </ngb-tab>
+
+    <!-- =====================================Tab khen thuong ky luat ====================================-->
+    <ngb-tab>
+      <ng-template ngbTabTitle>KHEN THƯỞNG/KỶ THUẬT</ng-template>
+      <ng-template ngbTabContent>
+        <h3 class="title-tab">
+          <svg width="4" height="20" viewBox="0 0 4 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0 0H1C2.65685 0 4 1.34315 4 3V17C4 18.6569 2.65685 20 1 20H0V0Z" fill="#101840" />
+          </svg>
+          Khen thưởng
+        </h3>
+        <div class="row table-school table-class-room" style="margin: 20px 0 0 0;">
+          <ag-grid-angular [suppressRowTransform]="true" [suppressRowClickSelection]="true"
+                           style="width: 100%; height: 300px;" class="ag-theme-balham" [rowData]="teacher.rewardDisciplinesBonus"
+                           [columnDefs]="columnDefsRewardBonus" [headerHeight]="headerHeight" [rowHeight]="rowHeight"
+                           (gridReady)="onGridReady($event)">
+          </ag-grid-angular>
+        </div>
+
+      <h3 class="title-tab">
+        <svg width="4" height="20" viewBox="0 0 4 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M0 0H1C2.65685 0 4 1.34315 4 3V17C4 18.6569 2.65685 20 1 20H0V0Z" fill="#101840" />
+        </svg>
+        Kỷ luật
+      </h3>
+        <div class="row table-school table-class-room" style="margin: 20px 0 80px 0;">
+          <ag-grid-angular [suppressRowTransform]="true" [suppressRowClickSelection]="true"
+                           style="width: 100%; height: 300px;" class="ag-theme-balham" [rowData]="teacher.rewardDisciplinesPunish"
+                           [columnDefs]="columnDefsRewardPunish" [headerHeight]="headerHeight" [rowHeight]="rowHeight"
+                           (gridReady)="onGridReady($event)">
+          </ag-grid-angular>
+        </div>
+      </ng-template>
+    </ngb-tab>
+
+    <!--=====================================Tab che do luong==================================================-->
+    <ngb-tab>
+      <ng-template ngbTabTitle>CHẾ ĐỘ LƯƠNG/PHỤ CẤP</ng-template>
+      <ng-template ngbTabContent>
+        <h3 class="title-tab">
+          <svg width="4" height="20" viewBox="0 0 4 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0 0H1C2.65685 0 4 1.34315 4 3V17C4 18.6569 2.65685 20 1 20H0V0Z" fill="#101840" />
+          </svg>
+          thông tin lương
+        </h3>
+        <div class="row table-school table-class-room" style="margin: 20px 0 0 0;">
+          <ag-grid-angular [suppressRowTransform]="true" [suppressRowClickSelection]="true"
+                           style="width: 100%; height: 300px;" class="ag-theme-balham" [rowData]="this.teacher.salaryAllowancesList"
+                           [columnDefs]="columnDefsSalary" [headerHeight]="headerHeight" [rowHeight]="rowHeight"
+                           (gridReady)="onGridReady($event)">
+          </ag-grid-angular>
+        </div>
+        <h3 class="title-tab">
+          <svg width="4" height="20" viewBox="0 0 4 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0 0H1C2.65685 0 4 1.34315 4 3V17C4 18.6569 2.65685 20 1 20H0V0Z" fill="#101840" />
+          </svg>
+          chế độ phụ cấp
+        </h3>
+        <div class="row table-school table-class-room" style="margin: 20px 0 0 0;">
+          <ag-grid-angular [suppressRowTransform]="true" [suppressRowClickSelection]="true"
+                           style="width: 100%; height: 300px;" class="ag-theme-balham" [rowData]="this.teacher.salaryAllowancesList"
+                           [columnDefs]="columnAllowancesMode" [headerHeight]="headerHeight" [rowHeight]="rowHeight"
+                           (gridReady)="onGridReady($event)">
+          </ag-grid-angular>
+        </div>
+      </ng-template>
+    </ngb-tab>
+
+  </ngb-tabset>
+</div>
+
+
+<ng-template #templateShowPdf>
+  <div class="modal-content modal-dialog-custom" >
+    <div class="modal-header">
+      <h4 class="modal-title" style="text-align: center;"></h4>
+
+      <button type="button" class="close" (click)="modalRef.hide()" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body" style="padding: 15px 10px !important;">
+      <!-- <pdf-viewer [src]="dataPdfUrl"
+      [zoom]="1"
+      ></pdf-viewer> -->
+      <iframe width="100%" height="100%" [src]="dataPdfUrl"></iframe>
+    </div>
+    <div class="modal-footer">
+      <div class="btn-action">
+        <div tabindex="0">
+          <button type="button" class="btn-md btn-gray" (click)="modalRef.hide()">Đóng</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</ng-template>

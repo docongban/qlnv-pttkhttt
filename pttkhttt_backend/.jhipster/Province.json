@@ -1,0 +1,25 @@
+{
+  "name": "Province",
+  "fields": [
+    {
+      "fieldName": "prName",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "prNameEn",
+      "fieldType": "String"
+    }
+  ],
+  "relationships": [],
+  "changelogDate": "20210915134932",
+  "entityTableName": "province",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}

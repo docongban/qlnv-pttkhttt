@@ -1,0 +1,14 @@
+entity AssessStudentConductDetails {
+	id Long,
+    studentCode String,
+    numberOff Integer,
+	numberOffAllowed Integer,
+	academicAbitity String,
+    conduct Instant,
+	competitionTitle String,
+    parentCode String
+}
+dto AssessStudentConductDetails with mapstruct
+paginate AssessStudentConductDetails with pagination
+service AssessStudentConductDetails with serviceClass
+service AssessStudentConductDetails with serviceImpl

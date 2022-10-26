@@ -1,0 +1,43 @@
+.transfer-student-header {
+  display: flex;
+  align-items: center;
+
+  &__heading {
+    text-transform: uppercase;
+    color: #101840;
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 0;
+  }
+
+  &__button-group {
+    margin-left: auto;
+
+    > *:not(:last-child) {
+      margin-right: 16px;
+    }
+  }
+
+  &__button {
+    color: #FFFFFF;
+    border-radius: 5px;
+    padding: 8px 16px;
+    outline: none;
+    border: none;
+    font-size: 12px;
+    line-height: 16px;
+    font-weight: 600;
+
+    svg {
+      margin-right: 8px;
+    }
+
+    &--primary {
+      background: #3366FF;
+    }
+
+    &--secondary {
+      background: #696F8C;
+    }
+  }
+}

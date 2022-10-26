@@ -1,0 +1,12 @@
+entity AttendanceStudentDetails {
+	id Long,
+    studentCode String,
+	studentName String,
+	checkDate String,
+	parentCode String,
+	date Instant
+}
+dto AttendanceStudentDetails with mapstruct
+paginate AttendanceStudentDetails with pagination
+service AttendanceStudentDetails with serviceClass
+service AttendanceStudentDetails with serviceImpl

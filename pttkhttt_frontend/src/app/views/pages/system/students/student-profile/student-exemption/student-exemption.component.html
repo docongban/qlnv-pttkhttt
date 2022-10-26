@@ -1,0 +1,30 @@
+<div class="grid-exemption">
+  <ngb-tabset [destroyOnHide]="false">
+    <ngb-tab *ngFor="let data of classes; index as i">
+      <ng-template ngbTabTitle>
+        <div class="year" (click)="loadExemption(data.years)">
+          <svg width="172" height="64" viewBox="0 0 172 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0 16C0 7.16344 7.16344 0 16 0H135.755C142.315 0 148.211 4.00432 150.629 10.1024L172 64H0V16Z" [attr.fill]="currentYear === data.years ? 'white' : '#EDEFF5' "/>
+          </svg>
+          <div>
+            <div [class.class-year-text--color]="currentYear !== data.years" class="class-year-text">{{ data.years }}</div>
+            <div [class.class-name-text--color]="currentYear !== data.years" class="class-name-text">({{ data.name }})</div>
+          </div>
+        </div>
+      </ng-template>
+      <ng-template ngbTabContent>
+        <h3 class="title-tab" style="margin-bottom: 15px">
+          {{ 'STUDENT.EXEMPTION.LIST' | translate }}
+        </h3>
+        <ag-grid-angular style="width: 100%; height: 550px;" 
+          class="ag-theme-balham" 
+          [rowData]="rowData" [columnDefs]="columnExemption" 
+          [headerHeight]="headerHeight" [rowHeight]="rowHeight"
+          [overlayNoRowsTemplate]="overlayNoRowsTemplate" 
+          (gridReady)="onGridReady($event)" 
+          (gridSizeChanged)="gridSizeChanged($event)">
+        </ag-grid-angular>
+      </ng-template>
+    </ngb-tab>
+  </ngb-tabset>
+</div>

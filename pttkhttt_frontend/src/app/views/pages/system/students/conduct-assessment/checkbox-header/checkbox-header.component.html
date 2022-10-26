@@ -1,0 +1,13 @@
+<div class="header-checkbox">
+  <mat-checkbox style="font-weight: 600;
+  font-size: 10px;
+  display: flex;
+  align-items: center;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #8f95b2;" [(ngModel)]="params.value" (change)="this.refresh(this.params)"
+
+  >{{params.displayName}}</mat-checkbox>
+</div>
+
+<!--[disabled]="checkbox === true"-->

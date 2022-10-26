@@ -1,0 +1,176 @@
+<div class="sy default-layout">
+  <div class="sy-heading">
+    <h3 style="width: 700px;padding-left: 7px; padding-top: 14px"
+        class="sy-heading-text">
+      Xếp loại hạnh kiểm: <span class="class-room-title" data-toggle="tooltip" title="{{classRoomName}}({{_semester}})">{{classRoomName}} ({{_semester}})</span>
+    </h3>
+    <!--    <div class="heading-list-actions">-->
+    <!--      <button class="sy-btn-action gray focus-button" (click)="exportData()"-->
+    <!--              tabindex="0">-->
+    <!--        <span class="sy-ic ic-size-12 ic-mr-8 ic-svg-export"></span>-->
+    <!--        Xuất Excel-->
+    <!--      </button>-->
+    <!--    </div>-->
+  </div>
+  <hr class="sy-line"/>
+  <div class="sy-main-content">
+    <div class="sy-form search-form">
+      <div class="row">
+        <div class="col-md-10">
+          <div class="row">
+            <div class="col-md-3" style="padding-left: 20px">
+              <label class="sy-label"
+              >Chọn học kỳ</label
+              >
+              <!--              (ngModelChange)="onChangeSemester($event)"-->
+              <ng-select
+                name="semesterCode"
+                [items]="semestersInCurrentYear"
+                bindLabel="name"
+                bindValue="value"
+                placeholder="Học kỳ"
+                [(ngModel)]="semesterValue"
+                (ngModelChange)="onChangeSemester($event)"
+                [ngModelOptions]="{ standalone: true }"
+                [searchable]="false"
+                [clearable]="false"
+                class="sy-select"
+              >
+              </ng-select>
+            </div>
+            <div class="col-md-3">
+              <label class="sy-label"
+              >Lớp học </label
+              >
+
+              <ng-select
+                name="classId"
+                [items]="listClass"
+                bindLabel="name"
+                bindValue="value"
+                placeholder="Lựa chọn"
+                [(ngModel)]="selectedClassCode"
+                (ngModelChange)="onChangeClass($event)"
+                [ngModelOptions]="{ standalone: true }"
+                [searchable]="true"
+                [clearable]="false"
+                class="sy-select"
+              >
+
+                <ng-template ng-option-tmp let-item="item">
+                  <div style="overflow: hidden; text-overflow: ellipsis;  white-space: nowrap;" title="{{ item.name }}">
+                    {{ item.name }}
+                  </div>
+                </ng-template>
+              </ng-select>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-2">
+          <div class="search-action">
+            <button tabindex="0" style="width: 180px"
+                    class="focus-button sy-btn-action active large"
+                    (click)="loadData(1)"
+            >
+              Tìm kiếm
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr class="horizon-grid"/>
+    <div class="row table-school-year table-school" style="margin-top: 24px">
+      <ag-grid-angular
+        [suppressRowTransform]="true"
+        style="width: 100%; height: 600px; margin-left: 20px; "
+        class="ag-theme-balham"
+        [rowData]="rowData1"
+        [columnDefs]="columnDefs"
+        [defaultColDef]="defaultColDef"
+        [getRowStyle]="rowStyle"
+        [rowHeight]="ROW_HEIGHT"
+        [headerHeight]="HEADER_HEIGHT"
+        [suppressRowClickSelection]="true"
+        [tooltipShowDelay]="0"
+        [rowSelection]="rowSelection"
+        (gridReady)="onGridReady($event)"
+        (gridSizeChanged)="gridSizeChanged($event)"
+        (selectionChanged)="onSelectionChanged($event)"
+        [overlayNoRowsTemplate]="noRowsTemplate"
+        [debounceVerticalScrollbar]="true"
+        [frameworkComponents]="frameworkComponents"
+      >
+      </ag-grid-angular>
+    </div>
+    <div *ngIf ="showPagination">
+      <div *ngIf="total > 0" class="sy-paging w-100">
+        <span class="sy-paging-result"
+        >{{ first }}-{{ last }} của {{ total }} kết quả</span
+        >
+        <ul class="sy-pages">
+          <li
+            class="sy-ic ic-size-32 arrow"
+            [class.ic-svg-first-disabled]="currentPage === 1"
+            [class.ic-svg-first]="currentPage !== 1"
+            [class.disabled]="currentPage === 1"
+            (click)="goToPage(1)"
+          ></li>
+          <li
+            class="sy-ic ic-size-32 arrow"
+            [class.ic-svg-prev-disabled]="currentPage === 1"
+            [class.ic-svg-prev]="currentPage !== 1"
+            [class.disabled]="currentPage === 1"
+            (click)="goToPage(currentPage - 1)"
+          ></li>
+          <li
+            class="sy-page"
+            [class.sy-highlight]="i === currentPage"
+            [class.sy-dots]="i === '...'"
+            *ngFor="let i of rangeWithDots"
+            (click)="i !== '...' && goToPage(i)"
+          >
+            {{ i }}
+          </li>
+          <li
+            class="sy-ic ic-size-32 arrow"
+            [class.ic-svg-next-disabled]="currentPage === totalPage"
+            [class.ic-svg-next]="currentPage !== totalPage"
+            [class.disabled]="currentPage === totalPage"
+            (click)="goToPage(currentPage + 1)"
+          ></li>
+          <li
+            class="sy-ic ic-size-32 arrow"
+            [class.ic-svg-last-disabled]="currentPage === totalPage"
+            [class.ic-svg-last]="currentPage !== totalPage"
+            [class.disabled]="currentPage === totalPage"
+            (click)="goToPage(totalPage)"
+          ></li>
+        </ul>
+      </div>
+    </div>
+    <div *ngIf="total > 0" class="col-md-12 col-xs-12" style="margin-bottom: 50px">
+      <button class="sy-btn-action blue focus-button" (click)="clickUpdate()"
+              tabindex="0" *ngIf="showUpdate"
+              style="margin-left: 40% ;width: 117px;
+              height: 40px"
+      >
+        Cập nhật
+      </button>
+
+      <button (click)="clickCancel()" style="margin-left: 40%; margin-right:4%"
+              class="sy-btn-action button-cancel focus-button"
+              *ngIf="showCancel">
+        Hủy bỏ
+      </button>
+
+
+      <button class="sy-btn-action button-save focus-button"
+              (click)="updateData()" *ngIf="showSave">
+        Lưu lại
+      </button>
+
+
+    </div>
+  </div>
+</div>
+

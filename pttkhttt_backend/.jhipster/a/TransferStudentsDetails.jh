@@ -1,0 +1,17 @@
+entity TransferStudentsDetails {
+	id Long,
+    code String,
+    currentSchoolYear String,
+    currentClassCode String,
+    studentCode String,
+    academicAbility String,
+    conduct String,
+    status Integer,
+    newClassCode String,
+    newSchoolYear String,
+    parentCode String
+}
+dto TransferStudentsDetails with mapstruct
+paginate TransferStudentsDetails with pagination
+service TransferStudentsDetails with serviceClass
+service TransferStudentsDetails with serviceImpl

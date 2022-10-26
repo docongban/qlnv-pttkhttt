@@ -1,0 +1,27 @@
+<div class="modal-dialog-custom">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" style="text-align: center;">ĐÁNH GIÁ HẠNH KIỂM</h4>
+        <p class="des">Nhập nhận xét đánh giá hạnh kiểm học sinh <br>
+          <span style="font-weight: 600;  color: #101840;">{{infoStudent.studentCode}} - {{infoStudent.studentName}}</span>
+        </p>
+      </div>
+      <div class="modal-body">
+       <textarea placeholder="Nhập nhận xét ..."
+         name=""
+         id=""
+         [(ngModel)]="evaluate"
+         [disabled] = "this.infoStudent.semesterSelected !== this.infoStudent.semesterNow"
+       ></textarea>
+      </div>
+      <div class="modal-footer"  *ngIf="this.infoStudent.semesterSelected === this.infoStudent.semesterNow">
+        <button class="btn-md btn-gray" (click)="onDismiss()" tabIndex="0">Hủy bỏ</button>
+        <button type="submit" class="btn-md btn-or" (click)="onConfirm()" tabIndex="0">Lưu lại</button>
+      </div>
+
+      <div class="modal-footer" *ngIf="this.infoStudent.semesterSelected !== this.infoStudent.semesterNow">
+        <button class="btn-md btn-gray" (click)="onDismiss()" tabIndex="0">Đóng</button>
+      </div>
+
+    </div>
+</div>

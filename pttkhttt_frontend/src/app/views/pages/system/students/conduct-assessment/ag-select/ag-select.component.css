@@ -1,0 +1,16 @@
+.select-op{
+  position: absolute;
+  width: 150px;
+  height: 32px;
+  left: 10px;
+  top: 12px;
+
+  /* Neutral/Background White - N0 */
+
+  background: #FFFFFF;
+  /* Neutral/Border Normal - N400 */
+
+  border: 1px solid #D8DAE5;
+  box-sizing: border-box;
+  border-radius: 4px;
+}

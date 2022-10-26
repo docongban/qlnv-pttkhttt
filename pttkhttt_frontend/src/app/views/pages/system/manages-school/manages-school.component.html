@@ -1,0 +1,250 @@
+<div class="row" xmlns="http://www.w3.org/1999/html">
+  <div class="col-md-12 col-xs-12" style="margin-left: 15px; padding-right: 30px;">
+    <div class="menu-action-dv">
+      <h3 style="font-weight: 700; font-family: Inter; font-size: 18px; line-height: 30px !important;">{{ 'MANAGES_SCHOOL.TITLE' | translate }}</h3>
+      <div class="list-action-dv" >
+        <div class="btn-action-dv blue" >
+          <a (click)="openModalNewSchool(templateNewSchool)" style="color: #fff; font-size: 12px">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="5" width="2" height="12" rx="1" fill="white" />
+              <rect x="12" y="5" width="2" height="12" rx="1" transform="rotate(90 12 5)" fill="white" />
+            </svg>
+            {{ 'COMMON.CREATE' | translate }}
+          </a>
+        </div>
+
+        <div class="btn-action-dv2 gray" (click)="exportData()">
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M10.2663 7.91638V9.97918C10.2659 10.3194 10.1306 10.6456 9.89001 10.8862C9.64943 11.1268 9.32324 11.2621 8.98301 11.2625H1.28329C0.943053 11.2621 0.616861 11.1268 0.376279 10.8862C0.135697 10.6456 0.000373641 10.3194 0 9.97918V5.2738C0.000373641 4.93356 0.135697 4.60737 0.376279 4.36679C0.616861 4.12621 0.943053 3.99088 1.28329 3.99051H2.88667C1.18204 5.36568 0.702899 7.42116 1.57344 9.59526C1.67972 9.86413 1.87368 10.0892 2.1239 10.234C2.37412 10.3789 2.66591 10.4349 2.95199 10.3931C3.23806 10.3514 3.50163 10.2142 3.69999 10.0039C3.89834 9.79354 4.01984 9.52239 4.04479 9.23436C4.08697 8.7477 5.73954 7.54585 7.27179 7.27435V7.81278C7.27595 8.06469 7.35366 8.30989 7.49536 8.51822C7.63707 8.72654 7.83658 8.88889 8.06935 8.9853C8.30212 9.08171 8.558 9.10798 8.8055 9.06086C9.053 9.01374 9.28133 8.8953 9.4624 8.72011L10.2663 7.91638Z"
+              fill="white" />
+            <path
+              d="M11.7497 5.22322L8.85773 8.11523C8.79742 8.17376 8.7213 8.21335 8.63875 8.22913C8.55621 8.24491 8.47085 8.23617 8.39321 8.20401C8.31557 8.17185 8.24904 8.11767 8.20183 8.04814C8.15462 7.97862 8.12879 7.89679 8.12754 7.81276V6.37741C7.1747 6.2759 5.66457 6.741 4.50324 7.53237C3.71333 8.07135 3.23586 8.66482 3.19283 9.16026C3.18281 9.25514 3.1415 9.344 3.07541 9.41281C3.00932 9.48163 2.9222 9.52649 2.8278 9.54033C2.7334 9.55417 2.63707 9.5362 2.55401 9.48925C2.47095 9.44229 2.40587 9.36903 2.36904 9.28101C1.84478 7.95495 1.87904 6.76539 2.47098 5.74526C3.31521 4.28993 5.2176 3.31416 8.12754 2.84255V1.42392C8.12882 1.3399 8.15466 1.2581 8.20188 1.18859C8.2491 1.11909 8.31562 1.06492 8.39325 1.03276C8.47089 1.00061 8.55623 0.99188 8.63876 1.00765C8.7213 1.02341 8.79741 1.06299 8.85773 1.12149L11.7497 4.01346C11.91 4.17396 12.0001 4.39151 12.0001 4.61834C12.0001 4.84517 11.91 5.06272 11.7497 5.22322Z"
+              fill="white" />
+          </svg>{{ 'COMMON.EXPORT_EXCEL' | translate }}</div>
+      </div>
+    </div>
+    <!---->
+    <div class="row search-dv" style="margin:0px">
+      <div class="col-md-2" style="padding-left: 0">
+        <label style="font-size: 14px; font-weight: 600; font-family: Inter; line-height: 24px; color: #474D66 !important;">{{ 'MANAGES_SCHOOL.CODE_SCHOOL' | translate }}</label>
+        <input type="text" style="font-size: 12px; font-weight: 400; font-family: Inter; line-height: 16px; color: #696F8C !important;" placeholder="{{'COMMON.INPUT_PLACEHOLDER' | translate}}" [(ngModel)]="searchSchool.code" (change)="searchSchool.code = searchSchool.code.trim()" (keyup.enter)="findSchool(1)" >
+      </div>
+      <div class="col-md-2">
+        <label style="font-size: 14px; font-weight: 600; font-family: Inter; line-height: 24px; color: #474D66 !important;">{{ 'MANAGES_SCHOOL.NAME_SCHOOL' | translate }}</label>
+        <input type="text" style="font-size: 12px; font-weight: 400; font-family: Inter; line-height: 16px; color: #696F8C !important;" placeholder="{{'COMMON.INPUT_PLACEHOLDER' | translate}}" [(ngModel)]="searchSchool.name" (change)="searchSchool.name = searchSchool.name.trim()" (keyup.enter)="findSchool(1)" >
+      </div>
+      <div class="col-md-2">
+        <label style="font-size: 14px; font-weight: 600; font-family: Inter; line-height: 24px; color: #474D66 !important;">{{ 'MANAGES_SCHOOL.PROVINCE_CITY' | translate }}</label>
+        <ng-select [items]="listProvices" bindLabel="name" bindValue="id" placeholder="{{'COMMON.SELECT_PLACEHOLDER' | translate}}" [(ngModel)]="searchSchool.provinceId"
+                   [ngModelOptions]="{standalone: true}" [clearable]="true" notFoundText="{{ 'COMMON.NOT_FOUND' | translate }}" style="color: #101840; font-size: 12px; line-height: 16px;font-weight: 400 !important;">
+          <ng-template ng-option-tmp let-item="item">
+            <div title="{{item.name}}" style="overflow: hidden; text-overflow: ellipsis;  white-space: nowrap;">{{item.name}}</div>
+          </ng-template>
+        </ng-select>
+      </div>
+      <div class="col-md-2">
+        <label style="font-size: 14px; font-weight: 600; font-family: Inter; line-height: 24px; color: #474D66 !important;">{{ 'MANAGES_SCHOOL.LEVEL_SCHOOL' | translate }}</label>
+        <ng-select [items]="listLevelSchool" id="nameVN" bindLabel="name" bindValue="code" placeholder="{{'COMMON.SELECT_PLACEHOLDER' | translate}}" [(ngModel)]="searchSchool.levelSchool"
+                   [ngModelOptions]="{standalone: true}" [clearable]="true" [searchable]="false" style="color: #101840; font-size: 12px; line-height: 16px;font-weight: 400 !important;" *ngIf="langKey === 'vn'">
+          <ng-template ng-option-tmp let-item="item">
+            <div title="{{item.name}}" style="overflow: hidden; text-overflow: ellipsis;  white-space: nowrap;">{{item.name}}</div>
+          </ng-template>
+        </ng-select>
+        <ng-select [items]="listLevelSchool"  id="nameLA" bindLabel="nameLA" bindValue="code" placeholder="{{'COMMON.SELECT_PLACEHOLDER' | translate}}" [(ngModel)]="searchSchool.levelSchool"
+                   [ngModelOptions]="{standalone: true}" [clearable]="true" [searchable]="false" style="color: #101840; font-size: 12px; line-height: 16px;font-weight: 400 !important;" *ngIf="langKey === 'la'">
+          <ng-template ng-option-tmp let-item="item">
+            <div title="{{item.nameLA}}" style="overflow: hidden; text-overflow: ellipsis;  white-space: nowrap;">{{item.nameLA}}</div>
+          </ng-template>
+        </ng-select>
+        <ng-select [items]="listLevelSchool"  id="nameEN" bindLabel="nameEN" bindValue="code" placeholder="{{'COMMON.SELECT_PLACEHOLDER' | translate}}" [(ngModel)]="searchSchool.levelSchool"
+                   [ngModelOptions]="{standalone: true}" [clearable]="true" [searchable]="false" style="color: #101840; font-size: 12px; line-height: 16px;font-weight: 400 !important;" *ngIf="langKey === 'en'">
+          <ng-template ng-option-tmp let-item="item">
+            <div title="{{item.nameEN}}" style="overflow: hidden; text-overflow: ellipsis;  white-space: nowrap;">{{item.nameEN}}</div>
+          </ng-template>
+        </ng-select>
+      </div>
+      <div class="col-md-2">
+        <label style="font-size: 14px; font-weight: 600; font-family: Inter; line-height: 24px; color: #474D66 !important;">{{ 'MANAGES_SCHOOL.STATUS' | translate }}</label>
+        <ng-select [items]="listStatus" bindLabel="name" bindValue="id" placeholder="{{'COMMON.SELECT_PLACEHOLDER' | translate}}" [(ngModel)]="searchSchool.status"
+                   [ngModelOptions]="{standalone: true}" [clearable]="false" [searchable]="false" style="color: #101840; font-size: 12px; line-height: 16px;font-weight: 400 !important;">
+          <ng-template ng-option-tmp let-item="item">
+            <div title="{{item.name}}" style="overflow: hidden; text-overflow: ellipsis;  white-space: nowrap;">{{item.name}}</div>
+          </ng-template>
+        </ng-select>
+      </div>
+      <div class="col-md-2" style="padding-right: 0; font-size: 12px">
+        <button (click)="findSchool(1)">{{'COMMON.SEARCH' | translate}}</button>
+      </div>
+    </div>
+    <div class="row table-school table-class-room" style="margin: 20px 0 0 0;">
+      <ag-grid-angular [suppressRowTransform]="true"
+                       [suppressRowClickSelection]="true"
+                       class="ag-theme-balham"
+                       [suppressMovableColumns]="true"
+                       style="width: 100%; height: 545px;" class="ag-theme-balham"
+                       [rowData]="rowData"
+                       (gridSizeChanged)="gridSizeChanged($event)"
+                       [columnDefs]="columnDefs"
+                       [headerHeight]="headerHeight"
+                       [rowHeight]="rowHeight"
+                       [tooltipShowDelay]="0"
+                       (gridReady)="onGridReady($event)"
+                       [applyColumnDefOrder]="true"
+                       [overlayNoRowsTemplate]="overlayNoRowsTemplate">
+      </ag-grid-angular>
+    </div>
+
+    <div *ngIf="showPadding">
+      <div class="sy-paging w-100" style="margin-bottom: 30px; margin-top: 20px">
+        <span class="sy-paging-result">{{first}}-{{last}} {{'COMMON.OF' | translate}} {{totalSchool}} {{'COMMON.RESULT' | translate}}</span>
+        <ul style="display: flex; align-items: center;margin-right: 23px;">
+          <div (click)="page(1)" style="margin-right: 25px;cursor: pointer;">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M7.8075 6L10.275 3.5325C10.4175 3.3975 10.5 3.21 10.5 3C10.5 2.5875 10.1625 2.25 9.75 2.25C9.54 2.25 9.3525 2.3325 9.2175 2.4675L6.2175 5.4675C6.0825 5.6025 6 5.79 6 6C6 6.21 6.0825 6.3975 6.2175 6.5325L9.2175 9.5325C9.3525 9.6675 9.54 9.75 9.75 9.75C10.1625 9.75 10.5 9.4125 10.5 9C10.5 8.79 10.4175 8.6025 10.2825 8.4675L7.8075 6Z" fill="#8F95B2"/>
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M2.8075 6L5.275 3.5325C5.4175 3.3975 5.5 3.21 5.5 3C5.5 2.5875 5.1625 2.25 4.75 2.25C4.54 2.25 4.3525 2.3325 4.2175 2.4675L1.2175 5.4675C1.0825 5.6025 1 5.79 1 6C1 6.21 1.0825 6.3975 1.2175 6.5325L4.2175 9.5325C4.3525 9.6675 4.54 9.75 4.75 9.75C5.1625 9.75 5.5 9.4125 5.5 9C5.5 8.79 5.4175 8.6025 5.2825 8.4675L2.8075 6Z" fill="#8F95B2"/>
+            </svg>
+          </div>
+          <div (click)="prev()" style="margin-right: 20px;cursor: pointer;">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M5.5575 6L8.025 3.5325C8.1675 3.3975 8.25 3.21 8.25 3C8.25 2.5875 7.9125 2.25 7.5 2.25C7.29 2.25 7.1025 2.3325 6.9675 2.4675L3.9675 5.4675C3.8325 5.6025 3.75 5.79 3.75 6C3.75 6.21 3.8325 6.3975 3.9675 6.5325L6.9675 9.5325C7.1025 9.6675 7.29 9.75 7.5 9.75C7.9125 9.75 8.25 9.4125 8.25 9C8.25 8.79 8.1675 8.6025 8.0325 8.4675L5.5575 6Z" fill="#8F95B2"/>
+            </svg>
+          </div>
+          <li class="sy-page"
+              [class.sy-highlight]="i === this._page"
+              [class.sy-dots]="i === '...'"
+              *ngFor="let i of rangeWithDots"
+              (click)="i !== '...' && page(i)">
+            {{ i }}
+          </li>
+          <div (click)="next()" style="margin-left: 20px;cursor: pointer;">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M8.0325 5.4675L5.0325 2.4675C4.8975 2.3325 4.71 2.25 4.5 2.25C4.0875 2.25 3.75 2.5875 3.75 3C3.75 3.21 3.8325 3.3975 3.9675 3.5325L6.4425 6L3.975 8.4675C3.8325 8.6025 3.75 8.79 3.75 9C3.75 9.4125 4.0875 9.75 4.5 9.75C4.71 9.75 4.8975 9.6675 5.0325 9.5325L8.0325 6.5325C8.1675 6.3975 8.25 6.21 8.25 6C8.25 5.79 8.1675 5.6025 8.0325 5.4675Z" fill="#8F95B2"/>
+            </svg>
+          </div>
+          <div (click)="page(totalPage)" style="margin-left: 25px;cursor: pointer;">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M5.2825 5.4675L2.2825 2.4675C2.1475 2.3325 1.96 2.25 1.75 2.25C1.3375 2.25 1 2.5875 1 3C1 3.21 1.0825 3.3975 1.2175 3.5325L3.6925 6L1.225 8.4675C1.0825 8.6025 1 8.79 1 9C1 9.4125 1.3375 9.75 1.75 9.75C1.96 9.75 2.1475 9.6675 2.2825 9.5325L5.2825 6.5325C5.4175 6.3975 5.5 6.21 5.5 6C5.5 5.79 5.4175 5.6025 5.2825 5.4675Z" fill="#8F95B2"/>
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M10.2825 5.4675L7.2825 2.4675C7.1475 2.3325 6.96 2.25 6.75 2.25C6.3375 2.25 6 2.5875 6 3C6 3.21 6.0825 3.3975 6.2175 3.5325L8.6925 6L6.225 8.4675C6.0825 8.6025 6 8.79 6 9C6 9.4125 6.3375 9.75 6.75 9.75C6.96 9.75 7.1475 9.6675 7.2825 9.5325L10.2825 6.5325C10.4175 6.3975 10.5 6.21 10.5 6C10.5 5.79 10.4175 5.6025 10.2825 5.4675Z" fill="#8F95B2"/>
+            </svg>
+          </div>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #templateNewSchool>
+  <div class="modal-content modal-dialog-custom" >
+    <div class="modal-header">
+      <h4 class="modal-title" style="font-size: 18px; font-weight: 600; font-family: Inter; line-height: 30px; color: #101840; text-align: center !important;">{{ 'COMMON.ADD' | translate }}</h4>
+      <button type="button" class="close" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body" style="padding: 15px 10px !important;">
+      <div class="row">
+        <div class="col-12">
+          <h4 class="modal-title" style="text-align: left; text-transform: uppercase; font-family: Inter; font-weight: 600; font-size: 16px; line-height: 24px !important;">{{'MANAGES_SCHOOL.INFOR' | translate}}</h4>
+        </div>
+        <div class="col-md-6">
+          <label>{{'MANAGES_SCHOOL.CODE_SCHOOL' | translate}}<span> *</span></label>
+          <input style="font-size: 12px" type="text" [(ngModel)]="school.code" (keyup)="validateCode()" (change)="school.code = school.code.trim()">
+          <small class="error-validate" *ngIf="errorSchool.code.error === true">{{errorSchool.code.message}}</small>
+        </div>
+        <div class="col-md-6">
+          <label>{{'MANAGES_SCHOOL.PROVINCE_CITY' | translate}}</label>
+          <ng-select style="font-size: 12px" [items]="listProvices" bindLabel="name" bindValue="id"  placeholder="{{'COMMON.SELECT_PLACEHOLDER' | translate}}" [(ngModel)]="school.provinceId"
+                     [ngModelOptions]="{standalone: true}" [clearable]="true" notFoundText="{{'COMMON.NOT_FOUND' | translate}}">
+            <ng-template ng-option-tmp let-item="item" let-search="searchTerm">
+              <div title="{{item.name}}" style="overflow: hidden; text-overflow: ellipsis;  white-space: nowrap;"> {{item.name}} </div>
+            </ng-template>
+          </ng-select>
+        </div>
+        <div class="col-md-6">
+          <label>{{'MANAGES_SCHOOL.NAME_SCHOOL' | translate}}<span> *</span></label>
+          <input style="font-size: 12px" type="text" [(ngModel)]="school.name" (keyup)="validateName()" (change)="school.name = school.name.trim()">
+          <small class="error-validate" *ngIf="errorSchool.name.error === true">{{errorSchool.name.message}}</small>
+        </div>
+        <div class="col-md-6">
+          <label>{{'MANAGES_SCHOOL.LEVEL_SCHOOL' | translate}}<span> *</span></label>
+          <ng-select style="font-size: 12px" [items]="listLevelSchool" bindLabel="name" bindValue="code" placeholder="{{'COMMON.SELECT_PLACEHOLDER' | translate}}" [(ngModel)]="school.levelShool"
+                     [ngModelOptions]="{standalone: true}" (change)="changeDataPackage()" [clearable]="false" [searchable]="false" *ngIf="langKey === 'vn'">
+            <ng-template ng-option-tmp let-item="item" let-search="searchTerm">
+              <div title="{{item.name}}" style="overflow: hidden; text-overflow: ellipsis;  white-space: nowrap;"> {{item.name}} </div>
+            </ng-template>
+          </ng-select>
+          <ng-select style="font-size: 12px" [items]="listLevelSchool" bindLabel="nameLA" bindValue="code" placeholder="{{'COMMON.SELECT_PLACEHOLDER' | translate}}" [(ngModel)]="school.levelShool"
+                     [ngModelOptions]="{standalone: true}" (change)="changeDataPackage()" [clearable]="false" [searchable]="false" *ngIf="langKey === 'la'">
+            <ng-template ng-option-tmp let-item="item" let-search="searchTerm">
+              <div title="{{item.nameLA}}" style="overflow: hidden; text-overflow: ellipsis;  white-space: nowrap;"> {{item.nameLA}} </div>
+            </ng-template>
+          </ng-select>
+          <ng-select style="font-size: 12px" [items]="listLevelSchool" bindLabel="nameEN" bindValue="code" placeholder="{{'COMMON.SELECT_PLACEHOLDER' | translate}}" [(ngModel)]="school.levelShool"
+                     [ngModelOptions]="{standalone: true}" (change)="changeDataPackage()" [clearable]="false" [searchable]="false" *ngIf="langKey === 'en'">
+            <ng-template ng-option-tmp let-item="item" let-search="searchTerm">
+              <div title="{{item.nameEN}}" style="overflow: hidden; text-overflow: ellipsis;  white-space: nowrap;"> {{item.nameEN}} </div>
+            </ng-template>
+          </ng-select>
+          <small class="error-validate" *ngIf="errorSchool.levelSchool.error === true">{{errorSchool.levelSchool.message}}</small>
+        </div>
+        <div class="col-md-6">
+          <label>{{'MANAGES_SCHOOL.ABBREVIATIONS' | translate}}<span> *</span></label>
+          <input style="font-size: 12px" type="text" [(ngModel)]="school.abbreviationName" (keyup)="validateAbbreviationName()" (change)="school.abbreviationName = school.abbreviationName.trim()">
+          <small class="error-validate" *ngIf="errorSchool.abbreviationName.error === true">{{errorSchool.abbreviationName.message}}</small>
+        </div>
+        <div class="col-md-6">
+          <label>{{'MANAGES_SCHOOL.DATA_PACKAGE' | translate}}<span> *</span></label>
+          <ng-select style="font-size: 12px" [items]="listDataPackage" bindLabel="name" bindValue="code" placeholder="{{'COMMON.SELECT_PLACEHOLDER' | translate}}" [(ngModel)]="school.dataPackageCode"
+                     [ngModelOptions]="{standalone: true}" (change)="validateDataPackage()" [clearable]="false" [searchable]="false">
+            <ng-template ng-option-tmp let-item="item" let-search="searchTerm">
+              <div title="{{item.name}}" style="overflow: hidden; text-overflow: ellipsis;  white-space: nowrap;"> {{item.name}} </div>
+            </ng-template>
+          </ng-select>
+          <small class="error-validate" *ngIf="errorSchool.dataPackage.error === true">{{errorSchool.dataPackage.message}}</small>
+        </div>
+        <div class="col-12">
+          <h4 class="modal-title" style="text-align: left">{{'MANAGES_SCHOOL.TITLE_DATABASE' | translate}}</h4>
+        </div>
+        <div class="col-md-6">
+          <label>{{'MANAGES_SCHOOL.DATABASE.TITLE' | translate}}<span> *</span></label>
+          <input style="font-size: 12px" type="text" [(ngModel)]="school.database" (keyup)="validateDatabase()" (change)="school.database = school.database.trim()">
+          <small class="error-validate" *ngIf="errorSchool.database.error === true">{{errorSchool.database.message}}</small>
+        </div>
+        <div class="col-md-6">
+          <label>{{'MANAGES_SCHOOL.ADMIN.TITLE' | translate}}<span> *</span></label>
+          <input style="font-size: 12px" type="text" [(ngModel)]="school.accountAdmin" (keyup)="validateAcoountAdmin()" (change)="school.accountAdmin = school.accountAdmin.trim()"/>
+          <small class="error-validate" *ngIf="errorSchool.accountAdmin.error === true">{{errorSchool.accountAdmin.message}}</small>
+        </div>
+        <div class="col-md-6">
+          <label>{{'MANAGES_SCHOOL.STATUS' | translate}}</label>
+<!--          <ng-select [items]="listStatus" bindLabel="name" bindValue="id" placeholder="{{'COMMON.SELECT_PLACEHOLDER' | translate}}" [(ngModel)]="school.status"-->
+<!--                     [ngModelOptions]="{standalone: true}" [clearable]="false" [searchable]="false" style="color: #101840">-->
+<!--            <ng-template ng-option-tmp let-item="item" let-search="searchTerm">-->
+<!--              <div title="{{item.name}}" style="overflow: hidden; text-overflow: ellipsis;  white-space: nowrap;"> {{item.name}} </div>-->
+<!--            </ng-template>-->
+<!--          </ng-select>-->
+          <input value="{{'MANAGES_SCHOOL.STATUS_ACTIVE' | translate}}" disabled="true" style="color: #474d66; font-weight: 500; font-size: 12px !important;"/>
+        </div>
+        <div class="col-md-6">
+          <label>{{'MANAGES_SCHOOL.PASSWORD.TITLE' | translate}}<span> *</span></label>
+          <div class="input-pass">
+            <input style="font-size: 12px" type="{{type}}" [(ngModel)]="school.password" (keyup)="validatePassword()" (change)="school.password = school.password.trim()"/>
+            <div class="eye-pass" (click)="changeType()">
+                <i *ngIf="type === 'password'" [ngClass]="{'fas fa-eye-slash': true}"></i>
+                <i *ngIf="type === 'text'" [ngClass]="{'fas fa-eye':true}"></i>
+            </div>
+          </div>
+          <small class="error-validate" *ngIf="errorSchool.password.error === true">{{errorSchool.password.message}}</small>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <div class="btn-action">
+        <button type="button" class="btn-md btn-gray" style="font-size: 12px; font-weight: 600; font-family: Inter; line-height: 16px; text-align: center !important;" (click)="modalRef.hide()">{{'COMMON.CANCEL' | translate}}</button>
+        <button type="button" class="btn-md btn-or" style="font-size: 12px; font-weight: 600; font-family: Inter; line-height: 16px; text-align: center !important;" (click)="onSubmit()">{{'COMMON.OK' | translate}}</button>
+      </div>
+    </div>
+  </div>
+
+</ng-template>

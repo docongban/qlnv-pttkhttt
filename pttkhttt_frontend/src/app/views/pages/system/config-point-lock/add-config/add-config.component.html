@@ -1,0 +1,86 @@
+<div class="modal-dialog-custom">
+  <form [formGroup]="formAddConfig" #ngForm="ngForm" class="login-form">
+    <div class="modal-content">
+      <div class="modal-header" style="padding-bottom: 5px;flex-direction: column;">
+        <h4 class="modal-title" style="text-align: center;">tạo cấu hình khoá nhập điểm</h4>
+      </div>
+      <div class="modal-body" style="padding: 15px 10px !important;">
+        <div class="row">
+          <div class="col-4">
+            <mat-label style="font-size: 14px; font-weight: 600; color: #474D66;" >Chọn học kỳ</mat-label>
+            <ng-select [items]="semesterList"
+                       bindLabel="semester"
+                       bindValue="semester"
+                       formControlName="semester"
+                       [clearable]="false"
+                       [searchable]="false"
+                       style="font-size: 12px"
+            >
+            </ng-select>
+          </div>
+
+          <div class="col-4">
+            <mat-label style="font-size: 14px; font-weight: 600;color: #474D66;">Năm học</mat-label>
+            <ng-select [items]=""
+                       bindLabel="years"
+                       bindValue="years"
+                       formControlName="years"
+                       [clearable]="false"
+                       style="font-size: 12px"
+            >
+            </ng-select>
+          </div>
+
+          <div class="col-4">
+            <mat-label style="font-size: 14px; font-weight: 600; color: #474D66;">Chọn khối muốn cấu hình <span style="color: red">*</span></mat-label>
+            <ng-select [items]="gradeList"
+                       placeholder="Lựa chọn"
+                       bindLabel="name"
+                       bindValue="code"
+                       formControlName="gradeLevel"
+                       [clearable]="false"
+                       [searchable]="false"
+                       style="font-size: 12px"
+            >
+            </ng-select>
+            <mat-error *ngIf="(this.formAddConfig.get('gradeLevel').errors?.required &&
+              this.formAddConfig.controls.gradeLevel.touched) ||
+              (this.formAddConfig.get('gradeLevel').errors?.required && ngForm.submitted) ">
+              Vui lòng chọn khối
+            </mat-error>
+          </div>
+        </div>
+        <div class="sy-row" style="display: flex;">
+          <div style="width: 25px;height: 25px;margin: 0 8px 19px 12px;">
+            <label class="container">
+              <input type="checkbox" id="extends" (change)="applyAllGrade($event)" style="display: none">
+              <span class="checkmark" style="cursor: pointer; top: 10px;"></span>
+            </label>
+          </div>
+          <div>
+            <label for="extends" class="text" style="font-size: 12px">Áp dụng cho toàn trường</label><br>
+          </div>
+        </div>
+        <div class="row table-school" style="margin-top: -11px;padding: 0 12px 0 12px;">
+          <div class="header-table-grid w-100">
+            <div style="flex: 1; margin-left: 4px">STT</div>
+            <div style="flex: 3; margin-left: 23px">KIỂU MÔN</div>
+            <div style="flex: 3; margin-left: 128px">CỘT ĐIỂM</div>
+            <div style="flex: 4; margin-left: 138px">NGÀY KHÓA NHẬP <span style="color: red">*</span></div>
+          </div>
+          <ag-grid-angular [suppressRowTransform]="true" [suppressRowClickSelection]="true" style="width: 790px; height: 240px;"
+                           class="ag-theme-balham" [rowData]="rowData" [columnDefs]="columnDefs"
+                           [headerHeight]="headerHeight"
+                           [rowSelection]="'multiple'" [tabToNextCell] = "true"
+                           [rowHeight]="rowHeight" (gridReady)="onGridReady($event)">
+
+          </ag-grid-angular>
+        </div>
+      </div>
+      <div class="modal-footer">
+          <button class="btn-md btn-gray out-line-btn" (click)="onDismiss()" tabIndex="0">Hủy bỏ</button>
+          <button type="submit" class="btn-md btn-or" (click)="this.formAddConfig.invalid ? null : createConfig()" tabIndex="0">Lưu lại</button>
+      </div>
+    </div>
+  </form>
+</div>

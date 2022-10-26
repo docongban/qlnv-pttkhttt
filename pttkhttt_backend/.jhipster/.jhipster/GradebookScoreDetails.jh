@@ -1,0 +1,14 @@
+entity GradebookScoreDetails {
+	id Long,
+	code String,
+	parentCode String,
+	scoreCode String,
+	times Long,
+	value String,
+	type Long,
+	coeficient Double
+}
+dto GradebookScoreDetails with mapstruct
+paginate GradebookScoreDetails with pagination
+service GradebookScoreDetails with serviceClass
+service GradebookScoreDetails with serviceImpl

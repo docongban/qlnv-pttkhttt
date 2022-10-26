@@ -1,0 +1,11 @@
+entity GroupTeacher {
+	id Long,
+    code String,
+	name String,
+	createDate Instant,
+	creator String
+}
+dto GroupTeacher with mapstruct
+paginate GroupTeacher with pagination
+service GroupTeacher with serviceClass
+service GroupTeacher with serviceImpl
