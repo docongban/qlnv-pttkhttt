@@ -18,5 +18,5 @@ public class TimekeepingExportDTO {
 
     private String employeeAddress;
 
-    private Instant timeAt;
+    private String timeAt;
 }

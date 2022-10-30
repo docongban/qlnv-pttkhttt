@@ -15,8 +15,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
+import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -109,7 +111,10 @@ public class TimekeepingServiceImpl implements TimekeepingService {
                 dto.setEmployeePhoneNumber(item.getEmployeePhoneNumber());
                 dto.setEmployeeEmail(item.getEmployeeEmail());
                 dto.setEmployeeAddress(item.getEmployeeAddress());
-                dto.setTimeAt(item.getTimeAt());
+
+                Date timeAt = Date.from(item.getTimeAt());
+                SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+                dto.setTimeAt(formatter.format(timeAt));
 
                 list.add(dto);
             }
