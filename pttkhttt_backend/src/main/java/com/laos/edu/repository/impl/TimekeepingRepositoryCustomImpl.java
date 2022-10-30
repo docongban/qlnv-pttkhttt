@@ -36,7 +36,7 @@ public class TimekeepingRepositoryCustomImpl implements TimekeepingRepositoryCus
         Pageable pageable = PageRequest.of(page, pageSize);
         List<TimekeepingDTO> list = new ArrayList<>();
 
-        StringBuilder sql = new StringBuilder("select t.employee_code, e.name, e.sex, e.phone_number, e.email, e.address, t.time_at from timekeeping t \n" +
+        StringBuilder sql = new StringBuilder("select t.employee_code, e.name, e.sex, e.phone_number, e.email, e.address, t.time_at, t.id from timekeeping t \n" +
             "inner join employee e on t.employee_code = e.code \n" +
             "where true ");
 
@@ -50,7 +50,7 @@ public class TimekeepingRepositoryCustomImpl implements TimekeepingRepositoryCus
             sql.append(" and t.time_at <= :toDate ");
         }
 
-        sql.append(" order by t.time_at asc ");
+        sql.append(" order by t.time_at desc ");
 
         Query query = entityManager.createNativeQuery(sql.toString());
         Query countQuery = entityManager.createNativeQuery("SELECT COUNT(*) FROM (" + sql + ") as x");
@@ -84,6 +84,7 @@ public class TimekeepingRepositoryCustomImpl implements TimekeepingRepositoryCus
                 dto.setEmployeeEmail(DataUtil.safeToString(obj[4]));
                 dto.setEmployeeAddress(DataUtil.safeToString(obj[5]));
                 dto.setTimeAt(DataUtil.safeToInstant(obj[6]));
+                dto.setId(DataUtil.safeToInt(obj[7]));
 
                 list.add(dto);
             }
@@ -95,12 +96,12 @@ public class TimekeepingRepositoryCustomImpl implements TimekeepingRepositoryCus
     public List<TimekeepingDTO> searchAll(TimekeepingDTO timekeepingDTO) {
         List<TimekeepingDTO> list = new ArrayList<>();
 
-        StringBuilder sql = new StringBuilder("select t.employee_code, e.name, e.sex, e.phone_number, e.email, e.address, t.time_at from timekeeping t \n" +
+        StringBuilder sql = new StringBuilder("select t.employee_code, e.name, e.sex, e.phone_number, e.email, e.address, t.time_at, t.id from timekeeping t \n" +
             "inner join employee e on t.employee_code = e.code \n" +
             "where true ");
 
         if(timekeepingDTO.getEmployeeCode() != null){
-            sql.append(" (upper(e.code) like upper(:codeOrName) or upper(e.name) like upper(:codeOrName%)) ");
+            sql.append(" and (upper(e.code) like upper(:codeOrName) or upper(e.name) like upper(:codeOrName)) ");
         }
         if(timekeepingDTO.getFromDate() != null){
             sql.append(" and t.time_at >= :fromDate ");
@@ -109,7 +110,7 @@ public class TimekeepingRepositoryCustomImpl implements TimekeepingRepositoryCus
             sql.append(" and t.time_at <= :toDate ");
         }
 
-        sql.append(" order by e.name asc ");
+        sql.append(" order by t.time_at desc ");
 
         Query query = entityManager.createNativeQuery(sql.toString());
         Query countQuery = entityManager.createNativeQuery("SELECT COUNT(*) FROM (" + sql + ") as x");
@@ -139,6 +140,7 @@ public class TimekeepingRepositoryCustomImpl implements TimekeepingRepositoryCus
                 dto.setEmployeeEmail(DataUtil.safeToString(obj[4]));
                 dto.setEmployeeAddress(DataUtil.safeToString(obj[5]));
                 dto.setTimeAt(DataUtil.safeToInstant(obj[6]));
+                dto.setId(DataUtil.safeToInt(obj[7]));
 
                 list.add(dto);
             }

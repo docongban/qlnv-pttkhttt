@@ -11,6 +11,12 @@ export class MenuConfig {
           translate: 'MENU.DASHBOARD',
         },
         {
+          title: 'Quản lý bảng chấm công',
+          page: '/system/timekeeping',
+          iconSvg: 'mng-school.svg',
+          translate: 'Quản lý bảng chấm công',
+        },
+        {
           title: 'Quản lý trường học',
           page: '/system/school/manages-school',
           iconSvg: 'mng-school.svg',

@@ -1,5 +1,6 @@
 package com.laos.edu.service.impl;
 
+import com.laos.edu.commons.DataUtil;
 import com.laos.edu.domain.Timekeeping;
 import com.laos.edu.repository.TimekeepingRepository;
 import com.laos.edu.service.TimekeepingService;
@@ -12,6 +13,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.EntityManager;
+import javax.persistence.Query;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,6 +25,9 @@ public class TimekeepingServiceImpl implements TimekeepingService {
 
     @Autowired
     TimekeepingRepository timekeepingRepository;
+
+    @Autowired
+    EntityManager entityManager;
 
     @Override
     public Page<TimekeepingDTO> doSearch(TimekeepingDTO timekeepingDTO, int page, int pageSize) {
@@ -69,10 +75,10 @@ public class TimekeepingServiceImpl implements TimekeepingService {
     }
 
     @Override
-    public ServiceResult deleteTimekeeping(Timekeeping timekeeping) {
+    public ServiceResult deleteTimekeeping(TimekeepingDTO timekeepingDTO) {
         ServiceResult rs = new ServiceResult();
 
-        Timekeeping delete = timekeepingRepository.findById(timekeeping.getId()).get();
+        Timekeeping delete = timekeepingRepository.findById(timekeepingDTO.getId()).get();
 
         try{
             timekeepingRepository.delete(delete);
@@ -109,5 +115,32 @@ public class TimekeepingServiceImpl implements TimekeepingService {
             }
         }
         return list;
+    }
+
+    @Override
+    public TimekeepingDTO getById(TimekeepingDTO timekeepingDTO) {
+        StringBuilder sql = new StringBuilder("select t.employee_code, e.name, e.sex, e.phone_number, e.email, e.address, t.time_at, t.id from timekeeping t \n" +
+            "inner join employee e on t.employee_code = e.code \n" +
+            "where t.id =  ");
+        sql.append(timekeepingDTO.getId());
+        Query query = entityManager.createNativeQuery(sql.toString());
+        TimekeepingDTO dto=new TimekeepingDTO();
+        List<Object[]> lstObj = query.getResultList();
+        if (lstObj != null && !lstObj.isEmpty()){
+            for (Object[] obj : lstObj){
+
+                dto.setEmployeeCode(DataUtil.safeToString(obj[0]));
+                dto.setEmployeeName(DataUtil.safeToString(obj[1]));
+                dto.setEmployeeSex(DataUtil.safeToString(obj[2]));
+                dto.setEmployeePhoneNumber(DataUtil.safeToString(obj[3]));
+                dto.setEmployeeEmail(DataUtil.safeToString(obj[4]));
+                dto.setEmployeeAddress(DataUtil.safeToString(obj[5]));
+                dto.setTimeAt(DataUtil.safeToInstant(obj[6]));
+                dto.setId(DataUtil.safeToInt(obj[7]));
+
+                break;
+            }
+        }
+        return dto;
     }
 }

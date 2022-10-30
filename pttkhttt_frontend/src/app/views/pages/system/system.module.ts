@@ -139,6 +139,9 @@ import { ActionStaticComponent } from './statistic/action-static/action-static.c
 import { PriceDirective } from './data-package/create-data-package/PriceDirective';
 import {NgbDateMomentParserFormatter} from './package-management/datePickerFormat';
 import {NumbericDirective} from './package-management/numberic.directive';
+import { TimekeepingComponent } from './timekeeping/timekeeping.component';
+import { CreateUpdateTimekeepingComponent } from './timekeeping/create-update-timekeeping/create-update-timekeeping.component';
+import { ActionTimekeepingComponent } from './timekeeping/action-timekeeping/action-timekeeping.component';
 
 
 const routes: Routes = [
@@ -146,134 +149,14 @@ const routes: Routes = [
     path: '',
     component: SystemComponent,
   },
-  // {
-  //   path: 'subject',
-  //   component: SubjectComponent,
-  // },
-  // {
-  //   path: 'school/subject-declaration',
-  //   component: SubjectDeclarationComponent,
-  // },
-  // {
-  //   path: 'school/class-room',
-  //   component: ClassRoomComponent,
-  // },
-  // {
-  //   path: 'school/configuration',
-  //   component: SchoolComponent,
-  // },
-  // {
-  //   path: 'system-configuration',
-  //   component: SystemConfigurationComponent,
-  // },
-  // {
-  //   path: 'teacher/teacher-management',
-  //   component: TeachersComponent,
-  // },
-  // {
-  //   path: 'student/student-management',
-  //   component: StudentsComponent,
-  // },
-  // {
-  //   path: 'student/student-profile/:id/:year',
-  //   component: StudentProfileComponent,
-  // },
-  // {
-  //   path: 'student/create-update-student',
-  //   component: CreateUpdateStudentComponent,
-  // },
-  // {
-  //   path: 'student/create-update-student/:id',
-  //   component: CreateUpdateStudentComponent,
-  // },
-  // {
-  //   path: 'student/students-gradebook',
-  //   component: StudentGradebookComponent,
-  // },
-  // {
-  //   path: 'student/attendance-student',
-  //   component: AttendanceStudentComponent,
-  // },
-  // {
-  //   path: 'official-letter-document',
-  //   component: OfficialLetterDocumentComponent,
-  // },
-  // {
-  //   path: 'contact',
-  //   component: ContactComponent,
-  // },
-  // {
-  //   path: 'school/school-subject',
-  //   component: SchoolSubjectComponent,
-  // },
-  // {
-  //   path: 'modal-add-edit-school-subject',
-  //   component: ModalAddEditSchoolSubjectComponent,
-  // },
-  // {
-  //   path: 'modal-add-edit-school-subject',
-  //   component: ModalAddEditSchoolSubjectComponent,
-  // },
-  // {
-  //   path: 'school/school-year',
-  //   component: SchoolYearComponent,
-  // },
-  // {
-  //   path: 'system-configuration/scoreboard',
-  //   component: ScoreboardComponent,
-  // },
-  // {
-  //   path: 'system-configuration/manage-contact',
-  //   component: ManageContactComponent,
-  // },
-  // {
-  //   path: 'teacher/teacher-profile/:id',
-  //   component: TeacherProfileComponent,
-  // },
-  // {
-  //   path: 'teacher/teaching-assignment',
-  //   component: TeachingAssignmentComponent,
-  // },
-  // {
-  //   path: 'teacher/create-update-teacher',
-  //   component: CreateUpdateTeachersComponent,
-  // },
-  // {
-  //   path: 'system-configuration/config-point-lock',
-  //   component: ConfigPointLockComponent,
-  // },
-  // {
-  //   path: 'teacher/teacher-ratings',
-  //   component: TeacherRatingsComponent,
-  // },
-  // {
-  //   path: 'school/schedule-timetable',
-  //   component: ScheduleTimetableComponent,
-  // },
-  // {
-  //   path: 'contact/send-mail',
-  //   component: SendMailComponent,
-  // },
-  // {
-  //   path: 'contact/contact-group',
-  //   component: ContactGroupComponent,
-  // },
-  // {
-  //   path: 'account/account-management',
-  //   component: AccountManagementComponent,
-  // },
-  // {
-  //   path: 'student/conduct-assessment',
-  //   component: ConductAssessmentComponent,
-  // },
   {
     path: 'account/change-password',
     component: ChangePasswordComponent,
   },
-  // {
-  //   path: 'student/academic-abilities',
-  //   component: AcademicAbilitiesComponent,
-  // },
+  {
+    path: 'timekeeping',
+    component: TimekeepingComponent,
+  },
   {
     path: 'school/manages-school',
     component: ManagesSchoolComponent,
@@ -302,26 +185,6 @@ const routes: Routes = [
     component: DashboardComponent,
 
   },
-  // {
-  //   path: 'teacher',
-  //   children: [
-  //     {
-  //       path: 'teaching-timetable',
-  //       loadChildren: () => import('./teachers/teaching-timetable/teaching-timetable.module')
-  //         .then(m => m.TeachingTimetableModule),
-  //     }
-  //   ]
-  // },
-  // {
-  //   path: 'student',
-  //   children: [
-  //     {
-  //       path: 'transfer-students',
-  //       loadChildren: () => import('./students/transfer-students/transfer-students.module')
-  //         .then(m => m.TransferStudentsModule),
-  //     }
-  //   ]
-  // },
   { path: '', redirectTo: 'system', pathMatch: 'full' },
   { path: '**', redirectTo: 'system', pathMatch: 'full' },
 ];
@@ -409,7 +272,10 @@ const routes: Routes = [
     StatisticDetailComponent,
     PriceDirective,
     NumbericDirective,
-    CustomDateFormat1
+    CustomDateFormat1,
+    TimekeepingComponent,
+    CreateUpdateTimekeepingComponent,
+    ActionTimekeepingComponent
   ],
   imports: [
     RouterModule.forChild(routes),
@@ -507,7 +373,9 @@ const routes: Routes = [
     ActionStaticComponent,
     ListSchoolProvinceComponent,
     StatisticRevenueComponent,
-    StatisticDetailComponent],
+    StatisticDetailComponent,
+    CreateUpdateTimekeepingComponent,
+    ActionTimekeepingComponent],
 })
 
 export class SystemModule {}

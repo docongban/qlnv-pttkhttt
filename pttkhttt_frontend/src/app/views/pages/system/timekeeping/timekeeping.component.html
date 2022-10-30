@@ -1,0 +1,128 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 col-xs-12" style="padding-left:0">
+      <div class="header">
+        <div class="header-left">
+          <h3>Bảng chấm công</h3>
+        </div>
+        <div class="header-right">
+          <button class="btn blue" (click)="openModalCreateUpdate()" tabindex="0">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="5" width="2" height="12" rx="1" fill="white"/>
+              <rect x="12" y="5" width="2" height="12" rx="1" transform="rotate(90 12 5)" fill="white"/>
+            </svg>
+            <span class="btn-text">Tạo mới</span>
+          </button>
+          <button class="btn gray" (click)="export()">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M10.2663 7.91638V9.97918C10.2659 10.3194 10.1306 10.6456 9.89001 10.8862C9.64943 11.1268 9.32324 11.2621 8.98301 11.2625H1.28329C0.943053 11.2621 0.616861 11.1268 0.376279 10.8862C0.135697 10.6456 0.000373641 10.3194 0 9.97918V5.2738C0.000373641 4.93356 0.135697 4.60737 0.376279 4.36679C0.616861 4.12621 0.943053 3.99088 1.28329 3.99051H2.88667C1.18204 5.36568 0.702899 7.42116 1.57344 9.59526C1.67972 9.86413 1.87368 10.0892 2.1239 10.234C2.37412 10.3789 2.66591 10.4349 2.95199 10.3931C3.23806 10.3514 3.50163 10.2142 3.69999 10.0039C3.89834 9.79354 4.01984 9.52239 4.04479 9.23436C4.08697 8.7477 5.73954 7.54585 7.27179 7.27435V7.81278C7.27595 8.06469 7.35366 8.30989 7.49536 8.51822C7.63707 8.72654 7.83658 8.88889 8.06935 8.9853C8.30212 9.08171 8.558 9.10798 8.8055 9.06086C9.053 9.01374 9.28133 8.8953 9.4624 8.72011L10.2663 7.91638Z" fill="white"/>
+              <path d="M11.7499 5.22322L8.85785 8.11523C8.79754 8.17376 8.72142 8.21335 8.63887 8.22913C8.55633 8.24491 8.47097 8.23617 8.39333 8.20401C8.31569 8.17185 8.24916 8.11767 8.20195 8.04814C8.15474 7.97862 8.12892 7.89679 8.12766 7.81276V6.37741C7.17482 6.2759 5.66469 6.74101 4.50336 7.53237C3.71345 8.07135 3.23598 8.66482 3.19295 9.16026C3.18293 9.25514 3.14163 9.344 3.07553 9.41281C3.00944 9.48163 2.92233 9.52649 2.82792 9.54033C2.73352 9.55417 2.63719 9.5362 2.55413 9.48925C2.47107 9.44229 2.40599 9.36903 2.36917 9.28101C1.8449 7.95495 1.87916 6.76539 2.4711 5.74526C3.31533 4.28993 5.21772 3.31416 8.12766 2.84255V1.42392C8.12894 1.3399 8.15479 1.2581 8.202 1.18859C8.24922 1.11909 8.31574 1.06492 8.39338 1.03276C8.47101 1.00061 8.55635 0.99188 8.63888 1.00765C8.72142 1.02341 8.79754 1.06299 8.85785 1.12149L11.7499 4.01346C11.9101 4.17396 12.0002 4.39151 12.0002 4.61834C12.0002 4.84517 11.9101 5.06272 11.7499 5.22322V5.22322Z" fill="white"/>
+            </svg>
+            <span class="btn-text">Xuất Excel</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row" style="margin-left:0">
+    <div class="col-md-8" style="padding-left:0">
+      <div class="search">
+        <div class="col-md-4">
+          <label class="search-item-text">Chấm công từ</label>
+          <input
+            type="datetime-local"
+            class= "search-input"
+            placeholder= "Bắt đầu từ"
+
+            [(ngModel)]="fromDate"
+          />
+        </div>
+        <div class="col-md-4">
+          <label class="search-item-text">Chấm công đến</label>
+          <input
+            type="datetime-local"
+            class= "search-input"
+            placeholder= "Kết thúc đến"
+
+            [(ngModel)]="toDate"
+          />
+        </div>
+        <div class="col-md-4">
+          <label class="search-item-text">Mã hoặc tên nhân viên</label>
+          <input
+            class= "search-input"
+            placeholder= "Nhập thông tin tra cứu"
+
+            [(ngModel)]="valueSearch"
+            (keyup.enter)="search(1)"
+          />
+        </div>
+      </div>
+    </div>
+    <div class="col-md-2"></div>
+    <div class="col-md-2" style="display: flex; align-items: flex-end">
+      <button (click)="search(1)" class="btn orange" style="width: 100%; height: 40px; text-align: center; display: block;">
+        <span>Tìm kiếm</span>
+      </button>
+    </div>
+  </div>
+  <div class="row" style="margin-top: 24px; margin-bottom: 50px;">
+    <ag-grid-angular
+      class="ag-theme-balham"
+      style="width: 100%; height: 550px"
+
+      [rowData]="rowData"
+      [columnDefs]="columnDefs"
+
+      [rowHeight]="rowHeight"
+      [headerHeight]="headerHeight"
+      [suppressRowTransform]="true"
+      [suppressRowClickSelection]="true"
+      [suppressMovableColumns]="true"
+      [rowStyle]="rowStyle"
+      [getRowStyle]="getRowStyle"
+      [tooltipShowDelay]="0"
+      [overlayNoRowsTemplate]="noRowsTemplate"
+    ></ag-grid-angular>
+
+  </div>
+  <div class="sy-paging w-100 row align-items-center">
+    <span class="sy-paging-result">{{first}}-{{last}} {{'COMMON.OF' | translate}} {{totalRecord}} {{'COMMON.RESULT' | translate}}</span>
+    <ul style="display: flex; align-items: center;margin-right: 23px;">
+      <div (click)="paging(1)" style="margin-right: 25px;cursor: pointer;">
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M7.8075 6L10.275 3.5325C10.4175 3.3975 10.5 3.21 10.5 3C10.5 2.5875 10.1625 2.25 9.75 2.25C9.54 2.25 9.3525 2.3325 9.2175 2.4675L6.2175 5.4675C6.0825 5.6025 6 5.79 6 6C6 6.21 6.0825 6.3975 6.2175 6.5325L9.2175 9.5325C9.3525 9.6675 9.54 9.75 9.75 9.75C10.1625 9.75 10.5 9.4125 10.5 9C10.5 8.79 10.4175 8.6025 10.2825 8.4675L7.8075 6Z" fill="#8F95B2"/>
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M2.8075 6L5.275 3.5325C5.4175 3.3975 5.5 3.21 5.5 3C5.5 2.5875 5.1625 2.25 4.75 2.25C4.54 2.25 4.3525 2.3325 4.2175 2.4675L1.2175 5.4675C1.0825 5.6025 1 5.79 1 6C1 6.21 1.0825 6.3975 1.2175 6.5325L4.2175 9.5325C4.3525 9.6675 4.54 9.75 4.75 9.75C5.1625 9.75 5.5 9.4125 5.5 9C5.5 8.79 5.4175 8.6025 5.2825 8.4675L2.8075 6Z" fill="#8F95B2"/>
+        </svg>
+      </div>
+      <div (click)="prev()" style="margin-right: 20px;cursor: pointer;">
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M5.5575 6L8.025 3.5325C8.1675 3.3975 8.25 3.21 8.25 3C8.25 2.5875 7.9125 2.25 7.5 2.25C7.29 2.25 7.1025 2.3325 6.9675 2.4675L3.9675 5.4675C3.8325 5.6025 3.75 5.79 3.75 6C3.75 6.21 3.8325 6.3975 3.9675 6.5325L6.9675 9.5325C7.1025 9.6675 7.29 9.75 7.5 9.75C7.9125 9.75 8.25 9.4125 8.25 9C8.25 8.79 8.1675 8.6025 8.0325 8.4675L5.5575 6Z" fill="#8F95B2"/>
+        </svg>
+      </div>
+      <li class="sy-page"
+          [class.sy-highlight]="i === this.page"
+          [class.sy-dots]="i === '...'"
+          *ngFor="let i of rangeWithDots"
+          (click)="i !== '...' && paging(i)">
+        {{ i }}
+      </li>
+
+      <div (click)="next()" style="margin-left: 20px;cursor: pointer;">
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M8.0325 5.4675L5.0325 2.4675C4.8975 2.3325 4.71 2.25 4.5 2.25C4.0875 2.25 3.75 2.5875 3.75 3C3.75 3.21 3.8325 3.3975 3.9675 3.5325L6.4425 6L3.975 8.4675C3.8325 8.6025 3.75 8.79 3.75 9C3.75 9.4125 4.0875 9.75 4.5 9.75C4.71 9.75 4.8975 9.6675 5.0325 9.5325L8.0325 6.5325C8.1675 6.3975 8.25 6.21 8.25 6C8.25 5.79 8.1675 5.6025 8.0325 5.4675Z" fill="#8F95B2"/>
+        </svg>
+      </div>
+      <div (click)="paging(totalPage)" style="margin-left: 25px;cursor: pointer;">
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M5.2825 5.4675L2.2825 2.4675C2.1475 2.3325 1.96 2.25 1.75 2.25C1.3375 2.25 1 2.5875 1 3C1 3.21 1.0825 3.3975 1.2175 3.5325L3.6925 6L1.225 8.4675C1.0825 8.6025 1 8.79 1 9C1 9.4125 1.3375 9.75 1.75 9.75C1.96 9.75 2.1475 9.6675 2.2825 9.5325L5.2825 6.5325C5.4175 6.3975 5.5 6.21 5.5 6C5.5 5.79 5.4175 5.6025 5.2825 5.4675Z" fill="#8F95B2"/>
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M10.2825 5.4675L7.2825 2.4675C7.1475 2.3325 6.96 2.25 6.75 2.25C6.3375 2.25 6 2.5875 6 3C6 3.21 6.0825 3.3975 6.2175 3.5325L8.6925 6L6.225 8.4675C6.0825 8.6025 6 8.79 6 9C6 9.4125 6.3375 9.75 6.75 9.75C6.96 9.75 7.1475 9.6675 7.2825 9.5325L10.2825 6.5325C10.4175 6.3975 10.5 6.21 10.5 6C10.5 5.79 10.4175 5.6025 10.2825 5.4675Z" fill="#8F95B2"/>
+        </svg>
+      </div>
+    </ul>
+  </div>
+</div>
+
+<div class="page-loading-class" *ngIf="spinner===false">
+  <div class="bee-spinner-sc"></div>
+</div>

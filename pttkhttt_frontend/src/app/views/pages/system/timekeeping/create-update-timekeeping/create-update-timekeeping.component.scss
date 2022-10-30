@@ -1,0 +1,120 @@
+:host ::ng-deep{
+  .ng-placeholder{
+    line-height: 28px;
+    padding-bottom: 0;
+  }
+  .ng-select .ng-select-container{
+    min-height: 40px;
+  }
+  .disable{
+    pointer-events: none;
+    background-color: #edeff5;
+  }
+}
+
+.search-input{
+  font-size: 12px;
+  height: 40px;
+  width: 100%;
+  padding-left: 10px;
+  border-radius: 5px;
+  border: 1px solid #D8DAE5;
+}
+.btn{
+  height: 32px;
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 16px;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .btn-text{
+    margin-left: 8px;
+  }
+
+  &.blue{
+    background-color: #3366FF;
+  }
+
+  &.gray{
+    background-color: #696F8C;
+  }
+
+  &.return{
+    background-color: #E6E8F0;
+    color: #696F8C;
+  }
+
+  &.save{
+    background-color: #F26522;
+  }
+
+  &:hover{
+    opacity: .7;
+  }
+}
+
+.error-validate{
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.modal-content{
+  .modal-header{
+    .text{
+      font-weight: 600;
+      font-size: 18px;
+      line-height: 30px;
+      color: #101840;
+    }
+  }
+  .modal-body{
+    label{
+      font-weight: 600;
+      font-size: 14px;
+      line-height: 24px;
+      color: #474D66;
+      span{
+        color: #d14343;
+      }
+    }
+
+    input{
+      font-weight: 400;
+      font-size: 12px;
+      line-height: 16px;
+      color: #101840;
+    }
+
+    .item{
+      display: flex;
+      flex-direction: column;
+      opacity: 1;
+      margin-top: 10px;
+    }
+
+    .description{
+      height: 76px;
+      width: 100%;
+      font-weight: 400;
+      font-size: 12px;
+      line-height: 16px;
+      color: #101840;
+      border-radius: 5px;
+      border: 1px solid #D8DAE5;
+    }
+  }
+  .modal-footer{
+    .btn-action{
+      display: flex;
+      .btn{
+        margin-left: 12px;
+        width: 105px;
+        text-align: center;
+      }
+    }
+  }
+}

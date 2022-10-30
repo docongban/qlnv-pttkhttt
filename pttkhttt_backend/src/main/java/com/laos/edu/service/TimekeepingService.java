@@ -16,7 +16,9 @@ public interface TimekeepingService {
 
     ServiceResult updateTimekeeping(Timekeeping timekeeping);
 
-    ServiceResult deleteTimekeeping(Timekeeping timekeeping);
+    ServiceResult deleteTimekeeping(TimekeepingDTO timekeepingDTO);
 
     List<TimekeepingExportDTO> exort(TimekeepingDTO timekeepingDTO);
+
+    TimekeepingDTO getById(TimekeepingDTO timekeepingDTO);
 }

@@ -1,0 +1,66 @@
+<form (ngSubmit)="onSubmit()" [formGroup]="form">
+  <div class="modal-dialog-custom">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="text" *ngIf="isCreateNew">THÊM MỚI CÔNG</h3>
+        <h3 class="text" *ngIf="!isCreateNew">CẬP NHẬT CÔNG</h3>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <input type="hidden" formControlName="id" [(ngModel)]="timekeeping.id" *ngIf="!isCreateNew"/>
+          <div class="col-md-6">
+            <div class="item">
+              <label for="">Nhân viên <span>*</span></label>
+              <ng-select
+                style="font-size: 12px; font-family: Inter;"
+                [ngClass]="{'disable' : !isCreateNew}"
+                placeholder="Tất cả"
+
+                [items]="employees"
+                bindLabel="name"
+                bindValue="code"
+                formControlName="employeeCode"
+                [(ngModel)]="timekeeping.employeeCode"
+              >
+                <ng-template ng-option-tmp let-item="item">
+                  <div [matTooltip]="item.name" [ngClass]="{'disable' : !isCreateNew}">{{item.name}}</div>
+                </ng-template>
+              </ng-select>
+              <div *ngIf="(getControl.employeeCode.touched || getControl.employeeCode.dirty) && getControl.employeeCode.invalid">
+                <small class="error-validate" style="color: red" *ngIf="getControl.employeeCode.errors?.required">
+                  Nhân viên không được để trống
+                </small>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="item">
+              <label for="">Thời gian chấm công <span>*</span></label>
+              <input
+                type="datetime-local"
+                class="search-input"
+                style="font-size: 12px; font-family: Inter;"
+
+                formControlName="timeAt"
+                [(ngModel)]="timekeeping.timeAt"
+              />
+              <div *ngIf="(getControl.timeAt.touched || getControl.timeAt.dirty) && getControl.timeAt.invalid">
+                <small class="error-validate" style="color: red" *ngIf="getControl.timeAt.errors?.required">
+                  Thời gian chấm công không được bỏ trống
+                </small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <div class="btn-action">
+          <button type="button" class="btn return" (click)="closeModal()">
+            Hủy bỏ
+          </button>
+          <button type="submit" class="btn save">Lưu lại</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
