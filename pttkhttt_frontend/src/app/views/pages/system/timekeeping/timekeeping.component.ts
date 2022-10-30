@@ -6,8 +6,6 @@ import {TimekeepingService} from '../../../../core/service/service-model/timekee
 import {CommonServiceService} from '../../../../core/service/utils/common-service.service';
 import * as moment from 'moment';
 import {ActionTimekeepingComponent} from './action-timekeeping/action-timekeeping.component';
-import {SchoolService} from '../../../../core/service/service-model/school.service';
-import {SearchSchoolModel} from '../../../../core/service/model/search-school.model';
 import {ChartTimekeepingComponent} from './chart-timekeeping/chart-timekeeping.component';
 
 @Component({
@@ -38,14 +36,12 @@ export class TimekeepingComponent implements OnInit {
   pageSize = 10;
   page;
   rangeWithDots: any[];
-  searchSchool: SearchSchoolModel = new SearchSchoolModel();
 
   constructor(
     private matDialog: MatDialog,
     private changeDetectorRef: ChangeDetectorRef,
     private timekeepingService: TimekeepingService,
-    private commonService: CommonServiceService,
-    private schoolService: SchoolService,
+    private commonService: CommonServiceService
   ) {
     this.buildColumnDefs()
   }
@@ -89,14 +85,13 @@ export class TimekeepingComponent implements OnInit {
         headerClass: 'fontTitle',
         field: 'employeeCode',
         suppressMovable: true,
-        // headerClass: 'minimum-score',
         minWidth: 124,
         maxWidth: 124,
         cellStyle: {
           'font-weight': '500',
           'font-size': '12px',
-          display: 'flex',
-          'align-items': 'center',
+          display: 'block',
+          'line-height': '56px',
           color: '#3366FF',
           top: '0px',
           'white-space': 'nowrap',
@@ -112,8 +107,8 @@ export class TimekeepingComponent implements OnInit {
         headerClass: 'fontTitle',
         field: 'employeeName',
         suppressMovable: true,
-        maxWidth: 150,
-        minWidth: 150,
+        maxWidth: 170,
+        minWidth: 170,
         cellStyle: {
           'font-weight': '500',
           'font-size': '12px',
@@ -180,8 +175,8 @@ export class TimekeepingComponent implements OnInit {
         headerClass: 'fontTitle',
         field: 'employeeEmail',
         suppressMovable: true,
-        minWidth: 120,
-        maxWidth: 120,
+        minWidth: 170,
+        maxWidth: 170,
         // width: 256,
         cellStyle: {
           'font-weight': '500',
@@ -203,12 +198,14 @@ export class TimekeepingComponent implements OnInit {
         field: 'employeeAddress',
         // filter: 'Bắt buộc',
         suppressMovable: true,
-        minWidth: 120,
-        // maxWidth: 200,
+        // minWidth: 180,
+        width: 250,
         cellStyle: {
           'font-weight': '500',
           'font-size': '12px',
-          display: 'flex',
+          display: 'block',
+          'line-height': '56px',
+          width: '250px',
           'align-items': 'center',
           color: '#101840',
           top: '0px',
@@ -249,7 +246,7 @@ export class TimekeepingComponent implements OnInit {
         headerName: '',
         field: 'undefined',
         pinned: 'right',
-        suppressMovable: true,
+        // suppressMovable: true,
         displayce: 'nowrap',
         cellClass: 'cell-action',
         cellRendererFramework: ActionTimekeepingComponent,
@@ -334,7 +331,7 @@ export class TimekeepingComponent implements OnInit {
         maxHeight: window.innerHeight + 'px',
         disableClose: true,
         hasBackdrop: true,
-        width: '800px',
+        width: '750px',
         autoFocus: false,
       }
     ).afterClosed().subscribe((res) => {

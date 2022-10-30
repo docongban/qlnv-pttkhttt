@@ -91,6 +91,9 @@ export class ChartTimekeepingComponent implements OnInit {
   month
   totalDays: any[] =[]
   employees: any[] =[]
+  public barColor(point): string {
+    return '#f26522';
+  }
 
   constructor(
     public dialogRef: MatDialogRef<CreateUpdateTimekeepingComponent>,
@@ -119,7 +122,7 @@ export class ChartTimekeepingComponent implements OnInit {
       }
       // tslint:disable-next-line:prefer-for-of
       for(let i = 0;i<res.length;i++){
-        this.employees.push(res[i].employeeCode)
+        this.employees.push(res[i].employeeName)
       }
       this.changeDetectorRef.detectChanges();
     })
