@@ -109,4 +109,9 @@ public class TimekeepingResource {
             .contentType(MediaType.parseMediaType(MEDIA_TYPE))
             .body(resource);
     }
+
+    @PostMapping("/chart")
+    public ResponseEntity<?> chart(@RequestBody TimekeepingDTO timekeepingDTO){
+        return ResponseEntity.ok(timekeepingService.countTimekeeping(timekeepingDTO));
+    }
 }

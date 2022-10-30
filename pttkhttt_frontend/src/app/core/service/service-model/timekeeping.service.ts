@@ -53,4 +53,9 @@ export class TimekeepingService {
     const url = this.API + `timekeeping/export`;
     return this.http.post(url, data,{responseType: 'blob'});
   }
+
+  handleChart(data) {
+    const url = this.API + `timekeeping/chart`;
+    return this.http.post<any>(url,data, this.httpOptions)
+  }
 }

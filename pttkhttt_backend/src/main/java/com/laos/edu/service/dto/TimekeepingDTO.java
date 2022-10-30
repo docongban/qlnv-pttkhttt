@@ -31,4 +31,10 @@ public class TimekeepingDTO {
     private Instant fromDate;
 
     private Instant toDate;
+
+    private String year;
+
+    private String month;
+
+    private Integer totalDay;
 }

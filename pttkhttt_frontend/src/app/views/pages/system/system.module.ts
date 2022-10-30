@@ -142,6 +142,8 @@ import {NumbericDirective} from './package-management/numberic.directive';
 import { TimekeepingComponent } from './timekeeping/timekeeping.component';
 import { CreateUpdateTimekeepingComponent } from './timekeeping/create-update-timekeeping/create-update-timekeeping.component';
 import { ActionTimekeepingComponent } from './timekeeping/action-timekeeping/action-timekeeping.component';
+import { ChartTimekeepingComponent } from './timekeeping/chart-timekeeping/chart-timekeeping.component';
+import {NgApexchartsModule} from 'ng-apexcharts';
 
 
 const routes: Routes = [
@@ -275,7 +277,8 @@ const routes: Routes = [
     CustomDateFormat1,
     TimekeepingComponent,
     CreateUpdateTimekeepingComponent,
-    ActionTimekeepingComponent
+    ActionTimekeepingComponent,
+    ChartTimekeepingComponent
   ],
   imports: [
     RouterModule.forChild(routes),
@@ -340,7 +343,8 @@ const routes: Routes = [
     AcademicAbilitiesModule,
     ChartModule,
     MatDatepickerModule,
-    MatIconModule
+    MatIconModule,
+    NgApexchartsModule
   ],
   entryComponents: [
     SelectScheduleTimetableComponent,
@@ -375,7 +379,8 @@ const routes: Routes = [
     StatisticRevenueComponent,
     StatisticDetailComponent,
     CreateUpdateTimekeepingComponent,
-    ActionTimekeepingComponent],
+    ActionTimekeepingComponent,
+    ChartTimekeepingComponent],
 })
 
 export class SystemModule {}

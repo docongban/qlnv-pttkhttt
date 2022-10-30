@@ -113,7 +113,7 @@ public class TimekeepingServiceImpl implements TimekeepingService {
                 dto.setEmployeeAddress(item.getEmployeeAddress());
 
                 Date timeAt = Date.from(item.getTimeAt());
-                SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+                SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm");
                 dto.setTimeAt(formatter.format(timeAt));
 
                 list.add(dto);
@@ -147,5 +147,10 @@ public class TimekeepingServiceImpl implements TimekeepingService {
             }
         }
         return dto;
+    }
+
+    @Override
+    public List<TimekeepingDTO> countTimekeeping(TimekeepingDTO timekeepingDTO) {
+        return timekeepingRepository.countTimekeeping(timekeepingDTO);
     }
 }

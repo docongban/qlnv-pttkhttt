@@ -21,4 +21,6 @@ public interface TimekeepingService {
     List<TimekeepingExportDTO> exort(TimekeepingDTO timekeepingDTO);
 
     TimekeepingDTO getById(TimekeepingDTO timekeepingDTO);
+
+    List<TimekeepingDTO> countTimekeeping(TimekeepingDTO timekeepingDTO);
 }

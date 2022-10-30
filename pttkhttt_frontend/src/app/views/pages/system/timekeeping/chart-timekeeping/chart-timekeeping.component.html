@@ -1,0 +1,68 @@
+<div class="modal-dialog-custom">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h3 class="text">BIỂU ĐỒ CHẤM CÔNG</h3>
+    </div>
+    <div class="modal-body">
+      <div class="row">
+        <div class="col-md-3">
+          <div class="item">
+            <label for="">Chọn năm</label>
+            <ng-select
+              style="font-size: 12px; font-family: Inter;"
+              placeholder="Tất cả"
+
+              [items]="years"
+              bindLabel="name"
+              bindValue="id"
+              [(ngModel)]="year"
+              [clearable]="false"
+            >
+            </ng-select>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="item">
+            <label for="">Chọn Tháng</label>
+            <ng-select
+              style="font-size: 12px; font-family: Inter;"
+              placeholder="Tất cả"
+
+              [items]="months"
+              bindLabel="name"
+              bindValue="id"
+              [clearable]="false"
+              [(ngModel)]="month"
+            >
+            </ng-select>
+          </div>
+        </div>
+        <div class="col-md-3"></div>
+        <div class="col-md-3">
+          <label for=""></label>
+          <button (click)="doSearch()" class="btn save" style="width: 100%; height: 40px; text-align: center; display: flex; align-items: flex-end">
+            <span>Thống kê</span>
+          </button>
+        </div>
+      </div>
+      <div id="chart">
+        <kendo-chart>
+          <kendo-chart-category-axis>
+            <kendo-chart-category-axis-item [categories]="employees">
+            </kendo-chart-category-axis-item>
+          </kendo-chart-category-axis>
+          <kendo-chart-series>
+            <kendo-chart-series-item [data]="totalDays"> </kendo-chart-series-item>
+          </kendo-chart-series>
+        </kendo-chart>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <div class="btn-action">
+        <button type="button" class="btn return" (click)="closeModal()">
+          Trở về
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

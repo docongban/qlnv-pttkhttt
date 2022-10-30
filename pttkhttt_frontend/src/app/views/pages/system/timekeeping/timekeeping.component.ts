@@ -8,6 +8,7 @@ import * as moment from 'moment';
 import {ActionTimekeepingComponent} from './action-timekeeping/action-timekeeping.component';
 import {SchoolService} from '../../../../core/service/service-model/school.service';
 import {SearchSchoolModel} from '../../../../core/service/model/search-school.model';
+import {ChartTimekeepingComponent} from './chart-timekeeping/chart-timekeeping.component';
 
 @Component({
   selector: 'kt-timekeeping',
@@ -223,15 +224,15 @@ export class TimekeepingComponent implements OnInit {
         headerClass: 'fontTitle',
         field: 'timeAt',
         cellRenderer: param => {
-          return `${moment(param.data.timeAt).format('DD/MM/YYYY h:mm:ss A')}`
+          return `${moment(param.data.timeAt).format('DD/MM/YYYY h:mm A')}`
         },
         tooltipValueGetter: param => {
-          return `${moment(param.data.timeAt).format('DD/MM/YYYY h:mm:ss A')}`
+          return `${moment(param.data.timeAt).format('DD/MM/YYYY h:mm A')}`
         },
         minWidth: 180,
         maxWidth: 180,
         // filter: 'Bắt buộc',
-        // suppressMovable: true,
+        suppressMovable: true,
         cellStyle: {
           'font-weight': '500',
           'font-size': '12px',
@@ -317,6 +318,23 @@ export class TimekeepingComponent implements OnInit {
         disableClose: true,
         hasBackdrop: true,
         width: '550px',
+        autoFocus: false,
+      }
+    ).afterClosed().subscribe((res) => {
+      console.log(res);
+      if(res.event !== 'cancel'){
+        this.search(1);
+      }
+    });
+  }
+
+  openModalChart(){
+    this.matDialog.open(
+      ChartTimekeepingComponent, {
+        maxHeight: window.innerHeight + 'px',
+        disableClose: true,
+        hasBackdrop: true,
+        width: '800px',
         autoFocus: false,
       }
     ).afterClosed().subscribe((res) => {

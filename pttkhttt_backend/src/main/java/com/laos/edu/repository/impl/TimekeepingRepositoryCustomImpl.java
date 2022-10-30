@@ -31,6 +31,10 @@ public class TimekeepingRepositoryCustomImpl implements TimekeepingRepositoryCus
 
     private static final String TO_DATE = "toDate";
 
+    private static final String YEAR = "year";
+
+    private static final String MONTH = "month";
+
     @Override
     public Page<TimekeepingDTO> doSearch(TimekeepingDTO timekeepingDTO, int page, int pageSize) {
         Pageable pageable = PageRequest.of(page, pageSize);
@@ -141,6 +145,41 @@ public class TimekeepingRepositoryCustomImpl implements TimekeepingRepositoryCus
                 dto.setEmployeeAddress(DataUtil.safeToString(obj[5]));
                 dto.setTimeAt(DataUtil.safeToInstant(obj[6]));
                 dto.setId(DataUtil.safeToInt(obj[7]));
+
+                list.add(dto);
+            }
+        }
+        return list;
+    }
+
+    @Override
+    public List<TimekeepingDTO> countTimekeeping(TimekeepingDTO timekeepingDTO) {
+        List<TimekeepingDTO> list = new ArrayList<>();
+
+        StringBuilder sql = new StringBuilder("select e.code, e.name, count(e.code) as totalDay from employee e \n" +
+            "inner join timekeeping t on e.code = t.employee_code \n" +
+            "where year(t.time_at)= :year and month(t.time_at)= :month\n" +
+            "group by e.code");
+
+        sql.append(" order by totalDay desc ");
+
+        Query query = entityManager.createNativeQuery(sql.toString());
+
+        if(timekeepingDTO.getYear() != null){
+            query.setParameter(YEAR, timekeepingDTO.getYear());
+        }
+        if(timekeepingDTO.getMonth() != null){
+            query.setParameter(MONTH, timekeepingDTO.getMonth());
+        }
+
+        List<Object[]> lstObj = query.getResultList();
+        if (lstObj != null && !lstObj.isEmpty()){
+            for (Object[] obj : lstObj){
+                TimekeepingDTO dto=new TimekeepingDTO();
+
+                dto.setEmployeeCode(DataUtil.safeToString(obj[0]));
+                dto.setEmployeeName(DataUtil.safeToString(obj[1]));
+                dto.setTotalDay(DataUtil.safeToInt(obj[2]));
 
                 list.add(dto);
             }
