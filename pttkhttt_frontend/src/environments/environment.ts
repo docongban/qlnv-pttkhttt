@@ -18,7 +18,7 @@ export const environment = {
   // SCHOOL_NAME: 'Trường THPT Chuyên Nguyễn Huệ',
   SCHOOL_NAME: 'ໂຮງຮຽນມິດຕະພາບລາວ-ຫວຽດນາມ',
   SCHOOL_CODE: 'THPT_NH_HN',
-  UNITEL_NAME:'HỆ THỐNG QUẢN LÝ GIÁO DỤC',
+  UNITEL_NAME:'HỌC VIỆN CÔNG NGHỆ BƯU CHÍNH VIỄN THÔNG',
   timer: 120, // seconds,
   ROLE: {
     // admin

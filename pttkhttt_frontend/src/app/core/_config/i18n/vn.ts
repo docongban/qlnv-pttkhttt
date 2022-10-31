@@ -9,7 +9,7 @@ export const locale = {
       CONNECT_FAILURE: 'Mất kết nối server!',
       CONNECT_FAILURE_UNITEL: 'Mất kết nối server Unitel!',
       NAME:'HỆ THỐNG QUẢN LÝ TRƯỜNG HỌC',
-      UNITEL_NAME: 'HỆ THỐNG QUẢN LÝ GIÁO DỤC',
+      UNITEL_NAME: 'HỌC VIỆN CÔNG NGHỆ BƯU CHÍNH VIỄN THÔNG',
     },
     COMMON:{
       NO:'STT',
