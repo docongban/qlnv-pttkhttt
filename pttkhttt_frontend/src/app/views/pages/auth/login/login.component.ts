@@ -26,7 +26,7 @@ import {CommonResponseModel} from '../../../../core/service/model/common-respons
 import {BsModalRef, BsModalService, ModalDirective} from 'ngx-bootstrap/modal';
 import {environment} from '../../../../../environments/environment';
 import {SchoolServices} from '../../system/school/school.service';
-import {StorageSessionService} from "../../../../core/auth/_services/storage.session.service";
+import {StorageSessionService} from '../../../../core/auth/_services/storage.session.service';
 
 /**
  * ! Just example => Should be removed in development
@@ -126,7 +126,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.initLoginForm();
     // redirect back to the returnUrl before login
     this.route.queryParams.subscribe(params => {
-      this.returnUrl = params.returnUrl || '/system/dashboard';
+      this.returnUrl = params.returnUrl || '/system/timekeeping';
     });
   }
 
